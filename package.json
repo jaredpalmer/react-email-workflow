@@ -10,8 +10,7 @@
     "start": "npm run start:dev",
     "start:dev": "node serverDev.js",
     "start:prod": "NODE_ENV=production node server.js",
-    "lint": "eslint src",
-    "postinstall": "npm run build"
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
