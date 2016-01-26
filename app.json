@@ -1,0 +1,13 @@
+{
+  "name": "react-email-workflow",
+  "scripts": {
+  },
+  "env": {
+    "EMBEDLY": {
+      "required": true
+    }
+  },
+  "addons": [
+
+  ]
+}
