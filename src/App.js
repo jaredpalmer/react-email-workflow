@@ -1,32 +1,26 @@
 import React, { Component } from 'react';
-import {Block} from 'jsxstyle';
+import {Block, Flex} from 'jsxstyle';
+import Center from './Center';
+import Button from './Button';
+
 import L from './LayoutConstants';
 
 export class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      hovered: false
-    };
-    this.handleMouseEnter = this.handleMouseEnter.bind(this);
-    this.handleMouseLeave = this.handleMouseLeave.bind(this);
-  }
-  handleMouseEnter() {
-     this.setState({hovered: true});
-  }
-
-  handleMouseLeave() {
-     this.setState({hovered: false});
-  }
-
   render() {
     return (
-       <div role="button" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <Block
-            marginLeft={L.gridUnit}
-            color={this.state.hovered ? 'white' : 'black'}>
-            Hello Worldssss
-          </Block>
+      <div>
+        <h1 fontFamily={L.sans}>Redux Email Helper</h1>
+        <Flex>
+          <input type="text"/>
+          <Button marginLeft={L.gridUnit} onClick={() => alert('Yo')}>Hello</Button>
+          <Button marginLeft={L.gridUnit}>Hello</Button>
+        </Flex>
+        <Block>
+          <input type="text"/>
+        </Block>
+        <Block>
+          <input type="date"/>
+        </Block>
       </div>
     );
   }

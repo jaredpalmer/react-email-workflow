@@ -1,13 +1,13 @@
+import Color from 'jsxstyle/lib/Color';
 
-var Color = require('jsxstyle/lib/Color');
+const primaryColor = Color.rgb(10, 0, 0);
+const secondaryColor = Color.alpha(primaryColor, .8);
 
-var primaryColor = Color.rgb(10, 0, 0);
-var secondaryColor = Color.alpha(primaryColor, .8);
-
-var LayoutConstants = {
+const LayoutConstants = {
   primaryColor: primaryColor,
   secondaryColor: secondaryColor,
   gridUnit: 8,
-}
+  sans: '"Helvetica Neue", Arial, sans-serif'
+};
 
-module.exports = LayoutConstants;
+export default LayoutConstants;
