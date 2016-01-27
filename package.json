@@ -4,12 +4,15 @@
   "description": "Email workflow for ShellyPalmer. Built with React, Redux, Express, Webpack, React-Transform, CSS Modules.",
   "main": "server.js",
   "scripts": {
+    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot",
     "dist": "webpack --config webpack.config.js",
     "build": "npm run clean && npm run dist",
     "clean": "rm -rf public/scripts",
     "start": "npm run start:dev",
     "start:dev": "node serverDev.js",
     "start:prod": "NODE_ENV=production node server.js",
+    "test": "mocha --compilers js:babel-core/register --recursive && npm run coverage",
+    "test:watch": "npm test -- --watch",
     "lint": "eslint src"
   },
   "repository": {
@@ -24,6 +27,7 @@
   },
   "homepage": "https://github.com/jaredpalmer/react-email-workflow#readme",
   "dependencies": {
+    "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.1",
@@ -37,13 +41,16 @@
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.4.1",
     "chai-immutable": "^1.5.3",
+    "codeclimate-test-reporter": "^0.3.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^4.0.0",
     "eslint-plugin-react": "^3.16.1",
+    "expect": "^1.13.4",
     "express": "^4.13.4",
+    "isparta": "^4.0.0",
     "jsxstyle": "0.0.18",
     "lodash.range": "^3.1.0",
-    "mocha": "^2.3.4",
+    "mocha": "^2.4.2",
     "node-uuid": "^1.4.7",
     "react": "^0.14.6",
     "react-dnd": "^2.0.2",
@@ -57,5 +64,6 @@
     "webpack": "^1.12.12",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4"
-  }
+  },
+  "devDependencies": {}
 }
