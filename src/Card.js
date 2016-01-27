@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ItemTypes from './ItemTypes';
 import { DragSource, DropTarget } from 'react-dnd';
-import {Row, Block} from 'jsxstyle';
+import {Block, Row} from 'jsxstyle';
 import Button from './Button';
 import Input from './Input';
 

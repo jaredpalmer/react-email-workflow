@@ -19,17 +19,19 @@ class Input extends Component {
   }
 
   render() {
-    const { ...rest } = this.props;
+    const { style, ...rest } = this.props;
     const border = this.state.focused ? '1px solid #000' : '1px solid #eee';
     return (
       <input
         onFocus={this.handleOnFocus.bind(this)}
         onBlur={this.handleOnBlur.bind(this)}
-        style={{
+        style={{...style,
           fontFamily: L.sans,
           transition: '.25s border ease',
           border: border,
-          outline: '0 !important'
+          fontSize: '1rem',
+          outline: 'none !important',
+          padding: L.gridUnit,
         }}
         {...rest}/>
     );
