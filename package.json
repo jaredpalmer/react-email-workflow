@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/jaredpalmer/react-email-workflow#readme",
   "dependencies": {
+    "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.1",
