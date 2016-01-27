@@ -46,7 +46,7 @@
     "eslint-plugin-react": "^3.16.1",
     "expect": "^1.13.4",
     "express": "^4.13.4",
-    "istanbul": "^0.4.2",
+    "isparta": "^4.0.0",
     "jsxstyle": "0.0.18",
     "lodash.range": "^3.1.0",
     "mocha": "^2.4.2",
@@ -64,7 +64,5 @@
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4"
   },
-  "devDependencies": {
-    "isparta": "^4.0.0"
-  }
+  "devDependencies": {}
 }
