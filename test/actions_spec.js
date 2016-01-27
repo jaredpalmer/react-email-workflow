@@ -6,6 +6,7 @@ describe('actions', () => {
   it('should create an action to add an element', () => {
     const expectedAction = {
       type: types.ADD_ELEMENT,
+      id: 0
     };
     expect(actions.add()).toEqual(expectedAction);
   });
