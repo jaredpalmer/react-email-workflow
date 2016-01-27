@@ -30,6 +30,8 @@ class Button extends Component {
       >
         <Center background={this.state.hovered ? L.primaryColor : L.secondaryColor}
           fontFamily={L.sans}
+          fontSize="1rem"
+          border="1px solid #222"
           padding={L.gridUnit}
           color="white"
           transition=".3s color ease"

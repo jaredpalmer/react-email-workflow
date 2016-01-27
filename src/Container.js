@@ -8,7 +8,7 @@ import uuid from 'node-uuid';
 import Button from './Button';
 
 const style = {
-  width: 400
+  width: 522
 };
 
 const cardTarget = {
@@ -105,7 +105,7 @@ class Container extends Component {
         />
         );
         })}
-        <Button onClick={() => this.add() }> Add Link </Button>
+        <Button onClick={() => this.add() }><i className="icon ion-link" style={{marginRight: ".5rem"}}/> Add Link </Button>
       </div>
     );
   }
