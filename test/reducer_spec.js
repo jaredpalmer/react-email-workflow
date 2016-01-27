@@ -25,7 +25,14 @@ function reducer(state = [], action) {
       const i = state.findIndex((el) => el.id === action.id);
       return update(state, {$splice:[[i, 1]]});
     case types.MOVE_ELEMENT:
-      return state;
+      const el = state.filter(e => e.id === action.id)[0];
+      const j = state.indexOf(el);
+      return update(state, {
+        $splice: [
+          [j , 1],
+          [action.atIndex, 0, el]
+        ]
+      });
     default:
       return state;
   }
@@ -84,6 +91,34 @@ describe('reducer', () => {
       }];
     const nextState = reducer(initialState, actions.destroy(1));
     expect(nextState).toEqual([]);
+  });
+
+  it('should handle MOVE_ELEMENT', () => {
+    const initialState = [{
+        id: 1,
+        title: 'Google',
+      },
+      {
+        id: 2,
+        title: 'Apple',
+      },
+      {
+        id: 3,
+        title: 'FB',
+      }
+    ];
+    const nextState = reducer(initialState, actions.move(1, 1));
+    expect(nextState).toEqual([{
+        id: 2,
+        title: 'Apple',
+      },{
+        id: 1,
+        title: 'Google',
+      },{
+        id: 3,
+        title: 'FB',
+      }
+    ]);
   });
 
 });
