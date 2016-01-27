@@ -4,14 +4,14 @@
   "description": "Email workflow for ShellyPalmer. Built with React, Redux, Express, Webpack, React-Transform, CSS Modules.",
   "main": "server.js",
   "scripts": {
-    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text --report html --report lcov node_modules/mocha/bin/_mocha -- --reporter dot",
+    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot",
     "dist": "webpack --config webpack.config.js",
     "build": "npm run clean && npm run dist",
     "clean": "rm -rf public/scripts",
     "start": "npm run start:dev",
     "start:dev": "node serverDev.js",
     "start:prod": "NODE_ENV=production node server.js",
-    "test": "mocha --compilers js:babel-core/register --recursive",
+    "test": "mocha --compilers js:babel-core/register --recursive && npm run coverage",
     "test:watch": "npm test -- --watch",
     "lint": "eslint src"
   },

@@ -13,6 +13,8 @@ addons:
 cache:
   directories:
     - node_modules
+after_script:
+  - codeclimate-test-reporter < lcov.info
 deploy:
   provider: heroku
   buildpack: nodejs
