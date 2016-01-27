@@ -45,9 +45,7 @@ describe('actions', () => {
   it('should create an action to edit meta data', () => {
     const expectedAction = {
       type: types.EDIT_META,
-      meta: {
-        subject: 'Apple goes Bankrupt'
-      }
+      meta: {subject: 'Apple goes Bankrupt'}
     };
     expect(actions.meta({subject: 'Apple goes Bankrupt'})).toEqual(expectedAction);
   });

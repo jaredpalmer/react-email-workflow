@@ -3,53 +3,20 @@ import * as actions from '../src/actions/EmailActions';
 import * as types from '../src/constants/ActionTypes';
 import uuid from 'node-uuid';
 import update from 'react/lib/update';
-
-const url = {
-  kind: 'url',
-  title: '',
-  url: '',
-  content: '',
-  author: '',
-};
-
-// TODO: Figure out uuid vs. id in testing / spying
-
-function reducer(state = [], action) {
-  switch (action.type) {
-    case types.ADD_ELEMENT:
-      return [...state, {id: action.id, ...url}];
-    case types.EDIT_ELEMENT:
-      const index = state.findIndex((el) => el.id === action.id);
-      return update(state, {[index]: { $merge: action.updates }});
-    case types.DESTROY_ELEMENT:
-      const i = state.findIndex((el) => el.id === action.id);
-      return update(state, {$splice:[[i, 1]]});
-    case types.MOVE_ELEMENT:
-      const el = state.filter(e => e.id === action.id)[0];
-      const j = state.indexOf(el);
-      return update(state, {
-        $splice: [
-          [j , 1],
-          [action.atIndex, 0, el]
-        ]
-      });
-    default:
-      return state;
-  }
-}
-
+import elements from '../src/reducers/elements';
+import meta from '../src/reducers/meta';
 
 describe('reducer', () => {
 
   it('should return default state if action is undefined', () => {
     const initialState = [];
-    const nextState = reducer(initialState, 'BLAH');
+    const nextState = elements(initialState, 'BLAH');
     expect(nextState).toEqual(initialState);
   });
 
   it('should handle ADD_ELEMENT', () => {
     const initialState = []
-    const nextState = reducer(initialState, actions.add());
+    const nextState = elements(initialState, actions.add());
     expect(nextState).toEqual([{
           id: 1,
           kind: 'url',
@@ -69,7 +36,7 @@ describe('reducer', () => {
         content: '',
         author: ''
       }];
-    const nextState = reducer(initialState, actions.edit(1, {title: 'Hello!'}));
+    const nextState = elements(initialState, actions.edit(1, {title: 'Hello!'}));
     expect(nextState).toEqual([{
         id: 1,
         kind: 'url',
@@ -89,7 +56,7 @@ describe('reducer', () => {
         content: '',
         author: ''
       }];
-    const nextState = reducer(initialState, actions.destroy(1));
+    const nextState = elements(initialState, actions.destroy(1));
     expect(nextState).toEqual([]);
   });
 
@@ -107,7 +74,7 @@ describe('reducer', () => {
         title: 'FB',
       }
     ];
-    const nextState = reducer(initialState, actions.move(1, 1));
+    const nextState = elements(initialState, actions.move(1, 1));
     expect(nextState).toEqual([{
         id: 2,
         title: 'Apple',
@@ -120,5 +87,20 @@ describe('reducer', () => {
       }
     ]);
   });
+
+  it('should handle EDIT_META', () => {
+    const initialState = {
+        subject: '',
+        preheader: '',
+        date: ''
+      };
+    const nextState = meta(initialState, actions.meta({subject: 'Hello'}));
+    expect(nextState).toEqual({
+        subject: 'Hello',
+        preheader: '',
+        date: ''
+      });
+  });
+
 
 });
