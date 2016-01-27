@@ -10,6 +10,8 @@
     "start": "npm run start:dev",
     "start:dev": "node serverDev.js",
     "start:prod": "NODE_ENV=production node server.js",
+    "test": "mocha --compilers js:babel-core/register --recursive",
+    "test:watch": "npm test -- --watch",
     "lint": "eslint src"
   },
   "repository": {
@@ -40,10 +42,11 @@
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^4.0.0",
     "eslint-plugin-react": "^3.16.1",
+    "expect": "^1.13.4",
     "express": "^4.13.4",
     "jsxstyle": "0.0.18",
     "lodash.range": "^3.1.0",
-    "mocha": "^2.3.4",
+    "mocha": "^2.4.2",
     "node-uuid": "^1.4.7",
     "react": "^0.14.6",
     "react-dnd": "^2.0.2",
