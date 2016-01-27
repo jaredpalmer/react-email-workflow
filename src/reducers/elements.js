@@ -10,7 +10,16 @@ const url = {
   author: '',
 };
 
-export default function elements(state = [], action) {
+const initialState = [{
+    id: 0,
+    kind: 'url',
+    title: '',
+    url: '',
+    content: '',
+    author: '',
+}];
+
+export default function elements(state = initialState, action) {
   switch (action.type) {
     case types.ADD_ELEMENT:
       return [...state, {id: action.id, ...url}];

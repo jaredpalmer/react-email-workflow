@@ -6,7 +6,7 @@ import {
   EDIT_META
 } from '../constants/ActionTypes';
 
-let nextTodoId = 0;
+let nextTodoId = 1;
 
 export function add() {
   return {
