@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { Block, Flex } from 'jsxstyle';
+import { Flex } from 'jsxstyle';
 
-const Center = ({ children, ...rest }) =>
+const Center = ({ children, ...other }) =>
   <Flex alignItems='center'
-        justifyContent='center'
-        flexWrap='wrap'
-        {...rest}>
+    justifyContent='center'
+    flexWrap='wrap'
+    {...other}>
     {children}
   </Flex>;
 
