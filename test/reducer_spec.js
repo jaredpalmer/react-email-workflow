@@ -18,7 +18,7 @@ describe('reducer', () => {
     const initialState = []
     const nextState = elements(initialState, actions.add());
     expect(nextState).toEqual([{
-          id: 1,
+          id: 2,
           kind: 'url',
           title: '',
           url: '',

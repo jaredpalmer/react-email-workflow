@@ -4,6 +4,7 @@
   "description": "Email workflow for ShellyPalmer. Built with React, Redux, Express, Webpack, React-Transform, CSS Modules.",
   "main": "server.js",
   "scripts": {
+    "coverage": "babel-node node_modules/isparta/bin/isparta cover --report text --report html --report lcov node_modules/mocha/bin/_mocha -- --reporter dot",
     "dist": "webpack --config webpack.config.js",
     "build": "npm run clean && npm run dist",
     "clean": "rm -rf public/scripts",
@@ -39,11 +40,13 @@
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.4.1",
     "chai-immutable": "^1.5.3",
+    "codeclimate-test-reporter": "^0.3.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^4.0.0",
     "eslint-plugin-react": "^3.16.1",
     "expect": "^1.13.4",
     "express": "^4.13.4",
+    "istanbul": "^0.4.2",
     "jsxstyle": "0.0.18",
     "lodash.range": "^3.1.0",
     "mocha": "^2.4.2",
@@ -60,5 +63,8 @@
     "webpack": "^1.12.12",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4"
+  },
+  "devDependencies": {
+    "isparta": "^4.0.0"
   }
 }

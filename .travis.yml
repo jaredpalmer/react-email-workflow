@@ -1,0 +1,13 @@
+language: node_js
+sudo: false
+node_js:
+- '5'
+cache:
+  directories:
+    - node_modules
+deploy:
+  provider: heroku
+  buildpack: nodejs
+  api_key:
+    secure: YZ5TU2yW7uveilLVgVCjiZzlfLoJ2Ud4zJLBrnRVtfXGRfc8PlW9HNqEMpowfD6NRPPxSDTsZImdBgNznIqsB7W9Sq1gMo0ijY04uqhFTU7KVafqnGlkIjW3vMS+8T7Uclpm9EjBFtsQWp/ZQ/ieLC9SF9Wsz/7L81xIgoEpFwQjKXJqtL7UB2XpXLGiCGzIq8TlZ79DJO0e69xv500bRvbsGv+b8gDZTXfYEQKD9BD860VCH/zhBUHtKYupCueWpVBzSl/ogNi2XCsWKIVkxN/obPAIGvJAlFEzjCUk+jBwPCRJePXCx26DqejUi+MOHIP/NzWrMEaQQ4BexXpgWaO0np+v1Si4J7VfFnubZrO8k1z6Nv7inNn76/mt5c3EUBkPwYV+dKM0FM+mYYlUb4OF8FknE6IJoJVWDKgtSdACxLZzZPoSTCmcqsaf99mPAT7Ed2iDsz25z8+b+5Fph3wQ0BVPB6IbSd/EMQkkFNEqH5Z0GUcYf0LjpxmEcOHKTbD0PgZHvELjnMV4QJdKzmfPYGXr4dE9I1zcmHxBsOSMzo369MI6Ud74fnpetzBhdDJfQw6e4+KtSxqnqVVKKw3Whnf0z5T+iqe7s5THR/wrDicOMOCKshkjxTTF8za49asv27U9VX9+G+lbBLLqr3Tuie/G8pCnEcKC36/0+xM=
+  app: spmail
