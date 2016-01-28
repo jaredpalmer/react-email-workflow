@@ -1,7 +1,7 @@
-var express = require('express')
-var path = require('path')
+const express = require('express')
+const path = require('path')
 
-var port = process.env.PORT || 3000
+const port = process.env.PORT || 3000
 
 express()
   .use('/public', express.static(__dirname + '/public'))
