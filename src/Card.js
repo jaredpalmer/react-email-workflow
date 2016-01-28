@@ -62,9 +62,10 @@ class Card extends Component {
             }}>
             <Row marginBottom=".25rem">
               <Input
-                style={{flex: 1}}
+                style={{flex: 1, marginRight: '.25rem'}}
                 onChange={(e) => edit(id, {url: e.target.value})}
                 type="url" value={url}
+
               />
             <Button>Fetch</Button>
             </Row>
