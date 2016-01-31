@@ -5,6 +5,7 @@ import {Block, Row} from 'jsxstyle';
 import Button from './Button';
 import Input from './Input';
 import L from './LayoutConstants';
+import Extract from './sources/Extract';
 
 const cardSource = {
   beginDrag(props) {
@@ -51,13 +52,11 @@ class Card extends Component {
         <Row>
           <div style={{
             flex: "1",
-            border: '1px solid #eee',
-            borderRadius: '4px',
+            borderRadius: '2px',
             padding: '1rem',
             marginBottom: '.5rem',
             backgroundColor: 'white',
             cursor: 'move',
-            boxShadow: '0px 1px 2px rgba(0,0,0,.2)',
             opacity: opacity
             }}>
             <Row marginBottom=".25rem">
@@ -67,7 +66,10 @@ class Card extends Component {
                 type="url" value={url}
 
               />
-            <Button>Fetch</Button>
+            <Button onClick={()=> {
+                console.log(url);
+                Extract(url).then(res => edit(id, res));
+              }}>Fetch</Button>
             </Row>
             <Row marginBottom=".25rem">
               <Input
@@ -110,7 +112,7 @@ class Card extends Component {
                 cursor: 'pointer !important',
               }}
             />
-        </Block>
+          </Block>
       </Row>
     </div>
     ));

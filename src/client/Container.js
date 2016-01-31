@@ -11,7 +11,7 @@ import Button from './Button';
 import * as EmailActions from './actions/EmailActions';
 
 const style = {
-  width: 522
+  width: 600
 };
 
 const cardTarget = {
@@ -57,7 +57,7 @@ class Container extends Component {
           />
         );
         })}
-        <Button onClick={() => actions.add() }><i className="icon ion-link" style={{marginRight: ".5rem"}}/> Add Link </Button>
+        <Button onClick={() => actions.add() } primary><i className="ion ion-link" style={{marginRight: ".5rem"}}/> Add Link </Button>
       </div>
     );
   }

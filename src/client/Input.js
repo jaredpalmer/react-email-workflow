@@ -20,16 +20,16 @@ class Input extends Component {
 
   render() {
     const { style, ...rest } = this.props;
-    const border = this.state.focused ? '1px solid #666' : '1px solid #c4c4c4';
+    const border = this.state.focused ? '1px solid #aaa' : '1px solid #c4c4c4';
     const inputStyle = {...style,
       fontFamily: L.sans,
-      transition: '.25s border ease',
+      transition: '.2s border',
       border: border,
       fontSize: '1rem',
       outline: 'none !important',
-      padding: L.gridUnit,
+      padding: '8px 10px',
+      borderRadius:'2px',
       WebkitAppearance: 'none',
-      borderRadius: '2px',
       display: 'inline-block'
     };
     return (
