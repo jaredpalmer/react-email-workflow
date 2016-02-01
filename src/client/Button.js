@@ -24,8 +24,8 @@ class Button extends Component {
   }
 
   render() {
-    const { children, onClick, primary, ...rest } = this.props;
-    const normalStyle = {
+    const { children, onClick, primary, style, ...rest } = this.props;
+    const baseStyle = {
       background: "#fff",
       fontFamily: L.sans,
       fontSize: "14px",
@@ -42,12 +42,14 @@ class Button extends Component {
       cursor: "pointer",
       color: "#565a5c",
     };
+    const normalStyle = Object.assign({}, baseStyle, style);
     const primaryStyle = Object.assign({}, normalStyle, {
       borderColor: this.state.hovered ? "#ff7e82" : "#ff5a5f",
       borderBottomColor: this.state.hovered ? "#fa0008" : "#e00007",
       background: this.state.hovered ? "#ff7e82" : "#ff5a5f",
       color: "#ffffff"
-    });
+    }, style);
+
     return(
       <div
         role="button"

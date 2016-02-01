@@ -9,7 +9,8 @@ import ItemTypes from './ItemTypes';
 import uuid from 'node-uuid';
 import Button from './Button';
 import * as EmailActions from './actions/EmailActions';
-
+import * as ElementSchema from './constants/ElementSchema';
+import {Row} from 'jsxstyle';
 const style = {
   width: 600
 };
@@ -57,7 +58,11 @@ class Container extends Component {
           />
         );
         })}
-        <Button onClick={() => actions.add() } primary><i className="ion ion-link" style={{marginRight: ".5rem"}}/> Add Link </Button>
+        <Row>
+          <Button style={{marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.url) } primary><i className="ion ion-link" style={{marginRight: ".5rem"}}/> Add Link </Button>
+          <Button onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{marginRight: ".5rem"}}/> Add HTML </Button>
+        </Row>
+
       </div>
     );
   }
