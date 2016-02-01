@@ -27,7 +27,7 @@ const renderElements =  (elements)  => {
         const cta = !!story.video ? 'Watch Now' : 'Read More';
         return (
           `<h3><a class="story-title" href="${story.url}">${story.title}</a></h3>
-        <p class="story-excerpt"><a class="story-excerpt-link" href="${story.url}">${story.content}</a></p>
+            <p class="story-excerpt"><a class="story-excerpt-link" href="${story.url}">${story.content}</a></p>
             <p class="story-author"><a class="story-author-link" href="${story.url}">${cta}<span class="more"> · ${story.author}</span></a></p>`
         );
       case 'heading':

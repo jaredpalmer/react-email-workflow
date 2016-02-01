@@ -21,7 +21,7 @@ class Input extends Component {
   render() {
     const { style, ...rest } = this.props;
     const border = this.state.focused ? '1px solid #aaa' : '1px solid #c4c4c4';
-    const inputStyle = {...style,
+    const defaults = {
       fontFamily: L.sans,
       transition: '.2s border',
       border: border,
@@ -32,6 +32,7 @@ class Input extends Component {
       WebkitAppearance: 'none',
       display: 'inline-block'
     };
+    const inputStyle = Object.assign({}, defaults, style);
     return (
       this.props.rows ? <textarea
         rows="4"

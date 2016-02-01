@@ -78,8 +78,12 @@ class Card extends Component {
                 placeholder={'title'}
                 rows="2"
                 style={{
-                flex: 1,
-                fontWeight: 'bold',
+                  flex: 1,
+                  fontWeight: 'bold',
+                  color: '#141823',
+                  lineHeight: '1.4',
+                  fontSize: '20px',
+                  textTransform: 'capitalize'
                 }}
               />
             </Row>

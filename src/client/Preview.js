@@ -18,29 +18,36 @@ class Preview extends Component {
   render() {
     const {data} = this.props;
     return (
-      <div style={{flex: '1'}}>
+      <div style={{
+          position: 'fixed',
+          height: '600px',
+          top: '1rem',
+          right: '1rem',
+          width:'50%',
+        }}>
+        <div style={{
+          borderRadius:'6px',
+          border: '1px solid #d5d5d5',
+          height: '100%',
+          }}>
+          <OSXMenuBar/>
+          <Frame style={{
+              backgroundColor: 'white',
+              height: '100%',
+              width: '100%',
+              outline: 'none',
+              border: 'none'
+            }}>
+            <div dangerouslySetInnerHTML={{__html: this.state.html}}/>
+          </Frame>
+        </div>
         <Button
             marginBottom="1rem"
             onClick={()=> Premail(data).then(res => {
               this.setState({html: res.html});
             })}>
-          Preview
+          <i className="ion ion-refresh" style={{marginRight: '.5rem'}}></i>Refresh
         </Button>
-        <div style={{
-          borderRadius:'6px',
-          border: '1px solid #d5d5d5',
-          }}>
-        <OSXMenuBar/>
-        <Frame style={{
-            backgroundColor: 'white',
-            height: '500px',
-            width: '100%',
-            outline: 'none',
-            border: 'none'
-          }}>
-          <div dangerouslySetInnerHTML={{__html: this.state.html}}/>
-        </Frame>
-      </div>
       </div>
     );
   }

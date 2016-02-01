@@ -21,10 +21,7 @@ const OSXMenuBar = () =>
         <OSXButton/>
         <OSXButton/>
       </Block>
-      <Block flex='1' textAlign='center'>Preview</Block>
-      <Block flex='1'>
-        <Button><i className="icon ion-code" style={{marginRight: ".5rem"}}></i> View Code</Button>
-      </Block>
+      <Block textAlign='center'>Preview</Block>
     </Row>;
 
 export default OSXMenuBar;
