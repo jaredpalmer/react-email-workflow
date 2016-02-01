@@ -4,8 +4,6 @@ import {Row, Col, Block} from 'jsxstyle';
 import Button from './Button';
 import Premail from './sources/Premail';
 import OSXButton from './OSXButton';
-import OSXMenuBar from './OSXMenuBar';
-import Copy from 'react-copy-to-clipboard';
 import L from './LayoutConstants';
 import PreviewHTML from './PreviewHTML';
 import PreviewVisual from './PreviewVisual';
@@ -28,30 +26,42 @@ class Preview extends Component {
           height="calc(100% - 6rem)"
           width="50%"
           alignContent="stretch">
-        <Row marginBottom="1rem">
-          <Button
-              style={{marginRight: '.5rem'}}
-              onClick={()=> Premail(data).then(res => {
-                this.setState({html: res.html});
-              })}>
-            <i className="ion ion-refresh" style={{marginRight: '.5rem'}}></i>Refresh
-          </Button>
-          <Button
-              style={{marginRight: '.5rem'}}
-              onClick={()=> this.setState({showCode: !this.state.showCode })}>
-            <i className="ion ion-code" style={{marginRight: '.5rem'}}></i>Toggle Code
-          </Button>
-          <Copy text={this.state.html}>
-            <Button>
-              <i className="ion ion-ios-copy" style={{marginRight: '.5rem'}}></i>Copy to Clipboard
-            </Button>
-          </Copy>
-        </Row>
         <Col
             borderRadius="6px"
             border="1px solid #d5d5d5"
             height="100%">
-          <OSXMenuBar/>
+            <Row style={{
+                position: 'relative',
+                height: '42px',
+                padding: '0 1rem',
+                backgroundColor: 'white',
+                borderBottom: '1px solid #ddd',
+                lineHeight: '42px',
+                borderTopRightRadius: '6px',
+                borderTopLeftRadius: '6px',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}>
+              <Block flex='1'>
+                <OSXButton/>
+                <OSXButton/>
+                <OSXButton/>
+              </Block>
+              <Row alignItems="center">
+                <Button
+                    style={{lineHeight: '1', marginRight: '.5rem'}}
+                    onClick={()=> this.setState({showCode: !this.state.showCode })}>
+                  <i className="ion ion-code" style={{marginRight: '.5rem'}}></i>Toggle Code
+                </Button>
+                <Button
+                    style={{ lineHeight: '1'}}
+                    onClick={()=> Premail(data).then(res => {
+                      this.setState({html: res.html});
+                    })} primary>
+                  <i className="ion ion-refresh" style={{marginRight: '.5rem'}}></i>Refresh
+                </Button>
+              </Row>
+            </Row>
           {this.state.showCode ? <PreviewHTML style={{flex: 1}} source={this.state.html}/> :
           <PreviewVisual style={{flex: 1}} source={this.state.html}/>}
         </Col>

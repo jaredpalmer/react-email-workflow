@@ -45,7 +45,7 @@ class Url extends Component {
             Extract(url).then(res => edit(id, res));
           }}>Fetch</Button>
       </Row>
-        <Row marginBottom=".25rem">
+        <Row marginBottom=".5rem">
           <Editable
             style={{
               flex: 1,
@@ -54,11 +54,6 @@ class Url extends Component {
               lineHeight: '1.4',
               fontSize: '20px',
               textTransform: 'capitalize',
-              outline: 'none !important',
-              border: 'none !important',
-              borderRadius:'2px',
-              cursor: 'auto',
-              WebkitAppearance: 'none',
             }}
             onChange={(e) => edit(id, {title: e.target.value})}
             tagName="div"
@@ -73,11 +68,6 @@ class Url extends Component {
               color: '#595f6c',
               fontSize: '16px',
               lineHeight: '24px',
-              outline: 'none !important',
-              border: 'none !important',
-              borderRadius:'2px',
-              cursor: 'auto',
-              WebkitAppearance: 'none',
             }}
             onChange={(e) => edit(id, {content: e.target.value})}
             tagName="p"
@@ -92,11 +82,6 @@ class Url extends Component {
               color: '#595f6c',
               fontSize: '16px',
               lineHeight: '24px',
-              outline: 'none !important',
-              border: 'none !important',
-              borderRadius:'2px',
-              cursor: 'auto',
-              WebkitAppearance: 'none',
             }}
             onChange={(e) => edit(id, {author: e.target.value})}
             tagName="p"

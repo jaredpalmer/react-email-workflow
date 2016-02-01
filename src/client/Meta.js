@@ -15,16 +15,19 @@ const Meta = ({ metaData, meta }) =>
       marginBottom: '.5rem'
     }}>
     <Row alignItems="center">
-      <label htmlFor="subject">Subject</label>
-      <Input
+      <Editable
         tagName="div"
         placeholder="Subject"
-        value={metaData.subject}
+        html={metaData.subject}
         onChange={(e) => meta({subject: e.target.value})}
-        style={{flex: 1, marginBottom: ".25rem"}}
+        style={{
+          flex: 1,
+          fontWeight: 'bold',
+          color: '#141823'
+        }}
       />
     </Row>
-    <Row alignItems="center">
+    <Row alignItems="center" margin="1rem 0">
       <Editable
         style={{
           flex: 1,

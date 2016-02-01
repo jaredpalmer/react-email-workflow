@@ -66,20 +66,18 @@ class Card extends Component {
         onMouseEnter={this.handleMouseEnter.bind(this)}
         onMouseLeave={this.handleMouseLeave.bind(this)}
         style={{
-          border: '1px solid',
-          borderRadius: '2px',
-          transition: '.25s border-color ease',
-          borderColor: this.state.hovered ? '#c4c4c4' : '#ffffff',
-          marginBottom: '.25rem'
+          opacity: opacity
         }}>
         <Row>
           <Block
-            backgroundColor="white"
-            padding="1rem"
             width="100%"
-            cursor="move"
             marginBottom=".5rem"
-            opacity={opacity}>
+            borderRadius="2px"
+            border="1px solid"
+            padding="1rem"
+            transition=".25s border-color ease"
+            borderColor={this.state.hovered ? '#c4c4c4' : '#ffffff'}
+            >
           {card.kind === 'url' ? <Url
             id={card.id}
             title={card.title}

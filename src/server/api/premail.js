@@ -1,6 +1,7 @@
 const premailer = require('premailer-api');
 const { Router } = require('express');
 const router = new Router();
+const moment = require('moment');
 
 function button(type, align, url, title) {
   return '\
@@ -424,7 +425,7 @@ function compile(data, cb) {
                     			<td width="498" class="container" align="center">
                     				<h1><a class="logo" href="http://www.shellypalmer.com">ShellyPalmer</a></h1>
                     				<p class="tagline">Strategic Advisors</p>
-                            <p class="date">${data.meta.date}</p>
+                            <p class="date">${moment(data.meta.date, moment.ISO_8601).format('dddd, MMMM D, YYYY')}</p>
                     			</td>
                     		</tr>
                     	</table>
