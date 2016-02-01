@@ -37,7 +37,7 @@ module.exports = [{
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
+			loader: 'babel!' + path.join(__dirname, '../node_modules/jsxstyle/lib/webpackLoader.js') + '?LayoutConstants=' + path.join(__dirname, '../src/client/LayoutConstants.js'),
       include: path.join(__dirname, '../src/client')
     }]
   }
@@ -70,7 +70,7 @@ module.exports = [{
   module: {
     loaders: [{
       test: /\.js$/,
-      loader: 'babel!' + path.join(__dirname, '../node_modules/jsxstyle/lib/webpackLoader.js') + '?LayoutConstants=' + path.join(__dirname, '../src/client/LayoutConstants.js'),
+    	loaders: ['babel'],
       include: path.join(__dirname, '../src/server')
     }]
   },
