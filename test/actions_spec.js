@@ -1,14 +1,22 @@
 import expect from 'expect';
-import * as actions from '../src/actions/EmailActions';
-import * as types from '../src/constants/ActionTypes';
+import * as actions from '../src/client/actions/EmailActions';
+import * as types from '../src/client/constants/ActionTypes';
+import * as ElementSchema from '../src/client/constants/ElementSchema';
 
 describe('actions', () => {
   it('should create an action to add an element', () => {
     const expectedAction = {
       type: types.ADD_ELEMENT,
-      id: 1
+      element: {
+        id: 1,
+        kind: 'url',
+        title: '',
+        url: '',
+        content: '',
+        author: '',
+      }
     };
-    expect(actions.add()).toEqual(expectedAction);
+    expect(actions.add(ElementSchema.url)).toEqual(expectedAction);
   });
 
   it('should create an action to edit an element', () => {

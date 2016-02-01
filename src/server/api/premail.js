@@ -30,6 +30,8 @@ const renderElements =  (elements)  => {
             <p class="story-excerpt"><a class="story-excerpt-link" href="${story.url}">${story.content}</a></p>
             <p class="story-author"><a class="story-author-link" href="${story.url}">${cta}<span class="more"> · ${story.author}</span></a></p>`
         );
+      case 'html':
+        return `${story.content}`;
       case 'heading':
         return `<h2>${story.content}</h2>`;
       case 'button':

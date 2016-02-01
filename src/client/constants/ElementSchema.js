@@ -11,6 +11,11 @@ export const html = {
   content: '',
 };
 
+export const text = {
+  kind: 'text',
+  content: '',
+};
+
 export const heading = {
   kind: 'heading',
   content: ''

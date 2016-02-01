@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { Row } from 'jsxstyle';
+import Editable from './components/Editable';
 import Input from './Input';
 import { meta } from './actions/EmailActions';
 
@@ -14,30 +15,39 @@ const Meta = ({ metaData, meta }) =>
       marginBottom: '.5rem'
     }}>
     <Row alignItems="center">
+      <label htmlFor="subject">Subject</label>
       <Input
-        id="subject"
-        type="text"
+        tagName="div"
         placeholder="Subject"
-        value={meta.subject}
+        value={metaData.subject}
         onChange={(e) => meta({subject: e.target.value})}
         style={{flex: 1, marginBottom: ".25rem"}}
       />
     </Row>
     <Row alignItems="center">
-      <Input
-        id="preheader"
-        rows="4"
-        placeholder="Preheader text"
-        value={meta.preheader}
+      <Editable
+        style={{
+          flex: 1,
+          color: '#595f6c',
+          fontSize: '16px',
+          lineHeight: '24px',
+          outline: 'none !important',
+          border: 'none !important',
+          borderRadius:'2px',
+          cursor: 'auto',
+          WebkitAppearance: 'none',
+        }}
         onChange={(e) => meta({preheader: e.target.value})}
-        style={{flex: 1, marginBottom: ".25rem"}}
+        tagName="div"
+        placeholder="Preview text"
+        html={metaData.preheader}
       />
     </Row>
     <Row alignItems="center">
       <Input
         id="date"
         type="date"
-        value={meta.date}
+        value={metaData.date}
         onChange={(e) => meta({date: e.target.value})}
         style={{flex: 1, marginBottom: ".25rem"}}
       />

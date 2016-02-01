@@ -14,7 +14,7 @@ const initialState = [{
 export default function elements(state = initialState, action) {
   switch (action.type) {
     case types.ADD_ELEMENT:
-      return [...state, {id: action.id, ...action.element}];
+      return [...state, action.element];
     case types.EDIT_ELEMENT:
       const index = state.findIndex((el) => el.id === action.id);
       return update(state, {[index]: { $merge: action.updates }});

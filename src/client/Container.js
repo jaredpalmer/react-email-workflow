@@ -44,11 +44,8 @@ class Container extends Component {
         {elements.map((card, i) => {
         return (
           <Card key={card.id}
+            card={card}
             id={card.id}
-            title={card.title}
-            url={card.url}
-            content={card.content}
-            author={card.author}
             moveCard={actions.move}
             findCard={this.findCard}
             index={i}
@@ -60,7 +57,8 @@ class Container extends Component {
         })}
         <Row>
           <Button style={{marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.url) } primary><i className="ion ion-link" style={{marginRight: ".5rem"}}/> Add Link </Button>
-          <Button onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{marginRight: ".5rem"}}/> Add HTML </Button>
+          <Button style={{marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.heading) } primary><span style={{fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem'}}>H1</span> Add Heading </Button>
+          <Button style={{marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{marginRight: ".5rem"}}/> Add HTML </Button>
         </Row>
 
       </div>
