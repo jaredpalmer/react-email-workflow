@@ -47,6 +47,7 @@ export default class ContentEditable extends React.Component {
 
 
     render() {
+      const {style, ...other} = this.props;
       const placeholderStyle = Object.assign({}, {
         position: 'absolute',
         top: 0,
@@ -54,7 +55,13 @@ export default class ContentEditable extends React.Component {
         height: '100%',
         width: '100%',
         display: this.state.showPlaceholder ? 'block' : 'none'
-      }, this.props.style, {color: '#999 !important'});
+      }, style, {color: '#999'});
+      const inputStyle = Object.assign({}, {
+        outline: 'none !important',
+        border: 'none !important',
+        borderRadius:'2px',
+        cursor: 'auto',
+        WebkitAppearance: 'none' }, style);
       return (
         <span
           onClick={this.handleClick}
@@ -70,7 +77,8 @@ export default class ContentEditable extends React.Component {
           onInput: this.emitChange,
           onBlur: this.emitChange,
           contentEditable: !this.props.disabled,
-          dangerouslySetInnerHTML: {__html: this.props.html}
+          dangerouslySetInnerHTML: {__html: this.props.html},
+          style: inputStyle
         }),
         this.props.children)}
           <div style={placeholderStyle}>{this.props.placeholder}</div>
