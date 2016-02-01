@@ -22,7 +22,7 @@ class Url extends Component {
     const {id, title, content, author, url, edit} = this.props;
     return (
       <div>
-        <Row marginBottom=".25rem">
+        <Row>
           <Input
             style={{
               flex: 1,
@@ -45,6 +45,8 @@ class Url extends Component {
             Extract(url).then(res => edit(id, res));
           }}>Fetch</Button>
       </Row>
+      {title ?
+        <Block>
         <Row marginBottom=".5rem">
           <Editable
             style={{
@@ -57,7 +59,6 @@ class Url extends Component {
             }}
             onChange={(e) => edit(id, {title: e.target.value})}
             tagName="div"
-            placeholder="Title..."
             html={title}
           />
         </Row>
@@ -71,7 +72,6 @@ class Url extends Component {
             }}
             onChange={(e) => edit(id, {content: e.target.value})}
             tagName="p"
-            placeholder="Description..."
             html={content}
           />
         </Row>
@@ -85,10 +85,10 @@ class Url extends Component {
             }}
             onChange={(e) => edit(id, {author: e.target.value})}
             tagName="p"
-            placeholder="Author..."
             html={author}
           />
         </Row>
+      </Block> : null }
       </div>
     );
   }

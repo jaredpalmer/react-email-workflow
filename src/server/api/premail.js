@@ -488,7 +488,7 @@ const sp = {
   ]
 };
 
-router.post('/premail', (req, res) => {
+router.post('/', (req, res) => {
   console.log(req.body);
   compile(req.body, (html) => {
     premailer.prepare({html, adapter: 'nokogiri' }, function(err, email) {

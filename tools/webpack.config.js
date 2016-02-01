@@ -71,7 +71,6 @@ module.exports = [{
     loaders: [{
       test: /\.js$/,
       loader: 'babel!' + path.join(__dirname, '../node_modules/jsxstyle/lib/webpackLoader.js') + '?LayoutConstants=' + path.join(__dirname, '../src/client/LayoutConstants.js'),
-      // loader: 'babel',
       include: path.join(__dirname, '../src/server')
     }]
   },

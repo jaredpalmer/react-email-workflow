@@ -7,8 +7,7 @@ function PremailSource(state) {
     },
     body: JSON.stringify(state)
   }).then(response => response.text())
-    .then(body => JSON.parse(body))
-    .catch(err => console.log(err));
+    .then(body => JSON.parse(body));
 }
 
 export default PremailSource;

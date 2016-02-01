@@ -13,7 +13,8 @@ export default class ContentEditable extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return !this.htmlEl || nextProps.html !== this.htmlEl.innerHTML ||
-            this.props.disabled !== nextProps.disabled || !nextState.showPlaceholder || nextState.showPlaceholder;
+            this.props.disabled !== nextProps.disabled ||
+            this.state.showPlaceholder !== nextState.showPlaceholder;
   }
 
   componentDidUpdate() {
@@ -27,13 +28,14 @@ export default class ContentEditable extends React.Component {
     const html = this.htmlEl.innerHTML;
     if (e.type === 'focus' && html === '') {
       this.setState({showPlaceholder: false});
-    }
-    if (e.type === 'blur' && html === '') {
+    } else if (e.type === 'blur' && html === '') {
       this.setState({showPlaceholder: true});
-
+    } else {
+      this.setState({showPlaceholder: false});
     }
+
     if (this.props.onChange && html !== this.lastHtml) {
-      e.target = { value: html };
+      e.target.value = html;
       this.props.onChange(e);
     }
     this.lastHtml = html;
@@ -41,7 +43,6 @@ export default class ContentEditable extends React.Component {
 
 
   handleClick() {
-    this.setState({showPlaceholder: false});
     this.htmlEl.focus();
   }
 

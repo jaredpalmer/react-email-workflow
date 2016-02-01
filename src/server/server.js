@@ -1,22 +1,23 @@
-var express = require('express');
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var compression = require('compression');
-var helmet = require('helmet');
-var path = require('path');
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const helmet = require('helmet');
+const path = require('path');
 
-var port = process.env.PORT || 5000;
-var app = express();
+const port = process.env.PORT || 5000;
+const app = express();
 
 app.disable('x-powered-by');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression());
 app.use(helmet());
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/api/v0', require('./api/premail.js'));
+app.use('/api/v0/premail', require('./api/premail'));
+app.use('/api/v0/extract', require('./api/extract'));
 app.get('/check', (req, res)=> res.send('Everything is awesome!'));
 app.listen(port, () => {
 	// console.log(process.env);
