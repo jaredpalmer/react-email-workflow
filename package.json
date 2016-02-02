@@ -10,7 +10,7 @@
     "clean": "rm -rf public/scripts",
     "start": "npm run start:dev",
     "start:dev": "node serverDev.js",
-    "start:prod": "NODE_ENV=production node server.js",
+    "start:prod": "NODE_ENV=production BABEL_ENV=production babel-node server.js",
     "test": "mocha --compilers js:babel-core/register --recursive && npm run coverage",
     "test:watch": "npm test -- --watch",
     "lint": "eslint src"
@@ -50,6 +50,7 @@
     "lodash.range": "^3.1.0",
     "mocha": "^2.4.2",
     "node-uuid": "^1.4.7",
+    "premailer-api": "^1.0.3",
     "react": "^0.14.6",
     "react-dnd": "^2.0.2",
     "react-dnd-html5-backend": "^2.0.2",
@@ -59,6 +60,7 @@
     "react-transform-hmr": "^1.0.1",
     "redux": "^3.0.6",
     "redux-logger": "^2.4.0",
+    "superagent": "^1.7.2",
     "webpack": "^1.12.12",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4"

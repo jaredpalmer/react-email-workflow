@@ -5,6 +5,8 @@ var port = process.env.PORT || 3000
 
 express()
   .use('/public', express.static(__dirname + '/public'))
+  .use('/api/extract', require('./api/extract'))
+  .use('/api/premail', require('./api/premail'))
   .get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '/index.html'))
   })
