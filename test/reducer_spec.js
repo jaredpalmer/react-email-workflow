@@ -1,13 +1,13 @@
 import expect from 'expect';
-import * as actions from '../src/actions/EmailActions';
-import * as types from '../src/constants/ActionTypes';
-import uuid from 'node-uuid';
+import * as actions from '../app/actions/EmailActions';
+import * as types from '../app/constants/ActionTypes';
+import * as ElementSchema from '../app/constants/ElementSchema';
+
 import update from 'react/lib/update';
-import elements from '../src/reducers/elements';
-import meta from '../src/reducers/meta';
+import elements from '../app/reducers/elements';
+import meta from '../app/reducers/meta';
 
 describe('reducer', () => {
-
   it('should return default state if action is undefined', () => {
     const initialState = [];
     const nextState = elements(initialState, 'BLAH');
@@ -16,7 +16,7 @@ describe('reducer', () => {
 
   it('should handle ADD_ELEMENT', () => {
     const initialState = []
-    const nextState = elements(initialState, actions.add());
+    const nextState = elements(initialState, actions.add(ElementSchema.url));
     expect(nextState).toEqual([{
           id: 2,
           kind: 'url',
@@ -63,27 +63,27 @@ describe('reducer', () => {
   it('should handle MOVE_ELEMENT', () => {
     const initialState = [{
         id: 1,
-        title: 'Google',
+        title: 'Google'
       },
       {
         id: 2,
-        title: 'Apple',
+        title: 'Apple'
       },
       {
         id: 3,
-        title: 'FB',
+        title: 'FB'
       }
     ];
     const nextState = elements(initialState, actions.move(1, 1));
     expect(nextState).toEqual([{
         id: 2,
-        title: 'Apple',
+        title: 'Apple'
       },{
         id: 1,
-        title: 'Google',
+        title: 'Google'
       },{
         id: 3,
-        title: 'FB',
+        title: 'FB'
       }
     ]);
   });
@@ -101,6 +101,4 @@ describe('reducer', () => {
         date: ''
       });
   });
-
-
 });
