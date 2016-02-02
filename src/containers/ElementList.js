@@ -2,16 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import update from 'react/lib/update';
-import Card from './Card';
+import Card from '../components/Card';
 import { DropTarget, DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import ItemTypes from './ItemTypes';
-import uuid from 'node-uuid';
-import Button from './Button';
-import * as EmailActions from './actions/EmailActions';
+import ItemTypes from '../constants/ItemTypes';
+import Button from '../components/Button';
+import * as EmailActions from '../actions/EmailActions';
+import * as ElementSchema from '../constants/ElementSchema';
+import {Row} from 'jsxstyle';
 
 const style = {
-  width: 522
+  width: 600
 };
 
 const cardTarget = {
@@ -20,7 +21,7 @@ const cardTarget = {
 };
 
 
-class Container extends Component {
+class ElementList extends Component {
   constructor(props) {
     super(props);
     this.findCard = this.findCard.bind(this);
@@ -43,11 +44,8 @@ class Container extends Component {
         {elements.map((card, i) => {
         return (
           <Card key={card.id}
+            card={card}
             id={card.id}
-            title={card.title}
-            url={card.url}
-            content={card.content}
-            author={card.author}
             moveCard={actions.move}
             findCard={this.findCard}
             index={i}
@@ -57,13 +55,18 @@ class Container extends Component {
           />
         );
         })}
-        <Button onClick={() => actions.add() }><i className="icon ion-link" style={{marginRight: ".5rem"}}/> Add Link </Button>
+        <Row marginTop="1rem">
+          <Button style={{flex: 1, marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.url) } primary><i className="ion ion-link" style={{marginRight: ".5rem"}}/> Add Link </Button>
+          <Button style={{flex: 1, marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.heading) } primary><span style={{fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem'}}>H1</span> Add Heading </Button>
+          <Button style={{flex: 1, marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{marginRight: ".5rem"}}/> Add HTML </Button>
+        </Row>
+
       </div>
     );
   }
 }
 
-Container.propTypes = {
+ElementList.propTypes = {
   connectDropTarget: PropTypes.func.isRequired
 };
 
@@ -75,7 +78,7 @@ function mapDispatchToProps(dispatch) {
    return { actions: bindActionCreators(EmailActions, dispatch) }
 }
 
-const ContainerComponent = connect(mapStateToProps, mapDispatchToProps)(Container);
+const ContainerComponent = connect(mapStateToProps, mapDispatchToProps)(ElementList);
 
 const InnerComponent = DropTarget(ItemTypes.CARD, cardTarget, connect => ({
   connectDropTarget: connect.dropTarget()
