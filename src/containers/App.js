@@ -13,7 +13,6 @@ export default class App extends Component {
           height="50px"
           alignItems="center"
           justifyContent="center"
-
           borderBottom="1px solid #eee">
           <h2 style={{textAlign: 'center', lineHeight: 1, marginBottom: 0 }}>React Email Workflow</h2>
         </Row>

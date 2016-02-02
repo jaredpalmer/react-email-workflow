@@ -1,27 +1,28 @@
+
 var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval',
   entry: [
-    'webpack-hot-middleware/client',
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
     './src/index'
   ],
   output: {
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    path: path.join(__dirname, 'scripts'),
-    publicPath: '/public/scripts/'
+    publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [{
       test: /\.js$/,
-      // loader: 'babel!' + path.join(__dirname, 'node_modules/jsxstyle/lib/webpackLoader.js') + '?LayoutConstants=' + path.join(__dirname, 'src', 'LayoutConstants.js'),
-      loader: 'babel',
+      loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'src')
     }]
   }
 };
+// loader: 'babel!' + path.join(__dirname, 'node_modules/jsxstyle/lib/webpackLoader.js') + '?LayoutConstants=' + path.join(__dirname, 'src', 'LayoutConstants.js'),

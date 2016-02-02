@@ -490,7 +490,7 @@ const sp = {
 
 router.post('/', (req, res) => {
   console.log(req.body);
-  compile(req.body, (html) => {
+  compile(sp, (html) => {
     premailer.prepare({html, adapter: 'nokogiri' }, function(err, email) {
       res.status(200).json({html: email.html});
     });

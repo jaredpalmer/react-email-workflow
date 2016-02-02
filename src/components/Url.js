@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import {Block, Row} from 'jsxstyle';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import Extract from '../sources/Extract';
+import { extract } from '../sources/api';
 import Editable from '../components/Editable';
 // import SmartInput from '../components/SmartInput';
 class Url extends Component {
@@ -42,7 +42,7 @@ class Url extends Component {
           />
         <Button onClick={()=> {
             // console.log(url);
-            Extract(url).then(res => edit(id, res));
+            extract(url).then(res => edit(id, res));
           }}>Fetch</Button>
       </Row>
       {title ?

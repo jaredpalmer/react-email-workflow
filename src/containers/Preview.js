@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import {Row, Col, Block} from 'jsxstyle';
 import Button from '../components/Button';
-import Premail from '../sources/Premail';
+import { premail } from '../sources/api';
 import OSXButton from '../components/OSXButton';
 import L from '../LayoutConstants';
 import PreviewHTML from '../components/PreviewHTML';
@@ -55,7 +55,7 @@ class Preview extends Component {
                 </Button>
                 <Button
                     style={{ lineHeight: '1'}}
-                    onClick={()=> Premail(data).then(res => {
+                    onClick={()=> premail(data).then(res => {
                       this.setState({html: res.html});
                     })} primary>
                   <i className="ion ion-refresh" style={{marginRight: '.5rem'}}></i>Refresh
