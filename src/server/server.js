@@ -13,13 +13,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression());
 app.use(helmet());
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v0/premail', require('./api/premail'));
 app.use('/api/v0/extract', require('./api/extract'));
 app.get('/check', (req, res)=> res.send('Everything is awesome!'));
 app.listen(port, () => {
+	// console.log(process.env);
   console.log('Listening on ' + port + '.');
   console.log('Go to <http://localhost:' + port + '> in your browser.');
 });
