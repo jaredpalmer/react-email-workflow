@@ -1,10 +1,10 @@
 import expect from 'expect';
-import * as actions from '../src/actions/EmailActions';
-import * as types from '../src/constants/ActionTypes';
-import uuid from 'node-uuid';
+import * as actions from '../src/client/actions/EmailActions';
+import * as types from '../src/client/constants/ActionTypes';
+import * as ElementSchema from '../src/client/constants/ElementSchema';
 import update from 'react/lib/update';
-import elements from '../src/reducers/elements';
-import meta from '../src/reducers/meta';
+import elements from '../src/client/reducers/elements';
+import meta from '../src/client/reducers/meta';
 
 describe('reducer', () => {
 
@@ -16,7 +16,7 @@ describe('reducer', () => {
 
   it('should handle ADD_ELEMENT', () => {
     const initialState = []
-    const nextState = elements(initialState, actions.add());
+    const nextState = elements(initialState, actions.add(ElementSchema.url));
     expect(nextState).toEqual([{
           id: 2,
           kind: 'url',

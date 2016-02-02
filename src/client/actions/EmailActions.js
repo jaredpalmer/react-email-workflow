@@ -8,10 +8,13 @@ import {
 
 let nextTodoId = 1;
 
-export function add() {
+export function add(element) {
   return {
     type: ADD_ELEMENT,
-    id: nextTodoId++
+    element: {
+      id: nextTodoId++,
+      ...element
+    }
   };
 }
 
