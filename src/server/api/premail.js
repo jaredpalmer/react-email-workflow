@@ -129,7 +129,7 @@ function compile(data, cb) {
       -ms-text-size-adjust: 100%;
       margin: 0;
       padding: 0;
-      font-family: -apple-system,BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: #141823;
       background-color: #ffffff;
     }
@@ -157,14 +157,14 @@ function compile(data, cb) {
       -webkit-font-smoothing: antialiased;
       font-size: 14px;
       height: 100% !important;
-      font-family:  -apple-system,BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family:  -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     h1,
     h2,
     h3,
     h4 {
       color: #141823 !important;
-      font-family:  -apple-system,BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family:  -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-weight: bold;
       line-height: 1.4em;
       margin: 0;
@@ -188,7 +188,7 @@ function compile(data, cb) {
     p,
     ul,
     ol {
-      font-family:  -apple-system,BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family:  -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 16px;
       font-weight: normal;
       margin: 0;
@@ -261,7 +261,7 @@ function compile(data, cb) {
       font-size: 11px;
       color: #b7b7b7;
       line-height: 1.1;
-      font-family:  -apple-system,BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family:  -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     .fine-print a {
       font-size: 11px;
@@ -418,7 +418,7 @@ function compile(data, cb) {
                     <table>
                     </table>
                     <div class="content">
-                    <span class="preheader">${data.meta.preheader}$</span>
+                    <span class="preheader">${data.meta.preheader}</span>
                     <div class="header">
                     	<table cellpadding="0" cellspacing="0" border="0" align="center">
                     		<tr>
