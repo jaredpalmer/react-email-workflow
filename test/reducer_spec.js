@@ -1,11 +1,11 @@
 import expect from 'expect';
-import * as actions from '../app/actions/EmailActions';
-import * as types from '../app/constants/ActionTypes';
-import * as ElementSchema from '../app/constants/ElementSchema';
+import * as actions from '../src/actions/EmailActions';
+import * as types from '../src/constants/ActionTypes';
+import * as ElementSchema from '../src/constants/ElementSchema';
 
 import update from 'react/lib/update';
-import elements from '../app/reducers/elements';
-import meta from '../app/reducers/meta';
+import elements from '../src/reducers/elements';
+import meta from '../src/reducers/meta';
 
 describe('reducer', () => {
   it('should return default state if action is undefined', () => {

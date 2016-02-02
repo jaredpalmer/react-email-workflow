@@ -1,7 +1,7 @@
 import expect from 'expect';
-import * as actions from '../app/actions/EmailActions';
-import * as types from '../app/constants/ActionTypes';
-import * as ElementSchema from '../app/constants/ElementSchema';
+import * as actions from '../src/actions/EmailActions';
+import * as types from '../src/constants/ActionTypes';
+import * as ElementSchema from '../src/constants/ElementSchema';
 
 describe('actions', () => {
   it('should create an action to add an element', () => {

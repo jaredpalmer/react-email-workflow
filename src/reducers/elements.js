@@ -2,14 +2,6 @@ import * as actions from '../actions/EmailActions';
 import * as types from '../constants/ActionTypes';
 import update from 'react/lib/update';
 
-const url = {
-  kind: 'url',
-  title: '',
-  url: '',
-  content: '',
-  author: '',
-};
-
 const initialState = [{
     id: 0,
     kind: 'url',
@@ -22,7 +14,7 @@ const initialState = [{
 export default function elements(state = initialState, action) {
   switch (action.type) {
     case types.ADD_ELEMENT:
-      return [...state, {id: action.id, ...url}];
+      return update(state, {$push: [action.element]});
     case types.EDIT_ELEMENT:
       const index = state.findIndex((el) => el.id === action.id);
       return update(state, {[index]: { $merge: action.updates }});
