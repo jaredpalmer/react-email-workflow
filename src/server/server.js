@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v0/premail', require('./api/premail'));
 app.use('/api/v0/extract', require('./api/extract'));
 app.get('/check', (req, res)=> res.send('Everything is awesome!'));
-app.listen(process.env.PORT || 5000), () => {
+app.listen(process.env.PORT || 5000, () => {
 	// console.log(process.env);
   console.log('Listening on  5000.');
 });
