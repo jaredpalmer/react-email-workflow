@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression());
 app.use(helmet());
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v0/premail', require('./api/premail'));

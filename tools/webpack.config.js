@@ -44,8 +44,8 @@ module.exports = [{
 }, {
   name: 'server',
   target: 'node',
+	devtool: 'eval',
   debug:   false,
-	devtool: "source-map",
 	entry:   ["./src/server/server.js"],
 	output: {
     path: './dist',
@@ -63,7 +63,8 @@ module.exports = [{
 		new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
-        warnings: false
+        warnings: false,
+				screw_ie8: true
       }
     })
   ],
