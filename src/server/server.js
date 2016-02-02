@@ -20,6 +20,5 @@ app.use('/api/v0/extract', require('./api/extract'));
 app.get('/check', (req, res)=> res.send('Everything is awesome!'));
 app.listen(process.env.PORT || 5000), () => {
 	// console.log(process.env);
-  console.log('Listening on ' + port + '.');
-  console.log('Go to <http://localhost:' + port + '> in your browser.');
+  console.log('Listening on  5000.');
 });
