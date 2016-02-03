@@ -16,12 +16,11 @@ class Preview extends Component {
     super(props);
     this.startPoll = this.startPoll.bind(this);
   }
+
   componentWillReceiveProps(nextProps) {
+    const {meta, elements, isLoading, premail} = this.props;
     clearTimeout(this.timeout);
-    if (this.props.html !== nextProps.html) {
-        // Optionally do something with data
-    }
-    if (!nextProps.isLoading) {
+    if (((meta !== nextProps.meta) || (elements !== nextProps.elements)) && !isLoading) {
         this.startPoll();
     }
   }
@@ -35,8 +34,9 @@ class Preview extends Component {
   }
 
   startPoll() {
-    this.timeout = setTimeout(() => this.props.premail(), 10000);
+    this.timeout = setTimeout(() => this.props.premail(), 2000);
   }
+
   render() {
     const {isLoading, html, error, premail, premailCopy, hasCopied } = this.props;
     return (
@@ -93,6 +93,8 @@ class Preview extends Component {
 
 function mapStateToProps(state) {
   return {
+    meta: state.meta,
+    elements: state.elements,
     html: state.premail.html,
     isLoading: state.premail.isLoading,
     error: state.premail.error,
