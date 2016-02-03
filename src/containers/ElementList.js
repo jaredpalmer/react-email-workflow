@@ -12,14 +12,13 @@ import * as ElementSchema from '../constants/ElementSchema';
 import {Row} from 'jsxstyle';
 
 const style = {
-  width: 600
+  width: 600,
 };
 
 const cardTarget = {
   drop() {
-  }
+  },
 };
-
 
 class ElementList extends Component {
   constructor(props) {
@@ -33,7 +32,7 @@ class ElementList extends Component {
 
     return {
       el,
-      index: elements.indexOf(el)
+      index: elements.indexOf(el),
     };
   }
 
@@ -42,46 +41,45 @@ class ElementList extends Component {
     return connectDropTarget(
       <div style={style}>
         {elements.map((card, i) => {
-        return (
-          <Card key={card.id}
-            card={card}
-            id={card.id}
-            moveCard={actions.move}
-            findCard={this.findCard}
-            index={i}
-            edit={actions.edit}
-            destroy={actions.destroy}
-            {...other}
-          />
-        );
+          return (
+            <Card key={card.id}
+              card={card}
+              id={card.id}
+              moveCard={actions.move}
+              findCard={this.findCard}
+              index={i}
+              edit={actions.edit}
+              destroy={actions.destroy}
+              {...other}
+            />
+          );
         })}
         <Row marginTop="1rem" marginLeft="1rem">
-          <Button style={{flex: 1, marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.url) } primary><i className="ion ion-link" style={{marginRight: ".5rem"}}/> Add Link </Button>
-          <Button style={{flex: 1, marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.heading) } primary><span style={{fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem'}}>H1</span> Add Heading </Button>
-          <Button style={{flex: 1, marginRight: ".5rem"}} onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{marginRight: ".5rem"}}/> Add HTML </Button>
+          <Button style={{ flex: 1, marginRight: '.5rem' }} onClick={() => actions.add(ElementSchema.url) } primary><i className="ion ion-link" style={{ marginRight: '.5rem' }}/> Add Link </Button>
+          <Button style={{ flex: 1, marginRight: '.5rem' }} onClick={() => actions.add(ElementSchema.heading) } primary><span style={{ fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem' }}>H1</span> Add Heading </Button>
+          <Button style={{ flex: 1, marginRight: '.5rem' }} onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{ marginRight: '.5rem' }}/> Add HTML </Button>
         </Row>
-
       </div>
     );
   }
 }
 
 ElementList.propTypes = {
-  connectDropTarget: PropTypes.func.isRequired
+  connectDropTarget: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
-  return { elements: state.elements }
+  return { elements: state.elements };
 }
 
 function mapDispatchToProps(dispatch) {
-   return { actions: bindActionCreators(EmailActions, dispatch) }
+  return { actions: bindActionCreators(EmailActions, dispatch) };
 }
 
 const ContainerComponent = connect(mapStateToProps, mapDispatchToProps)(ElementList);
 
 const InnerComponent = DropTarget(ItemTypes.CARD, cardTarget, connect => ({
-  connectDropTarget: connect.dropTarget()
+  connectDropTarget: connect.dropTarget(),
 }))(ContainerComponent);
 const ComposedComponent = DragDropContext(HTML5Backend)(InnerComponent);
 

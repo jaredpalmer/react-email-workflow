@@ -12,18 +12,18 @@ const Meta = ({ metaData, meta }) =>
       marginRight:'61.5px',
       borderRadius: '2px',
       padding: '1rem',
-      marginBottom: '.5rem'
+      marginBottom: '.5rem',
     }}>
     <Row alignItems="center">
       <Editable
         tagName="div"
         placeholder="Subject"
         html={metaData.subject}
-        onChange={(e) => meta({subject: e.target.value})}
+        onChange={(e) => meta({ subject: e.target.value })}
         style={{
           flex: 1,
           fontWeight: 'bold',
-          color: '#141823'
+          color: '#141823',
         }}
       />
     </Row>
@@ -40,7 +40,7 @@ const Meta = ({ metaData, meta }) =>
           cursor: 'auto',
           WebkitAppearance: 'none',
         }}
-        onChange={(e) => meta({preheader: e.target.value})}
+        onChange={(e) => meta({ preheader: e.target.value })}
         tagName="div"
         placeholder="Preview text"
         html={metaData.preheader}
@@ -51,18 +51,18 @@ const Meta = ({ metaData, meta }) =>
         id="date"
         type="date"
         value={metaData.date}
-        onChange={(e) => meta({date: e.target.value})}
-        style={{flex: 1, marginBottom: ".25rem"}}
+        onChange={(e) => meta({ date: e.target.value })}
+        style={{ flex: 1, marginBottom: '.25rem' }}
       />
     </Row>
   </div>;
 
 function mapStateToProps(state) {
-  return { metaData: state.meta }
+  return { metaData: state.meta };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ meta }, dispatch)
+  return bindActionCreators({ meta }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Meta);

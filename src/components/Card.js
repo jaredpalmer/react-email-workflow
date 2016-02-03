@@ -10,7 +10,7 @@ const cardSource = {
   beginDrag(props) {
     return {
       id: props.id,
-      originalIndex: props.findCard(props.id).index
+      originalIndex: props.findCard(props.id).index,
     };
   },
 
@@ -21,7 +21,7 @@ const cardSource = {
     if (!didDrop) {
       props.moveCard(droppedId, originalIndex);
     }
-  }
+  },
 };
 
 const cardTarget = {
@@ -37,28 +37,27 @@ const cardTarget = {
       const { index: overIndex } = props.findCard(overId);
       props.moveCard(draggedId, overIndex);
     }
-  }
+  },
 };
-
 
 class Card extends Component {
   constructor() {
     super();
     this.state = {
-      hovered: false
+      hovered: false,
     };
   }
 
   handleMouseEnter() {
-     this.setState({hovered: true});
+    this.setState({ hovered: true });
   }
 
   handleMouseLeave() {
-     this.setState({hovered: false});
+    this.setState({ hovered: false });
   }
 
   render() {
-    const { card, isDragging, connectDragSource, connectDropTarget, edit , destroy} = this.props;
+    const { card, isDragging, connectDragSource, connectDropTarget, edit, destroy } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
@@ -66,7 +65,7 @@ class Card extends Component {
         onMouseEnter={this.handleMouseEnter.bind(this)}
         onMouseLeave={this.handleMouseLeave.bind(this)}
         style={{
-          opacity: opacity
+          opacity: opacity,
         }}>
         <Row>
           <Block
@@ -85,17 +84,17 @@ class Card extends Component {
             author={card.author}
             url={card.url}
             edit={edit}
-            />: null}
+            /> : null}
           {card.kind === 'html' ? <Code
             id={card.id}
             content={card.content}
             edit={edit}
-            />: null}
+            /> : null}
           {card.kind === 'heading' ? <Heading
             id={card.id}
             content={card.content}
             edit={edit}
-            />: null}
+            /> : null}
           </Block>
           <Block
             padding={"1.5rem"}
@@ -104,7 +103,7 @@ class Card extends Component {
               onClick={() => destroy(card.id)}
               className="ion ion-ios-trash"
               style={{
-                fontSize: "1.5rem",
+                fontSize: '1.5rem',
                 opacity: opacity,
                 cursor: 'pointer !important',
               }}
@@ -115,6 +114,7 @@ class Card extends Component {
     ));
   }
 }
+
 //
 // Card.propTypes = {
 //   connectDragSource: PropTypes.func.isRequired,
@@ -131,11 +131,11 @@ class Card extends Component {
 
 const DragSourceComponent = DragSource(ItemTypes.CARD, cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
 }))(Card);
 
 const DropTargetComponent = DropTarget(ItemTypes.CARD, cardTarget, connect => ({
-  connectDropTarget: connect.dropTarget()
-}))(DragSourceComponent)
+  connectDropTarget: connect.dropTarget(),
+}))(DragSourceComponent);
 
 export default DropTargetComponent;

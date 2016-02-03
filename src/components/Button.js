@@ -1,26 +1,21 @@
 import React, { Component, PropTypes } from 'react';
-// import Center from './Center';
 import {Flex} from 'jsxstyle';
 import L from '../LayoutConstants';
-
-
-
-
 
 class Button extends Component {
   constructor() {
     super();
     this.state = {
-      hovered: false
+      hovered: false,
     };
   }
 
   handleMouseEnter() {
-     this.setState({hovered: true});
+    this.setState({ hovered: true });
   }
 
   handleMouseLeave() {
-     this.setState({hovered: false});
+    this.setState({ hovered: false });
   }
 
   render() {
@@ -48,13 +43,13 @@ class Button extends Component {
     };
     const normalStyle = Object.assign({}, baseStyle, style);
     const primaryStyle = Object.assign({}, normalStyle, {
-      borderColor: this.state.hovered ? "#ff7e82" : "#ff5a5f",
-      borderBottomColor: this.state.hovered ? "#fa0008" : "#e00007",
-      background: this.state.hovered ? "#ff7e82" : "#ff5a5f",
-      color: "#ffffff"
+      borderColor: this.state.hovered ? '#ff7e82' : '#ff5a5f',
+      borderBottomColor: this.state.hovered ? '#fa0008' : '#e00007',
+      background: this.state.hovered ? '#ff7e82' : '#ff5a5f',
+      color: '#ffffff',
     }, style);
 
-    return(
+    return (
       <div
         role="button"
         onMouseEnter={this.handleMouseEnter.bind(this)}

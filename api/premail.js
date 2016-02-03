@@ -4,21 +4,21 @@ const router = new Router();
 const moment = require('moment');
 
 function button(type, align, url, title) {
-  return '\
-    <table class="btn btn-' + type + '">\
-      <tr>\
-        <td align="' + align + '">\
-          <table>\
-            <tr>\
-              <td>\
-                <a href="' + url + '">' + title + '</a>\
-              </td>\
-            </tr>\
-          </table>\
-        </td>\
-      </tr>\
-    </table>\
-  '
+  return (
+    `<table class="btn btn-${type}">
+      <tr>
+        <td align="${align}">
+          <table>
+            <tr>
+              <td>
+                <a href="${url}">${title}</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>`
+  );
 };
 
 const renderElements =  (elements)  => {
@@ -36,7 +36,7 @@ const renderElements =  (elements)  => {
       case 'heading':
         return `<h2>${story.content}</h2>`;
       case 'button':
-        return button(story.style, story.align, story.url, story.title)
+        return button(story.style, story.align, story.url, story.title);
       case 'image':
         return story.url ? `<a href="${story.url}"><img class="bodyImage" src="${story.src}" alt="" width="${story.width}" height="${story.height}"></a>` :
           `<img class="bodyImage" src="${story.src}" alt="" width="${story.width}" height="${story.height}">`;
@@ -272,7 +272,7 @@ function compile(data, cb) {
       margin-bottom: 36px;
     }
     .footer {
-      margin-bottom: 36px;
+      padding-bottom: 36px;
     }
     .preheader {
       color: transparent;
@@ -417,43 +417,39 @@ function compile(data, cb) {
                   <td width="498" class="container" valign="top">
                     <table>
                     </table>
-                    <div class="content">
-                    <span class="preheader">${data.meta.preheader}</span>
-                    <div class="header">
-                    	<table cellpadding="0" cellspacing="0" border="0" align="center">
-                    		<tr>
-                    			<td width="498" class="container" align="center">
-                    				<h1><a class="logo" href="http://www.shellypalmer.com">ShellyPalmer</a></h1>
-                    				<p class="tagline">Strategic Advisors</p>
+                      <span class="preheader">${data.meta.preheader}</span>
+                      <table cellpadding="0" cellspacing="0" border="0" align="center">
+                        <tr>
+                          <td width="498" class="container" align="center">
+                            <h1><a class="logo" href="http://www.shellypalmer.com">ShellyPalmer</a></h1>
+                            <p class="tagline">Strategic Advisors</p>
                             <p class="date">${moment(data.meta.date, moment.ISO_8601).format('dddd, MMMM D, YYYY')}</p>
-                    			</td>
-                    		</tr>
-                    	</table>
-                    </div>
-                    <table class="main">
-                    	<tr>
-                    		<td class="wrapper">
-                    			<table>
-                    				<tr>
-                    					<td>
-                               ${renderElements(data.elements)}
-                    					</td>
-                    				</tr>
-                    			</table>
-                    		</td>
-                    	</tr>
-                    </table>
-                    <div class="footer">
-                    <table cellpadding="0" cellspacing="0" border="0" align="center">
-                    	<tr>
-                    		<td width="498" align="center" class="fine-print">
-                    			Copyright © 2015 Shelly Palmer 475 Park Avenue South 25th Floor New York, NY 10016 USA You are receiving this email because you opted in at our
-                          website shellypalmer.com If you don't want to receive these emails from ShellyPalmer in the future, please click: unsubscribe
-                    		</td>
-                    	</tr>
-                    </table>
-                    </div>
-                    </div>
+                          </td>
+                        </tr>
+                      </table>
+                      <table class="main">
+                        <tr>
+                          <td class="wrapper">
+                            <table>
+                              <tr>
+                                <td>
+                                 ${renderElements(data.elements)}
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                      <div class="footer">
+                        <table cellpadding="0" cellspacing="0" border="0" align="center">
+                          <tr>
+                            <td width="498" align="center" class="fine-print">
+                              Copyright © 2015 Shelly Palmer 475 Park Avenue South 25th Floor New York, NY 10016 USA You are receiving this email because you opted in at our
+                              website shellypalmer.com If you don't want to receive these emails from ShellyPalmer in the future, please click: unsubscribe
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
                   </td>
                 </tr>
               </tbody>
@@ -471,28 +467,28 @@ function compile(data, cb) {
 
 const sp = {
   meta: {
-        date: "2016-01-31",
-        preheader: " l;kjasdf",
-        subject: "asdflkj",
-    },
+    date: "2016-01-31",
+    preheader: " l;kjasdf",
+    subject: "asdflkj",
+  },
   elements: [
       {
-          author: "Utotherescue",
-          content: "The San Francisco Chronicle has coverage of an issue that has been circulating on faculty email networks at UC Berkeley for a few days. The piece, \"Cal professors fear UC bosses will snoop on them,\" is behind a paywall.",
-          id: 0,
-          image: "http://3.bp.blogspot.com/-1SEYcuyr_oY/Vq0U8rKQ19I/AAAAAAAADC0/6o6xJznJMIw/s320/Janet_Napolitano.jpg",
-          kind: "url",
-          title: "UCOP Ordered Spyware Installed on UC Data Networks ~ Remaking the University",
-          url: "http://utotherescue.blogspot.com/2016/01/ucop-ordered-spyware-installed-on-uc.html",
-      }
-  ]
+        author: "Utotherescue",
+        content: "The San Francisco Chronicle has coverage of an issue that has been circulating on faculty email networks at UC Berkeley for a few days. The piece, \"Cal professors fear UC bosses will snoop on them,\" is behind a paywall.",
+        id: 0,
+        image: "http://3.bp.blogspot.com/-1SEYcuyr_oY/Vq0U8rKQ19I/AAAAAAAADC0/6o6xJznJMIw/s320/Janet_Napolitano.jpg",
+        kind: "url",
+        title: "UCOP Ordered Spyware Installed on UC Data Networks ~ Remaking the University",
+        url: "http://utotherescue.blogspot.com/2016/01/ucop-ordered-spyware-installed-on-uc.html",
+      },
+  ],
 };
 
 router.post('/', (req, res) => {
   console.log(req.body);
   compile(req.body, (html) => {
-    premailer.prepare({html, adapter: 'nokogiri' }, function(err, email) {
-      res.status(200).json({html: email.html});
+    premailer.prepare({ html, adapter: 'nokogiri' }, function(err, email) {
+      res.status(200).json({ html: email.html });
     });
   });
 });
