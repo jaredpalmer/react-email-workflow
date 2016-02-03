@@ -13,6 +13,7 @@ class Preview extends Component {
     super();
     this.state = {
       html: '',
+      isFetching: false,
       showCode: false
     };
   }
@@ -55,7 +56,7 @@ class Preview extends Component {
                 </Button>
                 <Button
                     style={{ lineHeight: '1'}}
-                    onClick={()=> premail(data).then(res => {
+                    onClick={() => premail(data).then(res => {
                       this.setState({html: res.html});
                     })} primary>
                   <i className="ion ion-refresh" style={{marginRight: '.5rem'}}></i>Refresh
