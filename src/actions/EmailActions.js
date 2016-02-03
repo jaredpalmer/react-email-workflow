@@ -4,6 +4,8 @@ import {
   EDIT_ELEMENT,
   MOVE_ELEMENT,
   EDIT_META,
+  SHOW_CODE,
+  PREMAIL_COPY,
   PREMAIL_LOADING,
   PREMAIL_SUCCESS,
   PREMAIL_FAILURE
@@ -52,10 +54,24 @@ export function meta(meta) {
   };
 }
 
+export function showCode(isShowing) {
+  return {
+    type: SHOW_CODE,
+    isShowing
+  };
+}
+
+export function premailCopy(hasCopied) {
+  return {
+    type: PREMAIL_COPY,
+    hasCopied
+  };
+}
+
 export function premailLoading(isLoading) {
   return {
     type: PREMAIL_LOADING,
-    isLoading: isLoading
+    isLoading
   };
 }
 
@@ -82,6 +98,7 @@ export function premail() {
       .then(function(result) {
         console.log(result);
         dispatch(premailLoading(false));
+        dispatch(premailCopy(false));
         return result.html
       })
       .then(function(jsonResult) {

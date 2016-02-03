@@ -8,12 +8,12 @@ import L from '../LayoutConstants';
 import PreviewHTML from '../components/PreviewHTML';
 import PreviewVisual from '../components/PreviewVisual';
 import PreviewLoading from '../components/PreviewLoading';
-import {premail} from '../actions/EmailActions';
+import { premail, premailCopy } from '../actions/EmailActions';
 import Copy from '../components/Copy';
 
 class Preview extends Component {
   render() {
-    const {isLoading, html, error, premail } = this.props;
+    const {isLoading, html, error, premail, premailCopy, hasCopied } = this.props;
     return (
       <Col position="fixed"
           top="4rem"
@@ -44,14 +44,16 @@ class Preview extends Component {
               </Block>
               <Row alignItems="center">
                 <Copy
+                    hasCopied={hasCopied}
                     id="copy"
                     data-clipboard-text={html}
+                    onCopy={premailCopy}
                     style={{ lineHeight: '1', marginRight: '1rem'}}
                 />
                 <Button
                     style={{ lineHeight: '1'}}
                     onClick={() => premail()} primary>
-                  <i className="ion ion-refresh"></i>Refresh
+                  <i className="ion ion-refresh" style={{marginRight: '.5rem'}}/>Refresh
                 </Button>
               </Row>
             </Row>
@@ -68,12 +70,13 @@ function mapStateToProps(state) {
   return {
     html: state.premail.html,
     isLoading: state.premail.isLoading,
-    error: state.premail.error
+    error: state.premail.error,
+    hasCopied: state.premail.hasCopied
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ premail }, dispatch);
+  return bindActionCreators({ premail, premailCopy }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview);
