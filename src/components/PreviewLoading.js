@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 import { Flex } from 'jsxstyle';
 
-const PreviewLoading = ({props}) => {
+const PreviewLoading = ({ props }) => {
   return (
     <Flex
       alignItems="center"
@@ -10,7 +10,7 @@ const PreviewLoading = ({props}) => {
       flex="1">
       <h2>Loading......</h2>
     </Flex>
-  )
-}
+  );
+};
 
 export default PreviewLoading;

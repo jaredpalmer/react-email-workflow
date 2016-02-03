@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Frame from './Frame';
 
-const VisualPreview = ({source}) => {
+const VisualPreview = ({ source }) => {
   return (
     <Frame style={{
         backgroundColor: 'white',
@@ -9,9 +9,9 @@ const VisualPreview = ({source}) => {
         width: '100%',
         outline: 'none',
         border: 'none',
-        borderRadius: '6px'
+        borderRadius: '6px',
       }}>
-      <div dangerouslySetInnerHTML={{__html: source}}/>
+      <div dangerouslySetInnerHTML={{ __html: source }}/>
     </Frame>
   );
 };
