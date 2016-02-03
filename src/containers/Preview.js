@@ -7,6 +7,7 @@ import OSXButton from '../components/OSXButton';
 import L from '../LayoutConstants';
 import PreviewHTML from '../components/PreviewHTML';
 import PreviewVisual from '../components/PreviewVisual';
+import PreviewLoading from '../components/PreviewLoading';
 import {premail} from '../actions/EmailActions';
 
 class Preview extends Component {
@@ -52,15 +53,13 @@ class Preview extends Component {
                 </Button>
               </Row>
             </Row>
-          {isLoading ? <h2>Loading... </h2> :
+          {isLoading ? <PreviewLoading/> :
           <PreviewVisual style={{flex: 1}} source={html}/>}
           {error !== null ? <h2 style={{color: L.pink}}>{error}</h2> : null}
         </Col>
-
       </Col>
     );
   }
-
 }
 
 function mapStateToProps(state) {
