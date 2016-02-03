@@ -21,7 +21,7 @@ class Preview extends Component {
     const {data} = this.props;
     return (
       <Col position="fixed"
-          top="1rem"
+          top="4rem"
           right="1rem"
           height="calc(100% - 6rem)"
           width="50%"
