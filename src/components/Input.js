@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Block, Flex } from 'jsxstyle';
-import L from './LayoutConstants';
+import L from '../LayoutConstants';
 
 class Input extends Component {
   constructor() {
@@ -20,16 +20,19 @@ class Input extends Component {
 
   render() {
     const { style, ...rest } = this.props;
-    const border = this.state.focused ? '1px solid #999' : '1px solid #ccc';
-    const inputStyle = {...style,
+    const border = this.state.focused ? '1px solid #aaa' : '1px solid #c4c4c4';
+    const defaults = {
       fontFamily: L.sans,
-      transition: '.25s border ease',
+      transition: '.2s border',
       border: border,
       fontSize: '1rem',
       outline: 'none !important',
-      padding: L.gridUnit,
+      padding: '8px 10px',
+      borderRadius:'2px',
       WebkitAppearance: 'none',
+      display: 'inline-block'
     };
+    const inputStyle = Object.assign({}, defaults, style);
     return (
       this.props.rows ? <textarea
         rows="4"
