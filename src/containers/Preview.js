@@ -18,7 +18,7 @@ class Preview extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {meta, elements, isLoading, premail} = this.props;
+    const {meta, elements, isLoading} = this.props;
     clearTimeout(this.timeout);
     if (((meta !== nextProps.meta) || (elements !== nextProps.elements)) && !isLoading) {
         this.startPoll();
