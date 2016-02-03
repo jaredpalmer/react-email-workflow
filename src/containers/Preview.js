@@ -9,10 +9,15 @@ import PreviewHTML from '../components/PreviewHTML';
 import PreviewVisual from '../components/PreviewVisual';
 import PreviewLoading from '../components/PreviewLoading';
 import {premail} from '../actions/EmailActions';
+import Clipboard from 'clipboard';
 
 class Preview extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    new Clipboard('#copy');
   }
 
   render() {
@@ -47,9 +52,16 @@ class Preview extends Component {
               </Block>
               <Row alignItems="center">
                 <Button
+                    id="copy"
+                    data-clipboard-text={html}
+                    style={{ lineHeight: '1'}}
+                    primary>
+                  <i className="ion ion-ios-copy" style={{marginRight: '.5rem'}}></i>Copy
+                </Button>
+                <Button
                     style={{ lineHeight: '1'}}
                     onClick={() => premail()} primary>
-                  <i className="ion ion-refresh" style={{marginRight: '.5rem'}}></i>Refresh
+                  <i className="ion ion-refresh"></i>Refresh
                 </Button>
               </Row>
             </Row>
