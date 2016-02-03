@@ -88,6 +88,12 @@ describe('reducer', () => {
     ]);
   });
 
+  it('should return default state if meta action is undefined', () => {
+    const initialState = [];
+    const nextState = meta(initialState, 'BLAH');
+    expect(nextState).toEqual(initialState);
+  });
+
   it('should handle EDIT_META', () => {
     const initialState = {
         subject: '',

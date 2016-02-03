@@ -3,8 +3,14 @@ import {
   DESTROY_ELEMENT,
   EDIT_ELEMENT,
   MOVE_ELEMENT,
-  EDIT_META
+  EDIT_META,
+  SHOW_CODE,
+  PREMAIL_COPY,
+  PREMAIL_LOADING,
+  PREMAIL_SUCCESS,
+  PREMAIL_FAILURE
 } from '../constants/ActionTypes';
+import http from '../utils/HttpClient';
 
 let nextTodoId = 1;
 
@@ -46,4 +52,60 @@ export function meta(meta) {
     type: EDIT_META,
     meta
   };
+}
+
+export function showCode(isShowing) {
+  return {
+    type: SHOW_CODE,
+    isShowing
+  };
+}
+
+export function premailCopy(hasCopied) {
+  return {
+    type: PREMAIL_COPY,
+    hasCopied
+  };
+}
+
+export function premailLoading(isLoading) {
+  return {
+    type: PREMAIL_LOADING,
+    isLoading
+  };
+}
+
+export function premailSuccess(html) {
+  return {
+    type: PREMAIL_SUCCESS,
+    html
+  };
+}
+
+export function premailFailure(error) {
+  return {
+    type: PREMAIL_FAILURE,
+    error
+  };
+}
+
+export function premail() {
+  return function(dispatch, getState) {
+    const {subject, preheader, date, meta, elements} = getState();
+    dispatch(premailLoading(true));
+
+    return http.post('/api/v0/premail', {subject, preheader, date, meta, elements})
+      .then(function(result) {
+        console.log(result);
+        dispatch(premailLoading(false));
+        dispatch(premailCopy(false));
+        return result.html
+      })
+      .then(function(jsonResult) {
+        dispatch(premailSuccess(jsonResult));
+      })
+      .catch(function(err) {
+        dispatch(premailFailure(err))
+      });
+  }
 }
