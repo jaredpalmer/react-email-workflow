@@ -12,6 +12,31 @@ import { premail, premailCopy } from '../actions/EmailActions';
 import Copy from '../components/Copy';
 
 class Preview extends Component {
+  constructor(props) {
+    super(props);
+    this.startPoll = this.startPoll.bind(this);
+  }
+  componentWillReceiveProps(nextProps) {
+    clearTimeout(this.timeout);
+    if (this.props.html !== nextProps.html) {
+        // Optionally do something with data
+    }
+    if (!nextProps.isLoading) {
+        this.startPoll();
+    }
+  }
+
+  componentWillMount() {
+    this.props.premail();
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
+
+  startPoll() {
+    this.timeout = setTimeout(() => this.props.premail(), 10000);
+  }
   render() {
     const {isLoading, html, error, premail, premailCopy, hasCopied } = this.props;
     return (
