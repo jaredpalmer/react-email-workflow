@@ -16,7 +16,9 @@ class Copy extends Component {
       <Button
         id={id}
         onClick={() => onCopy(true)}
-        primary={hasCopied}
+        style={{
+          background: hasCopied ? '#b7b7b7' : 'white'
+        }}
         {...other}>
         {!hasCopied ? <span><i
           className="ion ion-ios-copy"
