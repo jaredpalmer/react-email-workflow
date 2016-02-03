@@ -55,7 +55,7 @@ export function meta(meta) {
 export function premailLoading(isLoading) {
   return {
     type: PREMAIL_LOADING,
-    isLoading
+    isLoading: isLoading
   };
 }
 
@@ -80,13 +80,9 @@ export function premail() {
 
     return http.post('/api/v0/premail', {subject, preheader, date, meta, elements})
       .then(function(result) {
+        console.log(result);
         dispatch(premailLoading(false));
-
-        if (result.status === 200) {
-          return result.json();
-        }
-
-        throw "request failed";
+        return result.html
       })
       .then(function(jsonResult) {
         dispatch(premailSuccess(jsonResult));

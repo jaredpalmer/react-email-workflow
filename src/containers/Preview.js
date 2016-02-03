@@ -1,25 +1,21 @@
 import React, { Component, PropTypes } from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Row, Col, Block} from 'jsxstyle';
 import Button from '../components/Button';
-import { premail } from '../sources/api';
 import OSXButton from '../components/OSXButton';
 import L from '../LayoutConstants';
 import PreviewHTML from '../components/PreviewHTML';
 import PreviewVisual from '../components/PreviewVisual';
+import {premail} from '../actions/EmailActions';
 
 class Preview extends Component {
   constructor() {
     super();
-    this.state = {
-      html: '',
-      isFetching: false,
-      showCode: false
-    };
   }
 
   render() {
-    const {data} = this.props;
+    const {isLoading, html, error, premail } = this.props;
     return (
       <Col position="fixed"
           top="4rem"
@@ -50,21 +46,15 @@ class Preview extends Component {
               </Block>
               <Row alignItems="center">
                 <Button
-                    style={{lineHeight: '1', marginRight: '.5rem'}}
-                    onClick={()=> this.setState({showCode: !this.state.showCode })}>
-                  <i className="ion ion-code" style={{marginRight: '.5rem'}}></i>Toggle Code
-                </Button>
-                <Button
                     style={{ lineHeight: '1'}}
-                    onClick={() => premail(data).then(res => {
-                      this.setState({html: res.html});
-                    })} primary>
+                    onClick={() => premail()} primary>
                   <i className="ion ion-refresh" style={{marginRight: '.5rem'}}></i>Refresh
                 </Button>
               </Row>
             </Row>
-          {this.state.showCode ? <PreviewHTML style={{flex: 1}} source={this.state.html}/> :
-          <PreviewVisual style={{flex: 1}} source={this.state.html}/>}
+          {isLoading ? <h2>Loading... </h2> :
+          <PreviewVisual style={{flex: 1}} source={html}/>}
+          {error !== null ? <h2 style={{color: L.pink}}>{error}</h2> : null}
         </Col>
 
       </Col>
@@ -74,7 +64,15 @@ class Preview extends Component {
 }
 
 function mapStateToProps(state) {
-  return { data: state }
+  return {
+    html: state.premail.html,
+    isLoading: state.premail.isLoading,
+    error: state.premail.error
+  };
 }
 
-export default connect(mapStateToProps)(Preview);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ premail }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Preview);
