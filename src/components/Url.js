@@ -5,7 +5,6 @@ import Input from '../components/Input';
 import { extract } from '../sources/api';
 import Editable from '../components/Editable';
 
-// import SmartInput from '../components/SmartInput';
 class Url extends Component {
   constructor() {
     super();
@@ -47,7 +46,6 @@ class Url extends Component {
         }}>Fetch</Button>
           </Row>
           { title ?
-
             <Block>
               <Row marginBottom=".5rem">
                 <Editable
