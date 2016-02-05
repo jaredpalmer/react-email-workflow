@@ -14,7 +14,7 @@ class Url extends Component {
   handleKeyDown(e) {
     const ENTER = 13;
     if (e.keyCode == ENTER) {
-      Extract(this.props.url).then(res => this.props.edit(this.props.id, res));
+      extract(this.props.url).then(res => this.props.edit(this.props.id, res));
     }
   }
 
@@ -46,6 +46,7 @@ class Url extends Component {
         }}>Fetch</Button>
           </Row>
           { title ?
+
             <Block>
               <Row marginBottom=".5rem">
                 <Editable

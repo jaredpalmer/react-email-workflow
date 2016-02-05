@@ -1,7 +1,7 @@
 {
   "name": "react-email-workflow",
   "version": "1.0.0",
-  "description": "Email workflow for ShellyPalmer. Built with React, Redux, Express, Webpack, React-Transform, CSS Modules.",
+  "description": "Email newsletter design workflow. Built with React, Redux, Express, Webpack, JSXStyle, React Drag and Drop, Premailer.",
   "main": "server.js",
   "scripts": {
     "coverage": "babel-node node_modules/isparta/bin/isparta cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot",
@@ -9,7 +9,7 @@
     "build": "npm run clean && npm run dist",
     "clean": "rm -rf dist",
     "start": "npm run start:dev",
-    "start:dev": "node serverDev.js",
+    "start:dev": "nodemon --exec babel-node server.js",
     "start:prod": "babel-node server.js",
     "test": "mocha --compilers js:babel-core/register --recursive && npm run coverage",
     "test:watch": "npm test -- --watch",
@@ -19,8 +19,12 @@
     "type": "git",
     "url": "git+https://github.com/jaredpalmer/react-email-workflow.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "email",
+    "redux"
+  ],
+  "author": "Jared Palmer",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jaredpalmer/react-email-workflow/issues"
@@ -65,6 +69,7 @@
     "redux-thunk": "^1.0.3",
     "superagent": "^1.7.2",
     "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.6.4"
   }
 }
