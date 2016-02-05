@@ -8,7 +8,7 @@ const PreviewLoading = ({ props }) => {
       justifyContent="center"
       flexWrap="wrap"
       flex="1">
-      <h2>Loading......</h2>
+      <h3>Loading......</h3>
     </Flex>
   );
 };
