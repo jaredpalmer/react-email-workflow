@@ -102,7 +102,7 @@ export function premail() {
       })
       .then(function(jsonResult) {
         dispatch(premailSuccess(jsonResult));
-        dispatch(premailCopy(true));
+        dispatch(premailCopy(false));
       })
       .catch(function(err) {
         dispatch(premailFailure(err));
