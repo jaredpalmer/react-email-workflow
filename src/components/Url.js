@@ -27,13 +27,6 @@ class Url extends Component {
             style={{
               flex: 1,
               marginRight: '.25rem',
-              outline: 'none !important',
-              border: 'none !important',
-              padding: '0',
-              borderRadius:'2px',
-              cursor: 'auto',
-              WebkitAppearance: 'none',
-              display: 'block',
             }}
             onChange={(e) => edit(id, { url: e.target.value })}
             onKeyDown={this.handleKeyDown}
@@ -49,7 +42,7 @@ class Url extends Component {
 
             <Block>
               <Row marginBottom=".5rem">
-                <Editable
+                <Input
                   style={{
                     flex: 1,
                     fontWeight: 'bold',
@@ -58,26 +51,26 @@ class Url extends Component {
                     fontSize: '20px',
                     textTransform: 'capitalize',
                   }}
+                  rows={2}
                   onChange={(e) => edit(id, { title: e.target.value })}
-                  tagName="div"
-                  html={title}
+                  value={title}
                 />
         </Row>
         <Row>
-          <Editable
+          <Input
             style={{
               flex: 1,
               color: '#595f6c',
               fontSize: '16px',
               lineHeight: '24px',
             }}
+            rows={5}
             onChange={(e) => edit(id, { content: e.target.value })}
-            tagName="p"
-            html={content}
+            value={content}
           />
         </Row>
         <Row marginBottom=".25rem">
-          <Editable
+          <Input
             style={{
               flex: 1,
               color: '#595f6c',
@@ -85,8 +78,7 @@ class Url extends Component {
               lineHeight: '24px',
             }}
             onChange={(e) => edit(id, { author: e.target.value })}
-            tagName="p"
-            html={author}
+            value={author}
           />
         </Row>
       </Block> : null }

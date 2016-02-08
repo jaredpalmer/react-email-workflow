@@ -64,7 +64,7 @@ export function showCode(isShowing) {
 export function premailCopy(hasCopied) {
   return {
     type: PREMAIL_COPY,
-    hasCopied: hasCopied
+    hasCopied: hasCopied,
   };
 }
 

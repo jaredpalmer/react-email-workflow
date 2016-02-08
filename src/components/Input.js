@@ -6,16 +6,16 @@ class Input extends Component {
   constructor() {
     super();
     this.state = {
-      focused: false
+      focused: false,
     };
   }
 
   handleOnFocus() {
-    this.setState({focused: true});
+    this.setState({ focused: true });
   }
 
   handleOnBlur() {
-    this.setState({focused: false});
+    this.setState({ focused: false });
   }
 
   render() {
@@ -30,7 +30,7 @@ class Input extends Component {
       padding: '8px 10px',
       borderRadius:'2px',
       WebkitAppearance: 'none',
-      display: 'inline-block'
+      display: 'inline-block',
     };
     const inputStyle = Object.assign({}, defaults, style);
     return (
@@ -47,6 +47,5 @@ class Input extends Component {
     );
   }
 }
-
 
 export default Input;

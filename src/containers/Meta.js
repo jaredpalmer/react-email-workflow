@@ -15,10 +15,9 @@ const Meta = ({ metaData, meta }) =>
       marginBottom: '.5rem',
     }}>
     <Row alignItems="center">
-      <Editable
-        tagName="div"
+      <Input
         placeholder="Subject"
-        html={metaData.subject}
+        value={metaData.subject}
         onChange={(e) => meta({ subject: e.target.value })}
         style={{
           flex: 1,
@@ -28,18 +27,14 @@ const Meta = ({ metaData, meta }) =>
       />
     </Row>
     <Row alignItems="center" margin="1rem 0">
-      <Editable
+      <Input
         style={{
           flex: 1,
           color: '#595f6c',
           fontSize: '16px',
           lineHeight: '24px',
-          outline: 'none !important',
-          border: 'none !important',
-          borderRadius:'2px',
-          cursor: 'auto',
-          WebkitAppearance: 'none',
         }}
+        rows={4}
         onChange={(e) => meta({ preheader: e.target.value })}
         tagName="div"
         placeholder="Preview text"
