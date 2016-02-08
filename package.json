@@ -9,7 +9,7 @@
     "build": "npm run clean && npm run dist",
     "clean": "rm -rf dist",
     "start": "npm run start:dev",
-    "start:dev": "nodemon --exec babel-node server.js",
+    "start:dev": "babel-node server.js",
     "start:prod": "babel-node server.js",
     "test": "mocha --compilers js:babel-core/register --recursive && npm run coverage",
     "test:watch": "npm test -- --watch",
