@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import L from '../LayoutConstants';
 
-const PreviewHTML = ({source}) => {
+const PreviewHTML = ({ source }) => {
   return (
     <pre style={{
         backgroundColor: L.darkBlue,
@@ -11,7 +11,7 @@ const PreviewHTML = ({source}) => {
         border: 'none',
         fontSize: '.75rem',
         padding: '.5rem',
-        color: '#fff'
+        color: '#fff',
       }}>
       <code>
         {source}

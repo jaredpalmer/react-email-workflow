@@ -15,7 +15,7 @@ describe('reducer', () => {
   });
 
   it('should handle ADD_ELEMENT', () => {
-    const initialState = []
+    const initialState = [];
     const nextState = elements(initialState, actions.add(ElementSchema.url));
     expect(nextState).toEqual([{
           id: 2,
@@ -23,8 +23,9 @@ describe('reducer', () => {
           title: '',
           url: '',
           content: '',
-          author: ''
-        }]);
+          author: '',
+        },
+      ]);
   });
 
   it('should handle EDIT_ELEMENT', () => {
@@ -34,17 +35,19 @@ describe('reducer', () => {
         title: '',
         url: '',
         content: '',
-        author: ''
-      }];
-    const nextState = elements(initialState, actions.edit(1, {title: 'Hello!'}));
+        author: '',
+      },
+    ];
+    const nextState = elements(initialState, actions.edit(1, { title: 'Hello!' }));
     expect(nextState).toEqual([{
         id: 1,
         kind: 'url',
         title: 'Hello!',
         url: '',
         content: '',
-        author: ''
-      }]);
+        author: '',
+      },
+    ]);
   });
 
   it('should handle DESTROY_ELEMENT', () => {
@@ -54,8 +57,9 @@ describe('reducer', () => {
         title: '',
         url: '',
         content: '',
-        author: ''
-      }];
+        author: '',
+      },
+    ];
     const nextState = elements(initialState, actions.destroy(1));
     expect(nextState).toEqual([]);
   });
@@ -63,28 +67,28 @@ describe('reducer', () => {
   it('should handle MOVE_ELEMENT', () => {
     const initialState = [{
         id: 1,
-        title: 'Google'
+        title: 'Google',
       },
       {
         id: 2,
-        title: 'Apple'
+        title: 'Apple',
       },
       {
         id: 3,
-        title: 'FB'
-      }
+        title: 'FB',
+      },
     ];
     const nextState = elements(initialState, actions.move(1, 1));
     expect(nextState).toEqual([{
         id: 2,
-        title: 'Apple'
-      },{
+        title: 'Apple',
+      }, {
         id: 1,
-        title: 'Google'
-      },{
+        title: 'Google',
+      }, {
         id: 3,
-        title: 'FB'
-      }
+        title: 'FB',
+      },
     ]);
   });
 
@@ -98,13 +102,13 @@ describe('reducer', () => {
     const initialState = {
         subject: '',
         preheader: '',
-        date: ''
+        date: '',
       };
-    const nextState = meta(initialState, actions.meta({subject: 'Hello'}));
+    const nextState = meta(initialState, actions.meta({ subject: 'Hello' }));
     expect(nextState).toEqual({
         subject: 'Hello',
         preheader: '',
-        date: ''
+        date: '',
       });
   });
 });

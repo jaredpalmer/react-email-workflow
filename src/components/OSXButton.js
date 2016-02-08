@@ -10,7 +10,7 @@ const OSXButton = () =>
     marginTop: '16px',
     marginRight: '.5rem',
     borderRadius: '100%',
-    backgroundColor: '#A7ADB5'
+    backgroundColor: '#A7ADB5',
   }}/>;
 
 export default OSXButton;

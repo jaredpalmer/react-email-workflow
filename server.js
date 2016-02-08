@@ -1,36 +1,60 @@
-var express = require('express')
-var path = require('path')
-var morgan = require('morgan')
-var bodyParser = require('body-parser')
-var helmet = require('helmet')
-var cookieParser = require('cookie-parser')
-var port = process.env.PORT || 5000
-var server = global.server = express()
+import path from 'path';
+import express from 'express';
+import webpack from 'webpack';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import config from './webpack.config.dev';
+import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
 
-server.disable('x-powered-by')
-server.set('port', port)
-server.use(helmet())
-server.use(bodyParser.urlencoded({ extended: false }))
-server.use(bodyParser.json())
-server.use(cookieParser())
-server.use(morgan('dev'))
-server.use('/static', express.static(__dirname + '/dist'))
+const isDeveloping = process.env.NODE_ENV !== 'production';
+const port = isDeveloping ? 3000 : process.env.PORT;
+const server = global.server = express();
 
-server.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-  next()
-})
+server.disable('x-powered-by');
+server.set('port', port);
+server.use(helmet());
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
+server.use(cookieParser());
+server.use(morgan('dev'));
 
-server.use('/api/v0/extract', require('./api/extract'))
-server.use('/api/v0/premail', require('./api/premail'))
+if (isDeveloping) {
+  const compiler = webpack(config);
+  const middleware = webpackMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    contentBase: 'src',
+    stats: {
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false,
+    },
+  });
 
-server.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '/index.html'))
-  })
+  server.use(middleware);
+  server.use(webpackHotMiddleware(compiler));
+  server.get('*', function response(req, res) {
+    res.sendFile(path.join(__dirname, '/index.html'));
+  });
+} else {
+  server.use('/static', express.static(__dirname + '/dist'));
+  server.get('*', function response(req, res) {
+    res.sendFile(path.join(__dirname, '/index.html'));
+  });
+}
 
-server.listen(port, function () {
-  	// console.log(process.env)
-    console.log('Listening on ' + port + '.')
-    console.log('Go to <http://localhost:' + port + '> in your browser.')
-  })
+server.use('/api/v0/extract', require('./api/extract'));
+server.use('/api/v0/premail', require('./api/premail'));
+
+server.listen(port, '0.0.0.0', function onStart(err) {
+  if (err) {
+    console.log(err);
+  }
+
+  console.info('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
+});

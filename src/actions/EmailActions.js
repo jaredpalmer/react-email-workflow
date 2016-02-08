@@ -19,8 +19,8 @@ export function add(element) {
     type: ADD_ELEMENT,
     element: {
       id: nextTodoId++,
-      ...element
-    }
+      ...element,
+    },
   };
 }
 
@@ -28,14 +28,14 @@ export function edit(id, updates) {
   return {
     type: EDIT_ELEMENT,
     id,
-    updates
+    updates,
   };
 }
 
 export function destroy(id) {
   return {
     type: DESTROY_ELEMENT,
-    id
+    id,
   };
 }
 
@@ -43,69 +43,69 @@ export function move(id, atIndex) {
   return {
     type: MOVE_ELEMENT,
     id,
-    atIndex
+    atIndex,
   };
 }
 
 export function meta(meta) {
   return {
     type: EDIT_META,
-    meta
+    meta,
   };
 }
 
 export function showCode(isShowing) {
   return {
     type: SHOW_CODE,
-    isShowing
+    isShowing,
   };
 }
 
 export function premailCopy(hasCopied) {
   return {
     type: PREMAIL_COPY,
-    hasCopied
+    hasCopied: hasCopied,
   };
 }
 
 export function premailLoading(isLoading) {
   return {
     type: PREMAIL_LOADING,
-    isLoading
+    isLoading: isLoading,
   };
 }
 
 export function premailSuccess(html) {
   return {
     type: PREMAIL_SUCCESS,
-    html
+    html,
   };
 }
 
 export function premailFailure(error) {
   return {
     type: PREMAIL_FAILURE,
-    error
+    error,
   };
 }
 
 export function premail() {
   return function(dispatch, getState) {
-    const {subject, preheader, date, meta, elements} = getState();
+    const { subject, preheader, date, meta, elements } = getState();
     dispatch(premailLoading(true));
 
-    return http.post('/api/v0/premail', {subject, preheader, date, meta, elements})
+    return http.post('/api/v0/premail', { subject, preheader, date, meta, elements })
       .then(function(result) {
         console.log(result);
         dispatch(premailLoading(false));
-        dispatch(premailCopy(false));
-        return result.html
+        return result.html;
       })
       .then(function(jsonResult) {
         dispatch(premailSuccess(jsonResult));
+        dispatch(premailCopy(false));
       })
       .catch(function(err) {
-        dispatch(premailFailure(err))
+        dispatch(premailFailure(err));
       });
-  }
+  };
 }
