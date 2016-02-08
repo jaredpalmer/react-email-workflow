@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Block, Flex } from 'jsxstyle';
 import L from '../LayoutConstants';
+import TextArea from 'react-textarea-autosize';
 
 class Input extends Component {
   constructor() {
@@ -19,9 +20,10 @@ class Input extends Component {
   }
 
   render() {
-    const { style, ...rest } = this.props;
+    const { style, rows, ...rest } = this.props;
     const border = this.state.focused ? '1px solid #aaa' : '1px solid #c4c4c4';
     const defaults = {
+      boxSizing: 'border-box',
       fontFamily: L.sans,
       transition: '.2s border',
       border: border,
@@ -34,8 +36,9 @@ class Input extends Component {
     };
     const inputStyle = Object.assign({}, defaults, style);
     return (
-      this.props.rows ? <textarea
-        rows="4"
+      rows ? <TextArea
+        useCacheForDOMMeasurements
+        rows={rows}
         onFocus={this.handleOnFocus.bind(this)}
         onBlur={this.handleOnBlur.bind(this)}
         style={inputStyle}

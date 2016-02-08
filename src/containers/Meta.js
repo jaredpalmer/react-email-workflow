@@ -16,7 +16,7 @@ const Meta = ({ metaData, meta }) =>
     }}>
     <Row alignItems="center">
       <Input
-        placeholder="Subject"
+        placeholder="Enter the subject line...(keep it short!)"
         value={metaData.subject}
         onChange={(e) => meta({ subject: e.target.value })}
         style={{
@@ -34,11 +34,10 @@ const Meta = ({ metaData, meta }) =>
           fontSize: '16px',
           lineHeight: '24px',
         }}
-        rows={4}
+        rows={1}
         onChange={(e) => meta({ preheader: e.target.value })}
-        tagName="div"
         placeholder="Preview text"
-        html={metaData.preheader}
+        value={metaData.preheader}
       />
     </Row>
     <Row alignItems="center">

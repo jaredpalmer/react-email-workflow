@@ -72,10 +72,11 @@ class Card extends Component {
             width="100%"
             marginBottom=".5rem"
             borderRadius="2px"
-            border="1px solid"
+            border="1px dotted"
             padding="1rem"
             transition=".25s border-color ease"
-            borderColor={this.state.hovered ? '#c4c4c4' : '#ffffff'}
+            cursor="move"
+            borderColor={this.state.hovered ? '#d5d5d5' : '#ccc'}
             >
           {card.kind === 'url' ? <Url
             id={card.id}

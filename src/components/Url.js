@@ -13,7 +13,8 @@ class Url extends Component {
 
   handleKeyDown(e) {
     const ENTER = 13;
-    if (e.keyCode == ENTER) {
+    if (e.keyCode === ENTER) {
+      e.preventDefault();
       extract(this.props.url).then(res => this.props.edit(this.props.id, res));
     }
   }
@@ -34,7 +35,6 @@ class Url extends Component {
             value={url}
           />
         <Button onClick={()=> {
-          // console.log(url);
           extract(url).then(res => edit(id, res));
         }}>Fetch</Button>
           </Row>
@@ -51,7 +51,7 @@ class Url extends Component {
                     fontSize: '20px',
                     textTransform: 'capitalize',
                   }}
-                  rows={2}
+                  rows={1}
                   onChange={(e) => edit(id, { title: e.target.value })}
                   value={title}
                 />

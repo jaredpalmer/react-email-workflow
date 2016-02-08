@@ -43,9 +43,11 @@ class Button extends Component {
     };
     const normalStyle = Object.assign({}, baseStyle, style);
     const primaryStyle = Object.assign({}, normalStyle, {
+      border: '1px solid',
       borderColor: this.state.hovered ? '#ff7e82' : '#ff5a5f',
-      borderBottomColor: this.state.hovered ? '#fa0008' : '#e00007',
+      // borderBottomColor: this.state.hovered ? '#fa0008' : '#e00007',
       background: this.state.hovered ? '#ff7e82' : '#ff5a5f',
+      borderRadius: '2px',
       color: '#ffffff',
     }, style);
 
