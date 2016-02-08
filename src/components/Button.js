@@ -28,6 +28,7 @@ class Button extends Component {
       background: '#fff',
       fontFamily: L.sans,
       fontSize: '14px',
+      textTransform: 'uppercase',
       fontWeight: 'bold',
       lineHeight: '1.43',
       outline: '0',
@@ -36,7 +37,6 @@ class Button extends Component {
       userSelect: 'none',
       whiteSpace: 'nowrap',
       borderColor: this.state.hovered ? '#aaaaaa' : '#c4c4c4',
-      borderRadius: '2px',
       border: '1px solid',
       cursor: 'pointer',
       color: '#565a5c',
@@ -44,10 +44,8 @@ class Button extends Component {
     const normalStyle = Object.assign({}, baseStyle, style);
     const primaryStyle = Object.assign({}, normalStyle, {
       border: '1px solid',
-      borderColor: this.state.hovered ? '#ff7e82' : '#ff5a5f',
-      // borderBottomColor: this.state.hovered ? '#fa0008' : '#e00007',
-      background: this.state.hovered ? '#ff7e82' : '#ff5a5f',
-      borderRadius: '2px',
+      borderColor: this.state.hovered ? '#424242' : '#212121',
+      background: this.state.hovered ? '#424242' : '#212121',
       color: '#ffffff',
     }, style);
 

@@ -14,6 +14,8 @@ export default class App extends Component {
              justifyContent="center"
              borderBottom="1px solid #eee">
           <h2 style={{
+                textTransform:'uppercase',
+                letterSpacing: '.1em',
                 textAlign: 'center',
                 lineHeight: 1,
                 marginBottom: 0,

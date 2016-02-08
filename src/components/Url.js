@@ -36,7 +36,7 @@ class Url extends Component {
           />
         <Button onClick={()=> {
           extract(url).then(res => edit(id, res));
-        }}>Fetch</Button>
+        }} primary>Fetch</Button>
           </Row>
           { title ?
 
