@@ -9,7 +9,7 @@ import { meta } from '../actions/EmailActions';
 const Meta = ({ metaData, meta }) =>
   <div style={{
       background: 'white',
-      marginRight:'61.5px',
+      marginRight:'45.5px',
       padding: '1rem',
       marginBottom: '.5rem',
       boxShadow: '0 2px 2px 0 rgba(0,0,0,0),0 3px 1px -2px rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)',

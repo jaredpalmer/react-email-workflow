@@ -56,5 +56,6 @@ server.listen(port, '0.0.0.0', function onStart(err) {
     console.log(err);
   }
 
+  console.log(`Node.js Environment: ${process.env.NODE_ENV}`);
   console.info('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
 });

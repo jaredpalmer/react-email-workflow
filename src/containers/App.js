@@ -10,21 +10,29 @@ export default class App extends Component {
     return (
       <Col>
         <Row height="50px"
+             position="fixed"
+             top="0"
+             left="0"
+             width="100%"
              alignItems="center"
-             justifyContent="center"
-             borderBottom="1px solid #eee">
+             justifyContent="flex-start"
+             background="#212121"
+             borderBottom="1px solid #111">
           <h2 style={{
-                textTransform:'uppercase',
-                letterSpacing: '.1em',
-                textAlign: 'center',
+                marginLeft: '1rem',
                 lineHeight: 1,
-                marginBottom: 0,
+                fontWeight: '300',
+                color: '#ffffff',
               }}>
             React Email Workflow
           </h2>
         </Row>
-        <Block maxWidth="600px"
-               margin="1rem">
+        <Block maxWidth="616px"
+               background="#f2f2f2"
+               borderRight="1px solid #c4c4c4"
+               marginTop="50px"
+               height="calc(100vh - 50px)"
+               padding="1rem 1rem 0">
             <Meta/>
             <ElementList/>
         </Block>

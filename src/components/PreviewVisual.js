@@ -9,7 +9,6 @@ const VisualPreview = ({ source }) => {
         width: '100%',
         outline: 'none',
         border: 'none',
-        borderRadius: '6px',
       }}>
       <div dangerouslySetInnerHTML={{ __html: source }}/>
     </Frame>
