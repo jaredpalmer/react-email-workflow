@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {Row, Col, Block} from 'jsxstyle';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Row, Col, Block } from 'jsxstyle';
 import Button from '../components/Button';
-import OSXButton from '../components/OSXButton';
 import L from '../LayoutConstants';
 import PreviewHTML from '../components/PreviewHTML';
 import PreviewVisual from '../components/PreviewVisual';
