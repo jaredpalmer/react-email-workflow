@@ -54,10 +54,11 @@ class ElementList extends Component {
             />
           );
         })}
-        <Row marginTop="1rem" marginLeft="1rem">
-          <Button style={{ flex: 1, marginRight: '.5rem' }} onClick={() => actions.add(ElementSchema.url) } primary><i className="ion ion-link" style={{ marginRight: '.5rem' }} /> Add Story </Button>
-          <Button style={{ flex: 1, marginRight: '.5rem' }} onClick={() => actions.add(ElementSchema.heading) } primary><span style={{ fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem' }}>H1</span> Add Heading </Button>
-          <Button style={{ flex: 1, marginRight: '.5rem' }} onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{ marginRight: '.5rem' }}/> Add HTML </Button>
+        <Row marginTop="1rem" flexWrap="wrap">
+          <Button style={{ flex: 1, marginRight: '.5rem', marginBottom: '.5rem', display: 'block' }} onClick={() => actions.add(ElementSchema.url) } primary><i className="ion ion-link" style={{ marginRight: '.5rem' }} /> Add Story </Button>
+          <Button style={{ flex: 1, marginRight: '.5rem', marginBottom: '.5rem', display: 'block' }} onClick={() => actions.add(ElementSchema.heading) } primary><span style={{ fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem' }}>H1</span> Add Heading </Button>
+          <Button style={{ flex: 1, marginRight: '.5rem', marginBottom: '.5rem', display: 'block' }} onClick={() => actions.add(ElementSchema.test) } primary><span style={{ fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem', fontWeight: 'bold', textTransform: 'capitalize' }}>Aa</span> Add Text </Button>
+          <Button style={{ flex: 1, marginRight: '.5rem', marginBottom: '.5rem', display: 'block' }} onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{ marginRight: '.5rem' }}/> Add HTML </Button>
         </Row>
       </div>
     );

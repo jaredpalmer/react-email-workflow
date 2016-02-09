@@ -10,7 +10,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 3000 : process.env.PORT;
+const port = isDeveloping ? 5000 : process.env.PORT;
 const server = global.server = express();
 
 server.disable('x-powered-by');

@@ -71,9 +71,10 @@ class Card extends Component {
           <Block
             background="#fff"
             width="100%"
-            marginBottom=".5rem"
-            boxShadow="0 2px 2px 0 rgba(0,0,0,0),0 3px 1px -2px rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);"
-            padding="1rem"
+            margin={this.state.hovered ? '.5rem 0' : '0' }
+            boxShadow={this.state.hovered ? '0 4px 4px 0 rgba(0,0,0,.12),0 6px 2px -4px rgba(0,0,0,.14),0 2px 10px 0 rgba(0,0,0,.12)' : 0}
+            transition=".3s all cubic-bezier(0.4, 0, 0.2, 1)"
+            padding={this.state.hovered ? '2rem 1rem' : '1rem' }
             cursor="move"
             >
           {card.kind === 'url' ? <Url
