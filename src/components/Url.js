@@ -22,7 +22,7 @@ class Url extends Component {
   render() {
     const { id, title, content, author, url, edit } = this.props;
     return (
-      <div>
+      <Block>
         <Row>
           <Input
             style={{
@@ -82,7 +82,7 @@ class Url extends Component {
           />
         </Row>
       </Block> : null }
-      </div>
+    </Block>
     );
   }
 }

@@ -9,7 +9,7 @@ import ItemTypes from '../constants/ItemTypes';
 import Button from '../components/Button';
 import * as EmailActions from '../actions/EmailActions';
 import * as ElementSchema from '../constants/ElementSchema';
-import {Row} from 'jsxstyle';
+import { Row, InlineBlock} from 'jsxstyle';
 
 const style = {
   width: 600,
@@ -39,7 +39,7 @@ class ElementList extends Component {
   render() {
     const { elements, actions, connectDropTarget, ...other } = this.props;
     return connectDropTarget(
-      <div style={style}>
+      <Block width="600px">
         {elements.map((card, i) => {
           return (
             <Card key={card.id}
@@ -54,13 +54,48 @@ class ElementList extends Component {
             />
           );
         })}
-        <Row marginTop="1rem" flexWrap="wrap">
-          <Button style={{ flex: 1, marginRight: '.5rem', marginBottom: '.5rem', display: 'block' }} onClick={() => actions.add(ElementSchema.url) } primary><i className="ion ion-link" style={{ marginRight: '.5rem' }} /> Add Story </Button>
-          <Button style={{ flex: 1, marginRight: '.5rem', marginBottom: '.5rem', display: 'block' }} onClick={() => actions.add(ElementSchema.heading) } primary><span style={{ fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem' }}>H1</span> Add Heading </Button>
-          <Button style={{ flex: 1, marginRight: '.5rem', marginBottom: '.5rem', display: 'block' }} onClick={() => actions.add(ElementSchema.test) } primary><span style={{ fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem', fontWeight: 'bold', textTransform: 'capitalize' }}>Aa</span> Add Text </Button>
-          <Button style={{ flex: 1, marginRight: '.5rem', marginBottom: '.5rem', display: 'block' }} onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{ marginRight: '.5rem' }}/> Add HTML </Button>
-        </Row>
-      </div>
+        <Block marginTop="1rem">
+          <Row>
+            <Block flex="1"
+                   marginBottom=".5rem"
+                   marginRight=".5rem">
+              <Button onClick={() => actions.add(ElementSchema.url) } primary>
+                <i className="ion ion-link" style={{ marginRight: '.5rem' }} />
+                Story
+              </Button>
+            </Block>
+            <Block flex="1"
+                   marginBottom=".5rem"
+                   marginRight=".5rem">
+              <Button onClick={() => actions.add(ElementSchema.heading) } primary>
+                <InlineBlock fontWeight="bold"
+                             fontFamily="Georgia"
+                             marginRight=".5rem">
+                  H1
+                </InlineBlock>
+                Heading
+              </Button>
+            </Block>
+            <Block flex="1"
+                   marginBottom=".5rem"
+                   marginRight=".5rem">
+              <Button onClick={() => actions.add(ElementSchema.test) } primary>
+                <InlineBlock fontWeight="bold"
+                             marginRight=".5rem"
+                             fontWeight="bold"
+                             textTransform="capitalize">
+                  Aa
+                </InlineBlock>
+                Text
+              </Button>
+            </Block>
+            <Block flex="1"
+                   marginBottom=".5rem">
+              <Button onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{ marginRight: '.5rem' }}/>HTML </Button>
+            </Block>
+          </Row>
+        </Block>
+      </Block>
     );
   }
 }

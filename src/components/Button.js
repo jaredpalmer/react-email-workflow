@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {Flex} from 'jsxstyle';
+import Center from './Center';
 import L from '../LayoutConstants';
 
 class Button extends Component {
@@ -56,12 +57,27 @@ class Button extends Component {
         onMouseLeave={this.handleMouseLeave.bind(this)}
         onClick={onClick}
       >
-        <div
-          style={!primary ? normalStyle : primaryStyle }
-          {...rest}
-          >
-          {children}
-        </div>
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          flexWrap="wrap"
+          backgroundColor="white"
+          fontSize="14px"
+          fontWeight="bold"
+          lineHeight="1.43"
+          outline="0"
+          borderRadius="2px"
+          padding="8px 20px"
+          transition=".25s background ease, .25s border-color ease"
+          WebkitTransition=".25s background ease, .25s border-color ease"
+          userSelect="none"
+          whiteSpace="nowrap"
+          borderColor={this.state.hovered ? '#aaaaaa' : '#c4c4c4'}
+          border="1px solid"
+          cursor="pointer"
+          color="#565a5c">
+            {children}
+          </Flex>
       </div>
     );
   }
