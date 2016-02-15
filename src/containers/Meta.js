@@ -1,55 +1,50 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import { Row } from 'jsxstyle';
-import Editable from '../components/Editable';
+import { Block } from 'jsxstyle';
 import Input from '../components/Input';
 import { meta } from '../actions/EmailActions';
 
 const Meta = ({ metaData, meta }) =>
-  <div style={{
-      background: 'white',
-      marginRight:'61.5px',
-      borderRadius: '2px',
-      padding: '1rem',
-      marginBottom: '.5rem',
-    }}>
-    <Row alignItems="center">
-      <Input
-        placeholder="Enter the subject line...(keep it short!)"
-        value={metaData.subject}
-        onChange={(e) => meta({ subject: e.target.value })}
-        style={{
-          flex: 1,
-          fontWeight: 'bold',
-          color: '#141823',
-        }}
+  <Block background="white"
+         marginRight="45.5px"
+         padding="1rem"
+         marginBottom=".5rem"
+         boxShadow="0 2px 2px 0 rgba(0,0,0,.08)">
+    <Block width="100%" marginBottom=".5rem">
+      <Input placeholder="Enter the subject line...(keep it short!)"
+             value={metaData.subject}
+             onChange={(e) => meta({ subject: e.target.value })}
+             style={{
+               width: '100%',
+               fontWeight: 'bold',
+               color: '#141823',
+             }}
       />
-    </Row>
-    <Row alignItems="center" margin="1rem 0">
-      <Input
-        style={{
-          flex: 1,
-          color: '#595f6c',
-          fontSize: '16px',
-          lineHeight: '24px',
-        }}
-        rows={1}
-        onChange={(e) => meta({ preheader: e.target.value })}
-        placeholder="Preview text"
-        value={metaData.preheader}
+    </Block>
+    <Block marginBottom=".5rem">
+      <Input rows={2}
+             onChange={(e) => meta({ preheader: e.target.value })}
+             placeholder="Preview text"
+             value={metaData.preheader}
+             style={{
+               width: '100%',
+               color: '#595f6c',
+               fontSize: '14px',
+               boxSizing: 'border-box',
+             }}
       />
-    </Row>
-    <Row alignItems="center">
+    </Block>
+    <Block>
       <Input
         id="date"
         type="date"
         value={metaData.date}
         onChange={(e) => meta({ date: e.target.value })}
-        style={{ flex: 1, marginBottom: '.25rem' }}
+        style={{ width: '100%', margin: 0, flex: 1 }}
       />
-    </Row>
-  </div>;
+    </Block>
+  </Block>;
 
 function mapStateToProps(state) {
   return { metaData: state.meta };

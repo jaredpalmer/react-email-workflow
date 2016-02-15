@@ -1,19 +1,31 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 import Input from './Input';
+import CodeMirror from './CodeMirror';
 
 class Code extends Component {
   constructor() {
     super();
+    this.updateCode = this.updateCode.bind(this);
+  }
+
+  updateCode(newCode) {
+    this.props.edit(this.props.id, { content: newCode });
   }
 
   render() {
-    const {id, edit, content} = this.props;
-    return <Input
-      rows="4"
+    const { id, edit, content } = this.props;
+    return <CodeMirror
       value={content}
-      placeholder="//Code"
-      onChange={(e) => edit(id, {content: e.target.value})}
-      style={{fontFamily: 'Menlo', width: '100%'}}
+      onChange={(newCode) => this.updateCode(newCode)}
+      className="CodeMirrorSmall"
+      style={{ height: 300, width: '100%', border: '1px solid #c4c4c4' }}
+      options={{
+        mode: 'htmlmixed',
+        lineWrapping: true,
+        lineNumbers: true,
+        theme: 'blackboard',
+        keyMap: 'sublime'
+      }}
       />;
   }
 }

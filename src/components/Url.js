@@ -3,7 +3,6 @@ import {Block, Row} from 'jsxstyle';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import { extract } from '../sources/api';
-import Editable from '../components/Editable';
 
 class Url extends Component {
   constructor() {
@@ -22,7 +21,7 @@ class Url extends Component {
   render() {
     const { id, title, content, author, url, edit } = this.props;
     return (
-      <div>
+      <Block>
         <Row>
           <Input
             style={{
@@ -36,7 +35,7 @@ class Url extends Component {
           />
         <Button onClick={()=> {
           extract(url).then(res => edit(id, res));
-        }}>Fetch</Button>
+        }} primary>Fetch</Button>
           </Row>
           { title ?
 
@@ -82,7 +81,7 @@ class Url extends Component {
           />
         </Row>
       </Block> : null }
-      </div>
+    </Block>
     );
   }
 }

@@ -11,11 +11,13 @@ const pink = Color.rgb(255, 90, 95);
 const darkBlue = Color.rgb(56, 59, 60);
 
 // Email colors
-const gray = Color.rgb(89, 95, 108);
+const white = Color.rgb(255, 255, 255);
 const black = Color.rgb(20, 24, 35);
+const gray = Color.rgb(89, 95, 108);
 const blue = Color.rgb(0, 112, 255);
 
 const LayoutConstants = {
+  white,
   black,
   primaryColor,
   secondaryColor,

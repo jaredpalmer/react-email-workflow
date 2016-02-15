@@ -9,8 +9,8 @@ import ItemTypes from '../constants/ItemTypes';
 import Button from '../components/Button';
 import * as EmailActions from '../actions/EmailActions';
 import * as ElementSchema from '../constants/ElementSchema';
-import {Row} from 'jsxstyle';
-
+import { Row, Col, Block, InlineBlock} from 'jsxstyle';
+import { SmallText } from '../components/Type';
 const style = {
   width: 600,
 };
@@ -39,7 +39,7 @@ class ElementList extends Component {
   render() {
     const { elements, actions, connectDropTarget, ...other } = this.props;
     return connectDropTarget(
-      <div style={style}>
+      <Block width="600px">
         {elements.map((card, i) => {
           return (
             <Card key={card.id}
@@ -54,12 +54,56 @@ class ElementList extends Component {
             />
           );
         })}
-        <Row marginTop="1rem" marginLeft="1rem">
-          <Button style={{ flex: 1, marginRight: '.5rem' }} onClick={() => actions.add(ElementSchema.url) }><i className="ion ion-link" style={{ marginRight: '.5rem' }}/> Add Story </Button>
-          <Button style={{ flex: 1, marginRight: '.5rem' }} onClick={() => actions.add(ElementSchema.heading) }><span style={{ fontWeight: 'bold', fontFamily: 'Georgia', marginRight: '.5rem' }}>H1</span> Add Heading </Button>
-          <Button style={{ flex: 1, marginRight: '.5rem' }} onClick={() => actions.add(ElementSchema.html) }><i className="ion ion-code" style={{ marginRight: '.5rem' }}/> Add HTML </Button>
-        </Row>
-      </div>
+          <Row width="540px" flexWrap="no-wrap" marginRight="45px" marginTop="1rem">
+            <Block flex="1"
+                   marginBottom=".5rem"
+                   marginRight=".5rem">
+              <Button onClick={() => actions.add(ElementSchema.url) } primary>
+                <Col fontSize="22px" justifyContent="center" alignItems="center">
+                  <i className="ion ion-link" />
+                  <SmallText>Story</SmallText>
+                </Col>
+              </Button>
+            </Block>
+            <Block flex="1"
+                   marginBottom=".5rem"
+                   marginRight=".5rem">
+              <Button onClick={() => actions.add(ElementSchema.heading) } primary>
+                <Col fontSize="1rem" justifyContent="center" alignItems="center">
+                  <Block fontWeight="bold"
+                         fontFamily="Georgia">
+                    H1
+                  </Block>
+                  <SmallText>Heading</SmallText>
+                </Col>
+              </Button>
+            </Block>
+            <Block flex="1"
+                   marginBottom=".5rem"
+                   marginRight=".5rem">
+              <Button onClick={() => actions.add(ElementSchema.text) } primary>
+                <Col fontSize="1rem" justifyContent="center" alignItems="center">
+                  <Block fontWeight="bold"
+                         fontFamily="Georgia"
+                         textTransform="capitalize">
+                    Aa
+                  </Block>
+                  <SmallText>Text</SmallText>
+                </Col>
+              </Button>
+            </Block>
+            <Block flex="1"
+                   marginRight=".5rem"
+                   marginBottom=".5rem">
+              <Button onClick={() => actions.add(ElementSchema.html) } primary>
+                <Col fontSize="22px" justifyContent="center" alignItems="center">
+                  <i className="ion ion-code"/>
+                  <SmallText>HTML</SmallText>
+                </Col>
+              </Button>
+            </Block>
+          </Row>
+      </Block>
     );
   }
 }
