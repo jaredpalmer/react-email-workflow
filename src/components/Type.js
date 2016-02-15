@@ -24,6 +24,11 @@ export const Text6 = curry(Inline, {
   fontSize: '1rem',
 });
 
+export const SmallText = curry(Inline, {
+  fontSize: '.85rem',
+  fontWeight: 'bold',
+});
+
 export const H1 = curry(Text1, {
   fontWeight: 'bold',
 });

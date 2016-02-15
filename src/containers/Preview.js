@@ -9,7 +9,8 @@ import PreviewVisual from '../components/PreviewVisual';
 import PreviewLoading from '../components/PreviewLoading';
 import { premail, premailCopy } from '../actions/EmailActions';
 import Copy from '../components/Copy';
-import { Text5 } from '../components/Type';
+import { H5 } from '../components/Type';
+
 class Preview extends Component {
   constructor(props) {
     super(props);
@@ -66,16 +67,14 @@ class Preview extends Component {
                  lineHeight='42px'
                  alignItems='center'
                  justifyContent='space-between'>
-              <Row alignItems="center">
-                <Block marginRight="1rem"><Text5>Preview</Text5></Block>
-                <Block>
+                <Block flex="2">
                   <Button onClick={() => this.toggleHTML()} primary small>
                     {!showHTML && <span><i className="ion ion-code" style={{ marginRight: '.5rem' }}/>Show HTML</span>}
                     {showHTML && <span><i className="ion ion-eye" style={{ marginRight: '.5rem' }}/>Show Preview</span>}
                   </Button>
                 </Block>
-              </Row>
-              <Row alignItems="center">
+              <Block flex="3" marginRight="1rem" textAlign="center"><H5>Preview</H5></Block>
+              <Row flex="2" alignItems="center" justifyContent="flex-end">
                 <Block marginRight=".5rem">
                   <Copy
                       hasCopied={hasCopied}
@@ -85,7 +84,7 @@ class Preview extends Component {
                       small
                   />
                 </Block>
-                <Block marginRight=".5rem">
+                <Block>
                   <Button
                       onClick={() => premail()} primary small>
                     <i className="ion ion-refresh" style={{ marginRight: '.5rem' }}/>Refresh

@@ -10,7 +10,7 @@ import Button from '../components/Button';
 import * as EmailActions from '../actions/EmailActions';
 import * as ElementSchema from '../constants/ElementSchema';
 import { Row, Col, Block, InlineBlock} from 'jsxstyle';
-
+import { SmallText } from '../components/Type';
 const style = {
   width: 600,
 };
@@ -59,9 +59,9 @@ class ElementList extends Component {
                    marginBottom=".5rem"
                    marginRight=".5rem">
               <Button onClick={() => actions.add(ElementSchema.url) } primary>
-                <Col justifyContent="center" alignItems="center">
+                <Col fontSize="22px" justifyContent="center" alignItems="center">
                   <i className="ion ion-link" />
-                  Story
+                  <SmallText>Story</SmallText>
                 </Col>
               </Button>
             </Block>
@@ -69,27 +69,26 @@ class ElementList extends Component {
                    marginBottom=".5rem"
                    marginRight=".5rem">
               <Button onClick={() => actions.add(ElementSchema.heading) } primary>
-                <Col justifyContent="center" alignItems="center">
+                <Col fontSize="1rem" justifyContent="center" alignItems="center">
                   <Block fontWeight="bold"
                          fontFamily="Georgia">
                     H1
                   </Block>
-                  Heading
+                  <SmallText>Heading</SmallText>
                 </Col>
               </Button>
             </Block>
             <Block flex="1"
                    marginBottom=".5rem"
                    marginRight=".5rem">
-              <Button onClick={() => actions.add(ElementSchema.test) } primary>
-                <Col justifyContent="stretch" alignItems="center">
+              <Button onClick={() => actions.add(ElementSchema.text) } primary>
+                <Col fontSize="1rem" justifyContent="center" alignItems="center">
                   <Block fontWeight="bold"
                          fontFamily="Georgia"
-                         fontSize="12px"
                          textTransform="capitalize">
                     Aa
                   </Block>
-                  Text
+                  <SmallText>Text</SmallText>
                 </Col>
               </Button>
             </Block>
@@ -97,9 +96,9 @@ class ElementList extends Component {
                    marginRight=".5rem"
                    marginBottom=".5rem">
               <Button onClick={() => actions.add(ElementSchema.html) } primary>
-                <Col justifyContent="center" alignItems="center">
+                <Col fontSize="22px" justifyContent="center" alignItems="center">
                   <i className="ion ion-code"/>
-                  HTML
+                  <SmallText>HTML</SmallText>
                 </Col>
               </Button>
             </Block>

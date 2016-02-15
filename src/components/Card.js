@@ -6,6 +6,7 @@ import Url from './Url';
 import {Block, Row} from 'jsxstyle';
 import Code from './Code';
 import Heading from './Heading';
+import Text from './Text';
 
 const cardSource = {
   beginDrag(props) {
@@ -73,9 +74,7 @@ class Card extends Component {
             background="#fff"
             width="100%"
             margin={'1rem 0'}
-            boxShadow={this.state.hovered ?
-              '0 4px 4px 0 rgba(0,0,0,.12)' :
-              '0 2px 2px 0 rgba(0,0,0,.08)' }
+            boxShadow={this.state.hovered ? '0 4px 4px 0 rgba(0,0,0,.12)' : '0 2px 2px 0 rgba(0,0,0,.08)' }
             transition=".2s box-shadow cubic-bezier(0.4, 0, 0.2, 1)"
             padding="1rem"
             cursor="move"
@@ -89,6 +88,11 @@ class Card extends Component {
             edit={edit}
             /> : null}
           {card.kind === 'html' ? <Code
+            id={card.id}
+            content={card.content}
+            edit={edit}
+            /> : null}
+          {card.kind === 'text' ? <Text
             id={card.id}
             content={card.content}
             edit={edit}
