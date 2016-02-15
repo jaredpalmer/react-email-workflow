@@ -39,6 +39,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "body-parser": "^1.14.2",
+    "classnames": "2.2.3",
     "clipboard": "^1.5.5",
     "codeclimate-test-reporter": "^0.3.0",
     "codemirror": "5.11.0",
