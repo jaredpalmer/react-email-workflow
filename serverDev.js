@@ -1,13 +1,18 @@
 import path from 'path';
 import express from 'express';
+import webpack from 'webpack';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import config from './webpack.config.dev';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import compression from 'compression';
 
-const port = process.env.PORT || 5000;
+const isDeveloping = process.env.NODE_ENV == 'development';
+const port = isDeveloping ? 5000 : process.env.PORT;
 const server = global.server = express();
+console.log(isDeveloping);
 
 server.disable('x-powered-by');
 server.set('port', port);
@@ -15,10 +20,25 @@ server.use(helmet());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 server.use(cookieParser());
-server.use(morgan('combined'));
-server.use(compression());
+server.use(morgan('dev'));
 
-server.use('/static', express.static(__dirname + '/dist'));
+
+const compiler = webpack(config);
+const middleware = webpackMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+  contentBase: 'src',
+  stats: {
+    colors: true,
+    hash: false,
+    timings: true,
+    chunks: false,
+    chunkModules: false,
+    modules: false,
+  },
+});
+
+server.use(middleware);
+server.use(webpackHotMiddleware(compiler));
 server.get('*', function response(req, res) {
   res.sendFile(path.join(__dirname, '/index.html'));
 });

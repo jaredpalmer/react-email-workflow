@@ -16,10 +16,13 @@ export default function configureStore(initialState) {
     )
   );
 
-  if (module.hot) {
-    module.hot.accept('../reducers', () =>
-      store.replaceReducer(require('../reducers').default /*.default if you use Babel 6+ */)
-    );
+  if (__DEV__) {
+    console.log('in development');
+    if (module.hot) {
+      module.hot.accept('../reducers', () =>
+        store.replaceReducer(require('../reducers').default /*.default if you use Babel 6+ */)
+      );
+    }
   }
 
   return store;
