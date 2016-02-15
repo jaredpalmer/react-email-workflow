@@ -40,7 +40,7 @@ class Url extends Component {
           { title ?
 
             <Block>
-              <Row marginBottom=".5rem">
+              <Row margin=".5rem 0">
                 <Input
                   style={{
                     flex: 1,
@@ -55,7 +55,7 @@ class Url extends Component {
                   value={title}
                 />
         </Row>
-        <Row>
+        <Row marginBottom=".5rem">
           <Input
             style={{
               flex: 1,
