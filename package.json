@@ -7,10 +7,10 @@
     "coverage": "babel-node node_modules/isparta/bin/isparta cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot",
     "dist": "webpack -p --config webpack.config.js",
     "build": "npm run clean && npm run dist",
-    "clean": "rm -rf dist && rm -rf server.bundle.js",
+    "clean": "rm -rf dist",
     "start": "npm run start:dev",
     "start:dev": "NODE_ENV=development babel-node serverDev.js",
-    "start:prod": "NODE_ENV=production PORT=5000 node server.bundle.js",
+    "start:prod": "NODE_ENV=production node dist/server.bundle.js",
     "test": "mocha --compilers js:babel-core/register --recursive && npm run coverage",
     "test:watch": "npm test -- --watch",
     "lint": "eslint src"
