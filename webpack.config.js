@@ -19,7 +19,7 @@ module.exports = [{
     './src/index'
   ],
   output: {
-    path: path.join(__dirname, 'dist/public/'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
@@ -55,7 +55,7 @@ module.exports = [{
     entry: './server.js',
     // devtool: 'sourcemap',
     output: {
-        path: path.join(__dirname, 'dist'),
+        // path: path.join(__dirname, 'dist'),
         filename: 'server.bundle.js',
         libraryTarget: 'commonjs2',
     },

@@ -18,9 +18,9 @@ server.use(cookieParser());
 server.use(morgan('combined'));
 server.use(compression());
 
-server.use('/static', express.static(__dirname + '/public'));
+server.use('/static', express.static(__dirname + '/dist'));
 server.get('*', function response(req, res) {
-  res.sendFile(path.join(__dirname, '../index.html'));
+  res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 server.use('/api/v0/extract', require('./api/extract'));
