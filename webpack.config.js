@@ -1,29 +1,51 @@
 // jscs:disable
 var path = require('path');
 var webpack = require('webpack');
-
+var node_modules_dir = path.resolve(__dirname, 'node_modules');
 module.exports = {
-  devtool: 'source-map',
-  entry: [
-    './src/index'
-  ],
+  devtool: false,
+  entry: {
+    bundle: './src/index',
+    vendors: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-textarea-autosize',
+      'react-dnd',
+      'react-dnd-html5-backend',
+      'redux',
+      'redux-thunk',
+      'jsxstyle',
+      'codemirror',
+      'classnames',
+      'clipboard',
+    ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
+    new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendors']
     }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      '__DEV__': false
+    }),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
+      compress: {
         warnings: false
       }
-    })
+    }),
+
   ],
   module: {
     loaders: [{

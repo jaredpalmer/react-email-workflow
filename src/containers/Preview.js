@@ -28,9 +28,9 @@ class Preview extends Component {
     }
   }
 
-  componentWillMount() {
-    this.props.premail();
-  }
+  // componentDidMount() {
+  //   this.props.premail();
+  // }
 
   componentWillUnmount() {
     clearTimeout(this.timeout);
