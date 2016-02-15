@@ -1,14 +1,21 @@
 import React, { PropTypes } from 'react';
-import { Flex } from 'jsxstyle';
+import { Flex, Col, Block } from 'jsxstyle';
 
 const PreviewLoading = ({ props }) => {
   return (
     <Flex
+      background="#fff"
       alignItems="center"
       justifyContent="center"
       flexWrap="wrap"
       flex="1">
-      <h3>Loading......</h3>
+      <Col alignItems="center">
+        <div className="spinner">
+          <div className="bounce1"/>
+          <div className="bounce2"/>
+          <div className="bounce3"/>
+        </div>
+      </Col>
     </Flex>
   );
 };
