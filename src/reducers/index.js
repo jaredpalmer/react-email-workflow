@@ -6,5 +6,5 @@ import premail from './premail';
 export default combineReducers({
   meta,
   elements,
-  premail
+  premail,
 });

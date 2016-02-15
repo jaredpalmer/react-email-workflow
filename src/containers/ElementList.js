@@ -9,7 +9,7 @@ import ItemTypes from '../constants/ItemTypes';
 import Button from '../components/Button';
 import * as EmailActions from '../actions/EmailActions';
 import * as ElementSchema from '../constants/ElementSchema';
-import { Row, InlineBlock} from 'jsxstyle';
+import { Row, Col, Block, InlineBlock} from 'jsxstyle';
 
 const style = {
   width: 600,
@@ -54,47 +54,64 @@ class ElementList extends Component {
             />
           );
         })}
-        <Block marginTop="1rem">
-          <Row>
+          <Row width="540px" flexWrap="no-wrap" marginRight="45px" marginTop="1rem">
             <Block flex="1"
                    marginBottom=".5rem"
                    marginRight=".5rem">
               <Button onClick={() => actions.add(ElementSchema.url) } primary>
-                <i className="ion ion-link" style={{ marginRight: '.5rem' }} />
-                Story
+                <Col justifyContent="center" alignItems="center">
+                  <i className="ion ion-link" />
+                  Story
+                </Col>
               </Button>
             </Block>
             <Block flex="1"
                    marginBottom=".5rem"
                    marginRight=".5rem">
               <Button onClick={() => actions.add(ElementSchema.heading) } primary>
-                <InlineBlock fontWeight="bold"
-                             fontFamily="Georgia"
-                             marginRight=".5rem">
-                  H1
-                </InlineBlock>
-                Heading
+                <Col justifyContent="center" alignItems="center">
+                  <Block fontWeight="bold"
+                         fontFamily="Georgia">
+                    H1
+                  </Block>
+                  Heading
+                </Col>
               </Button>
             </Block>
             <Block flex="1"
                    marginBottom=".5rem"
                    marginRight=".5rem">
               <Button onClick={() => actions.add(ElementSchema.test) } primary>
-                <InlineBlock fontWeight="bold"
-                             marginRight=".5rem"
-                             fontWeight="bold"
-                             textTransform="capitalize">
-                  Aa
-                </InlineBlock>
-                Text
+                <Col justifyContent="center" alignItems="center">
+                  <Block fontWeight="bold"
+                         fontFamily="Georgia"
+                         textTransform="capitalize">
+                    Aa
+                  </Block>
+                  Text
+                </Col>
+              </Button>
+            </Block>
+            <Block flex="1"
+                   marginRight=".5rem"
+                   marginBottom=".5rem">
+              <Button onClick={() => actions.add(ElementSchema.html) } primary>
+                <Col justifyContent="center" alignItems="center">
+                  <i className="ion ion-code"/>
+                  HTML
+                </Col>
               </Button>
             </Block>
             <Block flex="1"
                    marginBottom=".5rem">
-              <Button onClick={() => actions.add(ElementSchema.html) } primary><i className="ion ion-code" style={{ marginRight: '.5rem' }}/>HTML </Button>
+              <Button onClick={() => actions.add(ElementSchema.html) } primary>
+                <Col justifyContent="center" alignItems="center">
+                  <i className="ion ion-image"/>
+                  Image
+                </Col>
+              </Button>
             </Block>
           </Row>
-        </Block>
       </Block>
     );
   }
