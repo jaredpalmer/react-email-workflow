@@ -36,4 +36,3 @@ dist
 public
 /coverage
 .env
-server.bundle.js
