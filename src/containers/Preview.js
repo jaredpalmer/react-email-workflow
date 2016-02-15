@@ -9,11 +9,15 @@ import PreviewVisual from '../components/PreviewVisual';
 import PreviewLoading from '../components/PreviewLoading';
 import { premail, premailCopy } from '../actions/EmailActions';
 import Copy from '../components/Copy';
-
+import { Text5 } from '../components/Type';
 class Preview extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      showHTML: false,
+    };
     this.startPoll = this.startPoll.bind(this);
+    this.toggleHTML = this.toggleHTML.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,8 +40,15 @@ class Preview extends Component {
     this.timeout = setTimeout(() => this.props.premail(), 2000);
   }
 
+  toggleHTML() {
+    this.setState({
+      showHTML: !this.state.showHTML,
+    });
+  }
+
   render() {
     const { isLoading, html, error, premail, premailCopy, hasCopied } = this.props;
+    const { showHTML } = this.state;
     return (
       <Col position="fixed"
           top="50px"
@@ -47,37 +58,44 @@ class Preview extends Component {
           alignContent="stretch">
         <Col
             height="100%">
-            <Row style={{
-                position: 'relative',
-                height: '42px',
-                padding: '0 1rem',
-                backgroundColor: 'white',
-                borderBottom: '1px solid #ddd',
-                lineHeight: '42px',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Block><h3>Preview</h3></Block>
+            <Row position='relative'
+                 height='42px'
+                 padding='0 1rem'
+                 backgroundColor='white'
+                 borderBottom='1px solid #ddd'
+                 lineHeight='42px'
+                 alignItems='center'
+                 justifyContent='space-between'>
               <Row alignItems="center">
-                <Copy
-                    hasCopied={hasCopied}
-                    id="copy"
-                    data-clipboard-text={html}
-                    onCopy={premailCopy}
-                    style={{
-                      lineHeight: '1',
-                      marginRight: '1rem',
-                    }}
-                />
-                <Button
-                    style={{ lineHeight: '1' }}
-                    onClick={() => premail()} primary>
-                  <i className="ion ion-refresh" style={{ marginRight: '.5rem' }}/>Refresh
-                </Button>
+                <Block marginRight="1rem"><Text5>Preview</Text5></Block>
+                <Block>
+                  <Button onClick={() => this.toggleHTML()} primary small>
+                    {!showHTML && <span><i className="ion ion-code" style={{ marginRight: '.5rem' }}/>Show HTML</span>}
+                    {showHTML && <span><i className="ion ion-eye" style={{ marginRight: '.5rem' }}/>Show Preview</span>}
+                  </Button>
+                </Block>
+              </Row>
+              <Row alignItems="center">
+                <Block marginRight=".5rem">
+                  <Copy
+                      hasCopied={hasCopied}
+                      id="copy"
+                      data-clipboard-text={html}
+                      onCopy={premailCopy}
+                      small
+                  />
+                </Block>
+                <Block marginRight=".5rem">
+                  <Button
+                      onClick={() => premail()} primary small>
+                    <i className="ion ion-refresh" style={{ marginRight: '.5rem' }}/>Refresh
+                  </Button>
+                </Block>
               </Row>
             </Row>
-          {isLoading ? <PreviewLoading/> :
-          <PreviewVisual style={{ flex: 1 }} source={html}/>}
+          {isLoading && <PreviewLoading/> }
+          {!showHTML && !isLoading && <PreviewVisual style={{ flex: 1 }} source={html}/>}
+          {showHTML && !isLoading && <PreviewHTML style={{ flex: 1 }} source={html}/>}
           {error !== null ? <h2 style={{ color: L.pink }}>{error}</h2> : null}
         </Col>
       </Col>

@@ -3,7 +3,6 @@ import {Block, Row} from 'jsxstyle';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import { extract } from '../sources/api';
-import Editable from '../components/Editable';
 
 class Url extends Component {
   constructor() {

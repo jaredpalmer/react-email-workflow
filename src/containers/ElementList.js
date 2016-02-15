@@ -82,9 +82,10 @@ class ElementList extends Component {
                    marginBottom=".5rem"
                    marginRight=".5rem">
               <Button onClick={() => actions.add(ElementSchema.test) } primary>
-                <Col justifyContent="center" alignItems="center">
+                <Col justifyContent="stretch" alignItems="center">
                   <Block fontWeight="bold"
                          fontFamily="Georgia"
+                         fontSize="12px"
                          textTransform="capitalize">
                     Aa
                   </Block>
@@ -99,15 +100,6 @@ class ElementList extends Component {
                 <Col justifyContent="center" alignItems="center">
                   <i className="ion ion-code"/>
                   HTML
-                </Col>
-              </Button>
-            </Block>
-            <Block flex="1"
-                   marginBottom=".5rem">
-              <Button onClick={() => actions.add(ElementSchema.html) } primary>
-                <Col justifyContent="center" alignItems="center">
-                  <i className="ion ion-image"/>
-                  Image
                 </Col>
               </Button>
             </Block>

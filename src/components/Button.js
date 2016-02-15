@@ -20,7 +20,7 @@ class Button extends Component {
   }
 
   render() {
-    const { children, onClick, primary, style, ...rest } = this.props;
+    const { children, onClick, primary, small, style, ...rest } = this.props;
     const baseStyle = {
       display: 'flex',
       alignItems: 'center',
@@ -63,13 +63,12 @@ class Button extends Component {
           flexWrap="wrap"
           backgroundColor="white"
           fontSize="14px"
-          fontWeight="bold"
-          lineHeight="1.43"
+          fontWeight="600"
+          lineHeight={small ? 1 : 1.43}
           outline="0"
           borderRadius="2px"
           padding="8px 20px"
           transition=".25s background ease, .25s border-color ease"
-          WebkitTransition=".25s background ease, .25s border-color ease"
           userSelect="none"
           whiteSpace="nowrap"
           borderColor={this.state.hovered ? '#aaaaaa' : '#c4c4c4'}
