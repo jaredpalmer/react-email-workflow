@@ -4,7 +4,7 @@ import Preview from './Preview';
 import Meta from './Meta';
 import ElementList from './ElementList';
 import L from '../LayoutConstants';
-import { H3 } from '../components/Type';
+import { H4 } from '../components/Type';
 
 export default class App extends Component {
   render() {
@@ -12,6 +12,7 @@ export default class App extends Component {
       <Col>
         <Row height={L.gridUnit * 6.25}
              alignItems="center"
+             justifyContent="space-between"
              position="fixed"
              top="0"
              left="0"
@@ -19,7 +20,28 @@ export default class App extends Component {
              padding="0 1rem"
              background={L.black}
              zIndex="999999">
-            <H3 color="#ffffff">React Email Workflow</H3>
+            <H4 color="#ffffff">React Email Workflow</H4>
+            <Row alignItems="center">
+              <Block marginRight="1rem">
+                <a style={{
+                    fontSize: '1.5rem',
+                    color: '#ffffff',
+                  }}
+                  href="https://twitter.com/jaredpalmer"
+                  target="_blank">
+                  <i className="ion ion-social-twitter"/>
+                </a>
+              </Block>
+              <Block>
+                <a style={{
+                    fontSize: '1.5rem',
+                    color: '#ffffff',
+                  }}
+                  href="https://github.com/jaredpalmer/react-email-workflow"
+                  target="_blank">
+                  <i className="ion ion-social-github"/></a>
+              </Block>
+            </Row>
         </Row>
         <Block maxWidth="616px"
                background="#f2f2f2"

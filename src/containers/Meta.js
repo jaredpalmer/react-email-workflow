@@ -7,9 +7,10 @@ import { meta } from '../actions/EmailActions';
 
 const Meta = ({ metaData, meta }) =>
   <Block background="white"
-         marginRight="45.5px"
+         marginRight="43px"
          padding="1rem"
          marginBottom=".5rem"
+         borderRadius="2px"
          boxShadow="0 3px 4px 0 rgba(0,0,0,.1)">
     <Block width="100%" marginBottom=".5rem">
       <Input placeholder="Enter the subject line...(keep it short!)"
