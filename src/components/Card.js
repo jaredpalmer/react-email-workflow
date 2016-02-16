@@ -74,8 +74,9 @@ class Card extends Component {
             background="#fff"
             width="100%"
             margin={'.5rem 0'}
-            boxShadow={this.state.hovered ? '0 4px 4px 0 rgba(0,0,0,.12)' : '0 2px 2px 0 rgba(0,0,0,.08)' }
+            boxShadow={this.state.hovered ? '0px 6px 12px 0px rgba(0,0,0,0.3)' : '0 3px 4px 0 rgba(0,0,0,.1)' }
             transition=".2s box-shadow cubic-bezier(0.4, 0, 0.2, 1)"
+            borderRadius="2px"
             padding="1rem"
             cursor="move"
             >

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import { Block, Flex } from 'jsxstyle';
 import L from '../LayoutConstants';
 import TextArea from 'react-textarea-autosize';
@@ -11,6 +12,12 @@ class Input extends Component {
     };
   }
 
+  componentDidMount() {
+    if (this.props.autoFocus) {
+      ReactDOM.findDOMNode(this.refs.myInput).focus();
+    }
+  }
+
   handleOnFocus() {
     this.setState({ focused: true });
   }
@@ -21,7 +28,7 @@ class Input extends Component {
 
   render() {
     const { style, rows, ...rest } = this.props;
-    const border = this.state.focused ? '1px solid #aaa' : '1px solid #c4c4c4';
+    const border = this.state.focused ? '1px solid #777' : '1px solid #c4c4c4';
     const defaults = {
       boxSizing: 'border-box',
       fontFamily: L.sans,
@@ -38,11 +45,13 @@ class Input extends Component {
     return (
       rows ? <TextArea
         useCacheForDOMMeasurements
+        ref='myInput'
         rows={rows}
         onFocus={this.handleOnFocus.bind(this)}
         onBlur={this.handleOnBlur.bind(this)}
         style={inputStyle}
         {...rest}/> : <input
+                   ref='myInput'
                    onFocus={this.handleOnFocus.bind(this)}
                    onBlur={this.handleOnBlur.bind(this)}
                    style={inputStyle}

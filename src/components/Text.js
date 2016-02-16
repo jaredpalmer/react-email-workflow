@@ -13,6 +13,7 @@ const Text = ({ content, id, edit }) => {
           lineHeight: '1.2',
           margin: 0,
         }}
+        autoFocus
       />
   );
 };

@@ -18,13 +18,13 @@ class Code extends Component {
       value={content}
       onChange={(newCode) => this.updateCode(newCode)}
       className="CodeMirrorSmall"
-      style={{ height: 200, width: '100%', border: '1px solid #c4c4c4' }}
+      style={{ height: 100, width: '100%', border: '1px solid #c4c4c4' }}
       options={{
         mode: 'htmlmixed',
         lineWrapping: true,
         lineNumbers: true,
         theme: 'blackboard',
-        keyMap: 'sublime'
+        keyMap: 'sublime',
       }}
       />;
   }
