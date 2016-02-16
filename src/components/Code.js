@@ -18,7 +18,7 @@ class Code extends Component {
       value={content}
       onChange={(newCode) => this.updateCode(newCode)}
       className="CodeMirrorSmall"
-      style={{ height: 300, width: '100%', border: '1px solid #c4c4c4' }}
+      style={{ height: 200, width: '100%', border: '1px solid #c4c4c4' }}
       options={{
         mode: 'htmlmixed',
         lineWrapping: true,
