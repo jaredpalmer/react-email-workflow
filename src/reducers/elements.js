@@ -2,16 +2,7 @@ import * as actions from '../actions/EmailActions';
 import * as types from '../constants/ActionTypes';
 import update from 'react/lib/update';
 
-const initialState = [
-  {
-  id: 0,
-  kind: 'url',
-  title: '',
-  url: '',
-  content: '',
-  author: '',
-  },
-];
+const initialState = [];
 
 export default function elements(state = initialState, action) {
   switch (action.type) {

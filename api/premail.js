@@ -467,24 +467,24 @@ function compile(data, cb) {
   cb(html);
 }
 
-const sp = {
-  meta: {
-    date: "2016-01-31",
-    preheader: " l;kjasdf",
-    subject: "asdflkj",
-  },
-  elements: [
-      {
-        author: "Utotherescue",
-        content: "The San Francisco Chronicle has coverage of an issue that has been circulating on faculty email networks at UC Berkeley for a few days. The piece, \"Cal professors fear UC bosses will snoop on them,\" is behind a paywall.",
-        id: 0,
-        image: "http://3.bp.blogspot.com/-1SEYcuyr_oY/Vq0U8rKQ19I/AAAAAAAADC0/6o6xJznJMIw/s320/Janet_Napolitano.jpg",
-        kind: "url",
-        title: "UCOP Ordered Spyware Installed on UC Data Networks ~ Remaking the University",
-        url: "http://utotherescue.blogspot.com/2016/01/ucop-ordered-spyware-installed-on-uc.html",
-      },
-  ],
-};
+// const sp = {
+//   meta: {
+//     date: "2016-01-31",
+//     preheader: " l;kjasdf",
+//     subject: "asdflkj",
+//   },
+//   elements: [
+//       {
+//         author: "Utotherescue",
+//         content: "The San Francisco Chronicle has coverage of an issue that has been circulating on faculty email networks at UC Berkeley for a few days. The piece, \"Cal professors fear UC bosses will snoop on them,\" is behind a paywall.",
+//         id: 0,
+//         image: "http://3.bp.blogspot.com/-1SEYcuyr_oY/Vq0U8rKQ19I/AAAAAAAADC0/6o6xJznJMIw/s320/Janet_Napolitano.jpg",
+//         kind: "url",
+//         title: "UCOP Ordered Spyware Installed on UC Data Networks ~ Remaking the University",
+//         url: "http://utotherescue.blogspot.com/2016/01/ucop-ordered-spyware-installed-on-uc.html",
+//       },
+//   ],
+// };
 
 router.post('/', (req, res) => {
   console.log(req.body);

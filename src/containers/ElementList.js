@@ -54,7 +54,7 @@ class ElementList extends Component {
             />
           );
         })}
-          <Row width="540px" flexWrap="no-wrap" marginRight="45px" marginTop="1rem">
+          <Row width="547px" flexWrap="no-wrap" marginRight="45px" marginTop="1rem">
             <Block flex="1"
                    marginBottom=".5rem"
                    marginRight=".5rem">
