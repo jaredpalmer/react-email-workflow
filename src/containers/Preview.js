@@ -67,14 +67,8 @@ class Preview extends Component {
                  lineHeight='42px'
                  alignItems='center'
                  justifyContent='space-between'>
-                <Block flex="2">
-                  <Button onClick={() => this.toggleHTML()} primary small>
-                    {!showHTML && <span><i className="ion ion-code" style={{ marginRight: '.5rem' }}/>Show HTML</span>}
-                    {showHTML && <span><i className="ion ion-eye" style={{ marginRight: '.5rem' }}/>Show Preview</span>}
-                  </Button>
-                </Block>
-              <Block flex="3" marginRight="1rem" textAlign="center"><H5>Preview</H5></Block>
-              <Row flex="2" alignItems="center" justifyContent="flex-end">
+              <Block marginRight="1rem"><H5>Preview</H5></Block>
+              <Row flex="1" alignItems="center" justifyContent="flex-end">
                 <Block marginRight=".5rem">
                   <Copy
                       hasCopied={hasCopied}
@@ -84,10 +78,15 @@ class Preview extends Component {
                       small
                   />
                 </Block>
-                <Block>
-                  <Button
-                      onClick={() => premail()} primary small>
+                <Block marginRight=".5rem">
+                  <Button onClick={() => premail()} primary small>
                     <i className="ion ion-refresh" style={{ marginRight: '.5rem' }}/>Refresh
+                  </Button>
+                </Block>
+                <Block>
+                  <Button onClick={() => this.toggleHTML()} primary small>
+                    {!showHTML && <span><i className="ion ion-code" style={{ marginRight: '.5rem' }}/>Show HTML</span>}
+                    {showHTML && <span><i className="ion ion-eye" style={{ marginRight: '.5rem' }}/>Show Preview</span>}
                   </Button>
                 </Block>
               </Row>
