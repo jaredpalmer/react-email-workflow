@@ -32,6 +32,7 @@ class Url extends Component {
             onKeyDown={this.handleKeyDown}
             placeholder="Paste your link here and press Enter..."
             value={url}
+            autoFocus
           />
         <Button onClick={()=> {
           extract(url).then(res => edit(id, res));
@@ -63,7 +64,7 @@ class Url extends Component {
               fontSize: '16px',
               lineHeight: '24px',
             }}
-            rows={5}
+            rows={2}
             onChange={(e) => edit(id, { content: e.target.value })}
             value={content}
           />

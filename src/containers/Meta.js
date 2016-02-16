@@ -10,7 +10,7 @@ const Meta = ({ metaData, meta }) =>
          marginRight="45.5px"
          padding="1rem"
          marginBottom=".5rem"
-         boxShadow="0 2px 2px 0 rgba(0,0,0,.08)">
+         boxShadow="0 3px 4px 0 rgba(0,0,0,.1)">
     <Block width="100%" marginBottom=".5rem">
       <Input placeholder="Enter the subject line...(keep it short!)"
              value={metaData.subject}

@@ -17,7 +17,8 @@ export default class App extends Component {
              left="0"
              width="100%"
              padding="0 1rem"
-             background={L.black}>
+             background={L.black}
+             zIndex="999999">
             <H3 color="#ffffff">React Email Workflow</H3>
         </Row>
         <Block maxWidth="616px"
