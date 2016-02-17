@@ -1,37 +1,19 @@
 // jscs:disable
 var path = require('path');
 var webpack = require('webpack');
-var node_modules_dir = path.resolve(__dirname, 'node_modules');
+
 module.exports = {
   devtool: false,
-  entry: {
-    bundle: ['./src/index'],
-    vendors: [
-      'react',
-      'react-dom',
-      'react-redux',
-      'react-textarea-autosize',
-      'react-dnd',
-      'react-dnd-html5-backend',
-      'redux',
-      'redux-thunk',
-      'jsxstyle',
-      'codemirror',
-      'classnames',
-    ]
-  },
+  entry: './src/index',
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
+    filename: 'bundle.js',
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-        names: ['vendors']
-    }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.DefinePlugin({
