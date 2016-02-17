@@ -5,7 +5,7 @@ var node_modules_dir = path.resolve(__dirname, 'node_modules');
 module.exports = {
   devtool: false,
   entry: {
-    bundle: './src/index',
+    bundle: ['./src/index'],
     vendors: [
       'react',
       'react-dom',
@@ -18,7 +18,6 @@ module.exports = {
       'jsxstyle',
       'codemirror',
       'classnames',
-      'clipboard',
     ]
   },
   resolve: {

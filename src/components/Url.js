@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {Block, Row} from 'jsxstyle';
+import { Block, Row } from 'jsxstyle';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import { extract } from '../sources/api';
@@ -34,7 +34,7 @@ class Url extends Component {
             value={url}
             autoFocus
           />
-        <Button onClick={()=> {
+        <Button onClick={() => {
           extract(url).then(res => edit(id, res));
         }} primary>Fetch</Button>
           </Row>

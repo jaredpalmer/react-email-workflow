@@ -33,7 +33,6 @@
   "dependencies": {
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
-    "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.1",
     "babel-plugin-transform-react-constant-elements": "6.5.0",
     "babel-plugin-transform-react-inline-elements": "^6.5.0",
@@ -47,9 +46,6 @@
     "codemirror": "5.11.0",
     "compression": "1.6.1",
     "cookie-parser": "^1.4.1",
-    "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^4.0.0",
-    "eslint-plugin-react": "^3.16.1",
     "expect": "^1.13.4",
     "express": "^4.13.4",
     "fbjs": "^0.7.0",
@@ -71,7 +67,13 @@
     "redux": "^3.0.6",
     "redux-thunk": "^1.0.3",
     "superagent": "^1.7.2",
-    "webpack": "^1.12.12",
+    "webpack": "^1.12.12"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.8",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^5.0.1",
+    "eslint-plugin-react": "^3.16.1",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4"
   }

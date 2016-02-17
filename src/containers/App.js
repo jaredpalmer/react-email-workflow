@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Block, Row, Col} from 'jsxstyle';
+import { Block, Row, Col } from 'jsxstyle';
 import Preview from './Preview';
 import Meta from './Meta';
 import ElementList from './ElementList';
@@ -24,9 +24,9 @@ export default class App extends Component {
             <Row alignItems="center">
               <Block marginRight="1rem">
                 <a style={{
-                    fontSize: '1.5rem',
-                    color: '#ffffff',
-                  }}
+                  fontSize: '1.5rem',
+                  color: '#ffffff',
+                }}
                   href="https://twitter.com/jaredpalmer"
                   target="_blank">
                   <i className="ion ion-social-twitter"/>
@@ -34,9 +34,9 @@ export default class App extends Component {
               </Block>
               <Block>
                 <a style={{
-                    fontSize: '1.5rem',
-                    color: '#ffffff',
-                  }}
+                  fontSize: '1.5rem',
+                  color: '#ffffff',
+                }}
                   href="https://github.com/jaredpalmer/react-email-workflow"
                   target="_blank">
                   <i className="ion ion-social-github"/></a>

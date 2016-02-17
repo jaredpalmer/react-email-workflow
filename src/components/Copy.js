@@ -4,10 +4,10 @@ import Clipboard from 'clipboard';
 import { Flex } from 'jsxstyle';
 import L from '../LayoutConstants';
 
-
 // As it turns out... you can only pass data-xxxx attributes to native DOM components....
 // https://facebook.github.io/react/docs/jsx-gotchas.html
 // Hence Copy needs to be its own button...ugh.
+
 class Copy extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +47,7 @@ class Copy extends Component {
             alignItems="center"
             justifyContent="center"
             flexWrap="wrap"
-            backgroundColor={this.state.hovered ? L.blue : "#ffffff"}
+            backgroundColor={this.state.hovered ? L.blue : '#ffffff'}
             fontSize="14px"
             fontWeight="600"
             lineHeight={1}
@@ -60,7 +60,7 @@ class Copy extends Component {
             borderColor={L.blue}
             border="1px solid"
             cursor="pointer"
-            color={this.state.hovered ? "#ffffff" : L.blue }>
+            color={this.state.hovered ? '#ffffff' : L.blue }>
         {!hasCopied ? <span><i
           className="ion ion-ios-copy"
           style={{ marginRight: '.5rem' }}/> Copy </span> :

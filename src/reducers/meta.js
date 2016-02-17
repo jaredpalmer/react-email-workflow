@@ -9,7 +9,7 @@ export default function meta(state = {
 }, action) {
   switch (action.type) {
     case types.EDIT_META:
-      return update(state, {$merge: action.meta });
+      return update(state, { $merge: action.meta });
     default:
       return state;
   }

@@ -32,7 +32,7 @@ class Button extends Component {
           alignItems="center"
           justifyContent="center"
           flexWrap="wrap"
-          backgroundColor={this.state.hovered ? L.blue : "#ffffff"}
+          backgroundColor={this.state.hovered ? L.blue : '#ffffff'}
           fontSize="14px"
           fontWeight="600"
           lineHeight={small ? 1 : 1.43}
@@ -45,7 +45,7 @@ class Button extends Component {
           borderColor={L.blue}
           border="1px solid"
           cursor="pointer"
-          color={this.state.hovered ? "#ffffff" : L.blue }>
+          color={this.state.hovered ? '#ffffff' : L.blue }>
             {children}
           </Flex>
       </div>
