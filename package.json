@@ -22,7 +22,11 @@
   "keywords": [
     "react",
     "email",
-    "redux"
+    "redux",
+    "react-DnD",
+    "babel",
+    "webpack",
+    "jsxstyle"
   ],
   "author": "Jared Palmer",
   "license": "ISC",
