@@ -9,7 +9,7 @@ import PreviewVisual from '../components/PreviewVisual';
 import PreviewLoading from '../components/PreviewLoading';
 import { premail, premailCopy } from '../actions/EmailActions';
 import Copy from '../components/Copy';
-import { H5 } from '../components/Type';
+import { Text5 } from '../components/Type';
 
 class Preview extends Component {
   constructor(props) {
@@ -67,7 +67,7 @@ class Preview extends Component {
                  lineHeight='42px'
                  alignItems='center'
                  justifyContent='space-between'>
-              <Block marginRight="1rem"><H5>Preview</H5></Block>
+              <Block marginRight="1rem"><Text5 color={L.darkBlue}>Preview</Text5></Block>
               <Row flex="1" alignItems="center" justifyContent="flex-end">
                 <Block marginRight=".5rem">
                   <Copy

@@ -28,7 +28,7 @@ class Input extends Component {
 
   render() {
     const { style, rows, ...rest } = this.props;
-    const border = this.state.focused ? '1px solid #777' : '1px solid #c4c4c4';
+    const border = this.state.focused ? '1px solid #a6aebb' : '1px solid #edeff1';
     const defaults = {
       boxSizing: 'border-box',
       fontFamily: L.sans,

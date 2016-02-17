@@ -18,7 +18,7 @@ export default class App extends Component {
              left="0"
              width="100%"
              padding="0 1rem"
-             background={L.black}
+             background={L.blue}
              zIndex="999999">
             <H4 color="#ffffff">React Email Workflow</H4>
             <Row alignItems="center">
@@ -44,8 +44,6 @@ export default class App extends Component {
             </Row>
         </Row>
         <Block maxWidth="616px"
-               background="#f2f2f2"
-               borderRight="1px solid #c4c4c4"
                marginTop="50px"
                height="calc(100vh - 50px)"
                padding="1rem 1rem 0">
