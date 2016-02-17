@@ -4,6 +4,10 @@ import Clipboard from 'clipboard';
 import { Flex } from 'jsxstyle';
 import L from '../LayoutConstants';
 
+
+// As it turns out... you can only pass data-xxxx attributes to native DOM components....
+// https://facebook.github.io/react/docs/jsx-gotchas.html
+// Hence Copy needs to be its own button...ugh.
 class Copy extends Component {
   constructor(props) {
     super(props);
