@@ -73,7 +73,7 @@ class Preview extends Component {
                   <Copy
                       hasCopied={hasCopied}
                       id="copy"
-                      data-clipboard-text={html}
+                      text={html}
                       onCopy={premailCopy}
                       small
                   />
