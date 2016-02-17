@@ -90,21 +90,21 @@ export function premailFailure(error) {
 }
 
 export function premail() {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const { subject, preheader, date, meta, elements } = getState();
     dispatch(premailLoading(true));
 
     return http.post('/api/v0/premail', { subject, preheader, date, meta, elements })
-      .then(function(result) {
+      .then(result => {
         console.log(result);
         dispatch(premailLoading(false));
         return result.html;
       })
-      .then(function(jsonResult) {
+      .then(jsonResult => {
         dispatch(premailSuccess(jsonResult));
         dispatch(premailCopy(false));
       })
-      .catch(function(err) {
+      .catch(err => {
         dispatch(premailFailure(err));
       });
   };
