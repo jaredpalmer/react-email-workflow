@@ -67,14 +67,15 @@
     "redux": "^3.0.6",
     "redux-thunk": "^1.0.3",
     "superagent": "^1.7.2",
-    "webpack": "^1.12.12"
+    "webpack": "^1.12.12",
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.6.4"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.8",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^5.0.1",
     "eslint-plugin-react": "^3.16.1",
-    "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.6.4"
+
   }
 }
