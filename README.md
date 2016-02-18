@@ -32,7 +32,7 @@ Then create a `.env` file in your root directory as follows.
 EMBEDLY=XXXXXXXXXXXXXXXXXX   # Embedly API Key
 ```
 #### Run in development mode
-Open your `Procfile` and 
+Open your `Procfile`. Comment out the first line and replace and add a second line as follows.
 ```bash
 # web: npm run build && npm run start:prod  # production
 web: npm run start # dev
@@ -41,13 +41,15 @@ Enter the following command in your terminal:
 ```bash
 heroku local
 ```
-This will start an express server with Webpack Dev + Hot Middleware and React Hot Loader.
-Open a browser to `localhost:5000`.
+This will start an Express server with Webpack Dev + Hot Middleware and React Hot Loader at `localhost:5000`. It will watch for changes on the frontend.
+
+##### Styles
+When you examine the codebase you'll notice a lack of CSS files. All styling is done through jsxstyle. I encourage you read up on the documentation. 95% of the time, jsxstyle is fantastic. However, due to a lack of psuedo selectors, certain things can get annoying...like hover states. Included are some helper classes like `<HoverRegion/>` and `<Button>` to help you out.
 
 #### Run in production mode
-Open your `Procfile` and comment out :
+Open your `Procfile` and comment out the development line, but now uncomment the production line:
 ```bash
-
+web: npm run build && npm run start:prod  # production
 ```
 This will compile the frontend and start an express server in production mode.
 Open a browser to `localhost:5000`.
