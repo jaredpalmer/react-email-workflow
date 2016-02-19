@@ -14,7 +14,7 @@ class Code extends Component {
 
   render() {
     const { id, edit, content } = this.props;
-    return <CodeMirror
+    return (<CodeMirror
       value={content}
       onChange={(newCode) => this.updateCode(newCode)}
       className="CodeMirrorSmall"
@@ -26,7 +26,7 @@ class Code extends Component {
         theme: 'blackboard',
         keyMap: 'sublime',
       }}
-      />;
+      />);
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Block } from 'jsxstyle';
 import Input from '../components/Input';
 import { meta } from '../actions/EmailActions';

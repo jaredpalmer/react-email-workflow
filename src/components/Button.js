@@ -21,35 +21,6 @@ class Button extends Component {
 
   render() {
     const { children, onClick, primary, small, style, ...rest } = this.props;
-    const baseStyle = {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      background: '#fff',
-      fontFamily: L.sans,
-      fontSize: '14px',
-      fontWeight: 'bold',
-      lineHeight: '1.43',
-      outline: '0',
-      borderRadius: '2px',
-      padding: '8px 20px',
-      transition: '.25s background ease, .25s border-color ease',
-      userSelect: 'none',
-      whiteSpace: 'nowrap',
-      borderColor: this.state.hovered ? '#aaaaaa' : '#c4c4c4',
-      border: '1px solid',
-      cursor: 'pointer',
-      color: '#565a5c',
-    };
-    const normalStyle = Object.assign({}, baseStyle, style);
-    const primaryStyle = Object.assign({}, normalStyle, {
-      border: '1px solid',
-      borderColor: this.state.hovered ? '#424242' : '#212121',
-      background: this.state.hovered ? '#424242' : '#212121',
-      color: '#ffffff',
-    }, style);
-
     return (
       <div
         role="button"
@@ -61,20 +32,20 @@ class Button extends Component {
           alignItems="center"
           justifyContent="center"
           flexWrap="wrap"
-          backgroundColor="white"
+          backgroundColor={this.state.hovered ? L.blue : '#ffffff'}
           fontSize="14px"
           fontWeight="600"
           lineHeight={small ? 1 : 1.43}
           outline="0"
           borderRadius="2px"
           padding="8px 20px"
-          transition=".25s background ease, .25s border-color ease"
+          transition=".25s background ease, .25s color ease"
           userSelect="none"
           whiteSpace="nowrap"
-          borderColor={this.state.hovered ? '#aaaaaa' : '#c4c4c4'}
+          borderColor={L.blue}
           border="1px solid"
           cursor="pointer"
-          color="#565a5c">
+          color={this.state.hovered ? '#ffffff' : L.blue }>
             {children}
           </Flex>
       </div>

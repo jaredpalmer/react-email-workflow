@@ -14,7 +14,9 @@ const darkBlue = Color.rgb(56, 59, 60);
 const white = Color.rgb(255, 255, 255);
 const black = Color.rgb(20, 24, 35);
 const gray = Color.rgb(89, 95, 108);
-const blue = Color.rgb(0, 112, 255);
+const blue = Color.rgb(25, 114, 217);
+
+const bgColor = Color.rgb(236, 238, 217);
 
 const LayoutConstants = {
   white,
@@ -26,9 +28,10 @@ const LayoutConstants = {
   orange,
   pink,
   darkBlue,
+  blue,
   gridUnit: 8,
   u: 8,
-  sans: "-apple-system,BlinkMacSystemFont,\"Helvetica Neue\",Helvetica,Arial,sans-serif",
+  sans: '-apple-system,BlinkMacSystemFont,\"Helvetica Neue\",Helvetica,Arial,sans-serif',
 };
 
 module.exports = LayoutConstants;

@@ -3,7 +3,7 @@ import ItemTypes from '../constants/ItemTypes';
 import { DragSource, DropTarget } from 'react-dnd';
 import L from '../LayoutConstants';
 import Url from './Url';
-import {Block, Row} from 'jsxstyle';
+import { Block, Row } from 'jsxstyle';
 import Code from './Code';
 import Heading from './Heading';
 import Text from './Text';
