@@ -446,8 +446,8 @@ function compile(data, cb) {
                         <table cellpadding="0" cellspacing="0" border="0" align="center">
                           <tr>
                             <td width="498" align="center" class="fine-print">
-                              Copyright © 2015 Shelly Palmer 475 Park Avenue South 25th Floor New York, NY 10016 USA You are receiving this email because you opted in at our
-                              website shellypalmer.com If you don't want to receive these emails from ShellyPalmer in the future, please click: unsubscribe
+                              Copyright © 2015 Shelly Palmer. SLP Productions, Inc., PO Box 1455, New York, NY 10156-1455, USA. You are receiving this email because you opted in at our
+                              website shellypalmer.com. If you don't want to receive these emails from ShellyPalmer in the future, please click: unsubscribe
                             </td>
                           </tr>
                         </table>
