@@ -13,7 +13,8 @@
     "start:prod": "NODE_ENV=production babel-node server.js",
     "test": "mocha --compilers js:babel-core/register --recursive && npm run coverage",
     "test:watch": "npm test -- --watch",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "extract": "babel-node services/extract"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
   },
   "homepage": "https://github.com/jaredpalmer/react-email-workflow#readme",
   "dependencies": {
+    "axios": "0.11.0",
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
@@ -55,7 +57,9 @@
     "fbjs": "^0.7.0",
     "helmet": "^1.1.0",
     "isparta": "^4.0.0",
+    "jackrabbit": "4.3.0",
     "jsxstyle": "0.0.18",
+    "logfmt": "^1.2.0",
     "mocha": "^2.4.2",
     "moment": "^2.11.1",
     "morgan": "^1.6.1",
@@ -71,6 +75,7 @@
     "redux": "^3.0.6",
     "redux-thunk": "^1.0.3",
     "superagent": "^1.7.2",
+    "throng": "4.0.0",
     "webpack": "^1.12.12",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4"

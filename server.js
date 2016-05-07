@@ -17,7 +17,7 @@ const server = global.server = express();
 server.disable('x-powered-by');
 server.set('port', port);
 server.use(helmet());
-server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(cookieParser());
 server.use(compression());
