@@ -33,8 +33,8 @@ function start() {
 
   function onPremail(message, reply) {
     logger.log({ level: 'info', message: `inlining email with ${message.elements.length} elements` });
-    const timer = logger.time('premail.post').namespace(message);
-    const timer2 = logger.time('createHTML').namespace(message);
+    const timer = logger.time('premail.post').namespace({ 'elements.length': message.elements.length });
+    const timer2 = logger.time('createHTML').namespace({ 'elements.length': message.elements.length });
     createHTML(message, html => {
       timer2.log()
       premailer.prepare({ html, adapter: 'nokogiri' }, (err, email) => {
