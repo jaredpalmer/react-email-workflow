@@ -14,7 +14,8 @@
     "test": "mocha --compilers js:babel-core/register --recursive && npm run coverage",
     "test:watch": "npm test -- --watch",
     "lint": "eslint src",
-    "extract": "babel-node services/extract"
+    "extract": "babel-node services/extract",
+    "premail": "babel-node services/premail"
   },
   "repository": {
     "type": "git",
@@ -62,7 +63,6 @@
     "logfmt": "^1.2.0",
     "mocha": "^2.4.2",
     "moment": "^2.11.1",
-    "morgan": "^1.6.1",
     "node-uuid": "1.4.7",
     "premailer-api": "^1.0.3",
     "react": "^0.14.6",

@@ -7,7 +7,7 @@ import config from './webpack.config.dev';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
-import morgan from 'morgan';
+import logger from 'logfmt'
 import compression from 'compression';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
@@ -23,7 +23,14 @@ server.use(cookieParser());
 server.use(compression());
 
 if (isDeveloping) {
-  server.use(morgan('dev'));
+  server.use(logger.requestLogger((req, res) => {
+    var path = req.originalUrl || req.path || req.url;
+    return {
+      method: req.method,
+      status: res.statusCode,
+      path,
+    };
+  }));
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
     publicPath: config.output.publicPath,
@@ -44,7 +51,6 @@ if (isDeveloping) {
     res.sendFile(path.join(__dirname, '/index.html'));
   });
 } else {
-  server.use(morgan('combined'));
   server.use('/static', express.static(__dirname + '/dist'));
   server.get('*', function response(req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
