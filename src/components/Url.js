@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Block, Row } from 'jsxstyle';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import { extract } from '../sources/api';
+import axios from 'axios';
 
 class Url extends Component {
   constructor() {
@@ -35,7 +35,21 @@ class Url extends Component {
             autoFocus
           />
         <Button onClick={() => {
-          extract(url).then(res => edit(id, res));
+          axios({
+            url: '/api/v0/extract',
+            method: 'POST',
+            data: {
+              url: url,
+            },
+            withCredentials: true,
+          }).then(res => edit(id, res.data))
+            .catch(e => {
+              edit(id, {
+                title: e.data.error_message,
+                content: '',
+                author: 'ERROR',
+              });
+            });
         }} primary>Fetch</Button>
           </Row>
           { title ?

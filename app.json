@@ -5,9 +5,12 @@
   "env": {
     "EMBEDLY": {
       "required": true
+    },
+    "CLOUDAMQP_URL": {
+      "required": true
     }
   },
   "addons": [
-
+    "cloudamqp:lemur"
   ]
 }
