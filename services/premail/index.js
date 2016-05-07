@@ -22,7 +22,7 @@ throng({
 function start() {
   const rabbit = jackrabbit(RABBIT_URL);
   const exchange = rabbit.default();
-  logger.log({ level: 'info', message: 'serving premail service' });
+  logger.log({ type: 'info', message: 'serving premail service' });
 
   exchange
     .queue({ name: 'premail.post' })
@@ -32,9 +32,9 @@ function start() {
   process.once('uncaughtException', onError);
 
   function onPremail(message, reply) {
-    logger.log({ level: 'info', message: `inlining email with ${message.elements.length} elements` });
-    const timer = logger.time('premail.post').namespace({ 'elements.length': message.elements.length });
-    const timer2 = logger.time('createHTML').namespace({ 'elements.length': message.elements.length });
+    logger.log({ type: 'info', message: `inlining email with ${message.elements.length} elements` });
+    const timer = logger.time('premail.post').namespace({ type: 'info', 'elements.length': message.elements.length });
+    const timer2 = logger.time('createHTML').namespace({ type: 'info', 'elements.length': message.elements.length });
     createHTML(message, html => {
       timer2.log()
       premailer.prepare({ html, adapter: 'nokogiri' }, (err, email) => {
@@ -54,7 +54,7 @@ function start() {
       error: err,
       stack: err.stack || 'No stacktrace',
     }, process.stderr);
-    logger.log({ level: 'info', message: 'killing premail service' });
+    logger.log({ type: 'info', message: 'killing premail service' });
     process.exit();
   }
 }
