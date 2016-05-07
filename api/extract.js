@@ -21,7 +21,7 @@ router.post('/', getExtractionData, (req, res, next) => {
 
 function getExtractionData(req, res, next) {
   exchange.publish({ url: req.body.url }, {
-    expiration: 3000,
+    expiration: EXPIRATION,
     key: 'extract.post',
     reply: (data) => {
       res.locals.data = data;
