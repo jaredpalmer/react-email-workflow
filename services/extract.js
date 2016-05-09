@@ -4,15 +4,14 @@ const throng = require('throng');
 const logger = require('logfmt');
 const request = require('request');
 const axios = require('axios');
-const cpus = require('os').cpus().length;
 
-const concurrency = process.env.NODE_ENV === 'production' ? cpus : 1;
+const CONCURRENCY = process.env.CONCURRENCY || 1;
 const RABBIT_URL = process.env.CLOUDAMQP_URL || 'amqp://guest:guest@localhost:5672';
 
 http.globalAgent.maxSockets = Infinity;
 
 throng({
-  workers: concurrency,
+  workers: CONCURRENCY,
   lifetime: Infinity,
   start,
 });

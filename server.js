@@ -1,70 +1,42 @@
-import path from 'path';
-import express from 'express';
-import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from './webpack.config.dev';
-import cookieParser from 'cookie-parser';
-import helmet from 'helmet';
-import bodyParser from 'body-parser';
-import logger from 'logfmt'
-import compression from 'compression';
+const http = require('http');
+const throng = require('throng');
+const logger = require('logfmt');
+const jackrabbit = require('jackrabbit');
 
-const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = process.env.PORT || 5000;
-const server = global.server = express();
+http.globalAgent.maxSockets = Infinity;
 
-server.disable('x-powered-by');
-server.set('port', port);
-server.use(helmet());
-server.use(bodyParser.urlencoded({ extended: true }));
-server.use(bodyParser.json());
-server.use(cookieParser());
-server.use(compression());
+const web = require('./api').default;
 
-if (isDeveloping) {
-  server.use(logger.requestLogger((req, res) => {
-    var path = req.originalUrl || req.path || req.url;
-    return {
-      method: req.method,
-      status: res.statusCode,
-      path,
-    };
-  }));
-  const compiler = webpack(config);
-  const middleware = webpackMiddleware(compiler, {
-    publicPath: config.output.publicPath,
-    contentBase: 'src',
-    stats: {
-      colors: true,
-      hash: false,
-      timings: true,
-      chunks: false,
-      chunkModules: false,
-      modules: false,
-    },
-  });
+const RABBIT_URL = process.env.CLOUDAMQP_URL || 'amqp://guest:guest@localhost:5672';
+const PORT = process.env.PORT || 5000;
+const CONCURRENCY = process.env.CONCURRENCY || 1;
 
-  server.use(middleware);
-  server.use(webpackHotMiddleware(compiler));
-  server.get('*', function response(req, res) {
-    res.sendFile(path.join(__dirname, '/index.html'));
-  });
-} else {
-  server.use('/static', express.static(__dirname + '/dist'));
-  server.get('*', function response(req, res) {
-    res.sendFile(path.join(__dirname, '/index.html'));
-  });
-}
+const isDeveloping = process.env.NODE_ENV == 'development';
 
-server.use('/api/v0/extract', require('./api/extract'));
-server.use('/api/v0/premail', require('./api/premail'));
+// throng(start, { workers: 1, lifetime: Infinity });
 
-server.listen(port, '0.0.0.0', function onStart(err) {
-  if (err) {
-    console.log(err);
+function start() {
+  logger.log({ type: 'info', message: 'starting server' });
+
+  let server;
+  const broker = jackrabbit(RABBIT_URL);
+
+  broker.once('connected', listen);
+  broker.once('disconnected', exit.bind(this, 'disconnected'));
+
+  process.on('SIGTERM', exit);
+
+  function listen() {
+    const app = web(isDeveloping);
+    server = http.createServer(app);
+    server.listen(PORT);
   }
 
-  console.log(`Node.js Environment: ${process.env.NODE_ENV}`);
-  console.info('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
-});
+  function exit(reason) {
+    logger.log({ type: 'info', message: 'closing server', reason: reason });
+    if (server) server.close(process.exit.bind(process));
+    else process.exit();
+  }
+}
+
+start()

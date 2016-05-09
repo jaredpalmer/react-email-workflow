@@ -6,6 +6,10 @@
   "env": {
     "EMBEDLY": {
       "required": true
+    },
+    "CONCURRENCY": {
+      "required": true,
+      "value": "3"
     }
   },
   "addons": [
