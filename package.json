@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "coverage": "babel-node node_modules/isparta/bin/isparta cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot",
-    "dist": "webpack --config webpack.config.js",
+    "dist": "webpack --config webpack.config.js -p",
     "build": "npm run clean && npm run dist",
     "clean": "rm -rf dist",
     "start": "npm run start:dev",
@@ -38,8 +38,8 @@
   "homepage": "https://github.com/jaredpalmer/react-email-workflow#readme",
   "dependencies": {
     "axios": "0.11.0",
-    "babel-cli": "^6.4.5",
-    "babel-core": "^6.4.5",
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.1",
     "babel-loader": "^6.2.1",
     "babel-plugin-transform-react-constant-elements": "6.5.0",
     "babel-plugin-transform-react-inline-elements": "^6.5.0",
