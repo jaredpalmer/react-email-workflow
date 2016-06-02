@@ -11,14 +11,13 @@ import {
   PREMAIL_FAILURE
 } from '../constants/ActionTypes';
 import http from '../utils/HttpClient';
-
-let nextTodoId = 1;
+import { v4 } from 'node-uuid';
 
 export function add(element) {
   return {
     type: ADD_ELEMENT,
     element: {
-      id: nextTodoId++,
+      id: v4(),
       ...element,
     },
   };

@@ -17,15 +17,8 @@ describe('reducer', () => {
   it('should handle ADD_ELEMENT', () => {
     const initialState = [];
     const nextState = elements(initialState, actions.add(ElementSchema.url));
-    expect(nextState).toEqual([{
-          id: 2,
-          kind: 'url',
-          title: '',
-          url: '',
-          content: '',
-          author: '',
-        },
-      ]);
+    expect(nextState[0].id).toBeA('string')
+    expect(nextState[0].kind).toEqual('url');
   });
 
   it('should handle EDIT_ELEMENT', () => {

@@ -2,6 +2,7 @@ import expect from 'expect';
 import * as actions from '../src/actions/EmailActions';
 import * as types from '../src/constants/ActionTypes';
 import * as ElementSchema from '../src/constants/ElementSchema';
+import { v4 } from 'node-uuid'
 
 describe('actions', () => {
   it('should create an action to add an element', () => {
@@ -16,38 +17,44 @@ describe('actions', () => {
         author: ''
       }
     };
-    expect(actions.add(ElementSchema.url)).toEqual(expectedAction);
+    const createdAction = actions.add(ElementSchema.url)
+    expect(createdAction.element.id).toBeA('string');
+    createdAction.element.id = 1
+    expect(createdAction).toEqual(expectedAction);
   });
 
   it('should create an action to edit an element', () => {
+    const id = v4()
     const updates = {
       url: 'http://google.com'
     };
     const expectedAction = {
       type: types.EDIT_ELEMENT,
-      id: 0,
+      id,
       updates: {
         url: 'http://google.com'
       }
     };
-    expect(actions.edit(0, updates)).toEqual(expectedAction);
+    expect(actions.edit(id, updates)).toEqual(expectedAction);
   });
 
   it('should create an action to destroy an element', () => {
+    const id = v4()
     const expectedAction = {
       type: types.DESTROY_ELEMENT,
-      id: 0
+      id,
     };
-    expect(actions.destroy(0)).toEqual(expectedAction);
+    expect(actions.destroy(id)).toEqual(expectedAction);
   });
 
   it('should create an action to move an element', () => {
+    const id = v4()
     const expectedAction = {
       type: types.MOVE_ELEMENT,
-      id: 0,
+      id,
       atIndex: 1
     };
-    expect(actions.move(0,1)).toEqual(expectedAction);
+    expect(actions.move(id,1)).toEqual(expectedAction);
   });
 
   it('should create an action to edit meta data', () => {
