@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
 // import callAPIMiddleware from 'callAPIMiddleware';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './localStorage';
@@ -11,6 +10,7 @@ export default function configureStore() {
   const middlewares = [thunk];
 
   if (__DEV__) {
+    const createLogger = require('redux-logger').default
     middlewares.push(createLogger());
   }
 
