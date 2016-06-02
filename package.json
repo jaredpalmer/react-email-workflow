@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "coverage": "babel-node node_modules/isparta/bin/isparta cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot",
-    "dist": "webpack --config webpack.config.js",
+    "dist": "webpack --config webpack.config.js -p",
     "build": "npm run clean && npm run dist",
     "clean": "rm -rf dist",
     "start": "npm run start:dev",
