@@ -1,11 +1,12 @@
 {
-  "presets": ["es2015", "stage-0", "react"],
   "env": {
-   "development": {
-     "plugins": ["react-hot-loader/babel"]
-   },
-   "production": {
-     "plugins": ["transform-react-constant-elements","transform-react-inline-elements"]
-   }
- }
+    "development": {
+      "presets": ["es2015", "stage-0", "react"],
+      "plugins": ["react-hot-loader/babel"]
+    },
+    "production": {
+      "presets": ["es2015", "stage-0", "react"],
+      "plugins": ["transform-react-constant-elements","transform-react-inline-elements"]
+    }
+  }
 }
