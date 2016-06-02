@@ -1,5 +1,0 @@
-{
-  "preset": "airbnb",
-  "excludeFiles": ["dist/**", "node_modules/**", "coverage"],
-  "validateQuoteMarks": null
-}
