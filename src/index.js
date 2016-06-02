@@ -25,7 +25,7 @@ if (module.hot) {
        <AppContainer>
          <Root store={store}/>
        </AppContainer>,
-       rootEl
+       creationComponentContainer
      );
    });
 }
