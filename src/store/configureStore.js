@@ -2,13 +2,13 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-import callAPIMiddleware from 'callAPIMiddleware';
+// import callAPIMiddleware from 'callAPIMiddleware';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './localStorage';
 
 export default function configureStore() {
   const persistedState = loadState();
-  const middlewares = [thunk, callAPIMiddleware];
+  const middlewares = [thunk];
 
   if (__DEV__) {
     middlewares.push(createLogger());
