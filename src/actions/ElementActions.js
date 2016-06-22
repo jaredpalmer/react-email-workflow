@@ -55,3 +55,22 @@ export function showCode(isShowing) {
     isShowing,
   };
 }
+
+export function extract (id, url) {
+  return (dispatch, getState, { axios }) => {
+    // dispatch({ type: EXTRACT_REQUEST })
+    const { subject, preheader, date, meta, elements } = getState();
+    return axios.post('/api/v0/extract', { url })
+      .then(res => {
+        edit(id, res.data)
+      })
+      .catch(error => {
+        console.error(`Error extracting ${url}: `, error)
+        edit(id, {
+          title: e.data.error_message,
+          content: '',
+          author: 'ERROR',
+        });
+      })
+  }
+}

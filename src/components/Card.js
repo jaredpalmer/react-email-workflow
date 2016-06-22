@@ -59,7 +59,7 @@ class Card extends Component {
   }
 
   render() {
-    const { card, isDragging, connectDragSource, connectDropTarget, edit, destroy } = this.props;
+    const { card, isDragging, connectDragSource, connectDropTarget, edit, destroy, extract } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
@@ -87,6 +87,7 @@ class Card extends Component {
             author={card.author}
             url={card.url}
             edit={edit}
+            extract={extract}
             /> : null}
           {card.kind === 'html' ? <Code
             id={card.id}
