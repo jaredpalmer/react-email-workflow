@@ -3,40 +3,39 @@ export const url = {
   title: '',
   url: '',
   content: '',
-  author: '',
-};
+  author: ''
+}
 
 export const html = {
   kind: 'html',
-  content: '',
-};
+  content: ''
+}
 
 export const text = {
   kind: 'text',
-  content: '',
-};
+  content: ''
+}
 
 export const heading = {
   kind: 'heading',
   content: ''
-};
+}
 
 export const hr = {
   kind: 'hr',
   size: ''
-};
-
+}
 
 export const button = {
   url: '',
   style: '',
-  align: '',
-};
+  align: ''
+}
 
 export const image = {
   kind: 'image',
   url: '',
   data: '',
   width: '',
-  height: '',
-};
+  height: ''
+}

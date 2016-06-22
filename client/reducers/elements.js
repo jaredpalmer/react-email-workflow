@@ -1,29 +1,28 @@
-import * as actions from '../actions/ElementActions';
-import * as types from '../constants/ActionTypes';
-import update from 'react/lib/update';
+import * as types from '../constants/ActionTypes'
+import update from 'react/lib/update'
 
-const initialState = [];
+const initialState = []
 
-export default function elements(state = initialState, action) {
+export default function elements (state = initialState, action) {
   switch (action.type) {
     case types.ADD_ELEMENT:
-      return update(state, { $push: [action.element] });
+      return update(state, { $push: [action.element] })
     case types.EDIT_ELEMENT:
-      const index = state.findIndex((el) => el.id === action.id);
-      return update(state, { [index]: { $merge: action.updates } });
+      const index = state.findIndex((el) => el.id === action.id)
+      return update(state, { [index]: { $merge: action.updates } })
     case types.DESTROY_ELEMENT:
-      const i = state.findIndex((el) => el.id === action.id);
-      return update(state, { $splice:[[i, 1]] });
+      const i = state.findIndex((el) => el.id === action.id)
+      return update(state, { $splice: [[i, 1]] })
     case types.MOVE_ELEMENT:
-      const el = state.filter(e => e.id === action.id)[0];
-      const j = state.indexOf(el);
+      const el = state.filter(e => e.id === action.id)[0]
+      const j = state.indexOf(el)
       return update(state, {
         $splice: [
           [j, 1],
-          [action.atIndex, 0, el],
-        ],
-      });
+          [action.atIndex, 0, el]
+        ]
+      })
     default:
-      return state;
+      return state
   }
 }

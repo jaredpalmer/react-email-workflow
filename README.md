@@ -1,5 +1,6 @@
 # React Email Workflow
-[![Build Status](https://travis-ci.org/jaredpalmer/react-email-workflow.svg?branch=master)](https://travis-ci.org/jaredpalmer/react-email-workflow) [![Code Climate](https://codeclimate.com/github/jaredpalmer/react-email-workflow/badges/gpa.svg)](https://codeclimate.com/github/jaredpalmer/react-email-workflow) [![Test Coverage](https://codeclimate.com/github/jaredpalmer/react-email-workflow/badges/coverage.svg)](https://codeclimate.com/github/jaredpalmer/react-email-workflow/coverage) [![Issue Count](https://codeclimate.com/github/jaredpalmer/react-email-workflow/badges/issue_count.svg)](https://codeclimate.com/github/jaredpalmer/react-email-workflow)
+[![Build Status](https://travis-ci.org/jaredpalmer/react-email-workflow.svg?branch=master)](https://travis-ci.org/jaredpalmer/react-email-workflow) [![Code Climate](https://codeclimate.com/github/jaredpalmer/react-email-workflow/badges/gpa.svg)](https://codeclimate.com/github/jaredpalmer/react-email-workflow) [![Test Coverage](https://codeclimate.com/github/jaredpalmer/react-email-workflow/badges/coverage.svg)](https://codeclimate.com/github/jaredpalmer/react-email-workflow/coverage) [![Issue Count](https://codeclimate.com/github/jaredpalmer/react-email-workflow/badges/issue_count.svg)](https://codeclimate.com/github/jaredpalmer/react-email-workflow) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 
 A drag-and-drop newsletter design tool. Built with React, Redux, JSXStyle, Express, RabbitMQ, Premailer, and Embedly.
 

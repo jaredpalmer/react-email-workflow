@@ -90,5 +90,8 @@
   },
   "engines": {
     "node": "6.2.2"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }

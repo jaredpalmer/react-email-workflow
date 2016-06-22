@@ -1,35 +1,33 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from '../reducers';
-import thunk from 'redux-thunk';
+/* global __DEV__ */
+import { createStore, applyMiddleware, compose } from 'redux'
+import rootReducer from '../reducers'
+import thunk from 'redux-thunk'
 import axios from 'axios'
-import throttle from 'lodash/throttle';
-import { loadState, saveState } from './localStorage';
+import throttle from 'lodash/throttle'
+import { loadState, saveState } from './localStorage'
 
-export default function configureStore() {
-  const persistedState = loadState();
-  const middlewares = [thunk.withExtraArgument({ axios })];
-
-  // if (__DEV__) {
-  //   const logger = require('redux-logger')
-  //   middlewares.push(logger);
-  // }
+export default function configureStore () {
+  const persistedState = loadState()
+  const middlewares = [thunk.withExtraArgument({ axios })]
 
   const store = createStore(
     rootReducer,
     persistedState,
     compose(
       applyMiddleware(...middlewares),
+      __DEV__ &&
       typeof window === 'object' &&
-       typeof window.devToolsExtension !== 'undefined' ?
-        window.devToolsExtension() : f => f
+      typeof window.devToolsExtension !== 'undefined'
+        ? window.devToolsExtension()
+        : f => f
     )
-  );
+  )
 
   if (__DEV__) {
     if (module.hot) {
       module.hot.accept('../reducers', () =>
-        store.replaceReducer(require('../reducers').default /*.default if you use Babel 6+ */)
-      );
+        store.replaceReducer(require('../reducers').default /* .default if you use Babel 6+ */)
+      )
     }
   }
 
@@ -37,9 +35,9 @@ export default function configureStore() {
     saveState({
       meta: store.getState().meta,
       premail: store.getState().premail,
-      elements: store.getState().elements,
-    });
-  }, 1000));
+      elements: store.getState().elements
+    })
+  }, 1000))
 
-  return store;
+  return store
 }
