@@ -1,64 +1,9 @@
 import {
-  ADD_ELEMENT,
-  DESTROY_ELEMENT,
-  EDIT_ELEMENT,
-  MOVE_ELEMENT,
-  EDIT_META,
-  SHOW_CODE,
   PREMAIL_COPY,
   PREMAIL_REQUEST,
   PREMAIL_SUCCESS,
   PREMAIL_FAILURE
 } from '../constants/ActionTypes';
-import http from '../utils/HttpClient';
-import { v4 } from 'node-uuid';
-
-export function add(element) {
-  return {
-    type: ADD_ELEMENT,
-    element: {
-      id: v4(),
-      ...element,
-    },
-  };
-}
-
-export function edit(id, updates) {
-  return {
-    type: EDIT_ELEMENT,
-    id,
-    updates,
-  };
-}
-
-export function destroy(id) {
-  return {
-    type: DESTROY_ELEMENT,
-    id,
-  };
-}
-
-export function move(id, atIndex) {
-  return {
-    type: MOVE_ELEMENT,
-    id,
-    atIndex,
-  };
-}
-
-export function meta(meta) {
-  return {
-    type: EDIT_META,
-    meta,
-  };
-}
-
-export function showCode(isShowing) {
-  return {
-    type: SHOW_CODE,
-    isShowing,
-  };
-}
 
 export function premailCopy() {
   return {

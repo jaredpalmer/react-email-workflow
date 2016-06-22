@@ -1,4 +1,4 @@
-import * as actions from '../actions/EmailActions';
+import * as actions from '../actions/PremailActions';
 import * as types from '../constants/ActionTypes';
 import update from 'react/lib/update';
 import moment from 'moment';

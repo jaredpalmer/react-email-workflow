@@ -7,7 +7,7 @@ import L from '../LayoutConstants';
 import PreviewHTML from '../components/PreviewHTML';
 import PreviewVisual from '../components/PreviewVisual';
 import PreviewLoading from '../components/PreviewLoading';
-import { premail, premailCopy } from '../actions/EmailActions';
+import { premail, premailCopy } from '../actions/PremailActions';
 import Copy from '../components/Copy';
 import { Text5 } from '../components/Type';
 

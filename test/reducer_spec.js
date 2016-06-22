@@ -1,5 +1,5 @@
 import expect from 'expect';
-import * as actions from '../src/actions/EmailActions';
+import * as actions from '../src/actions/ElementActions';
 import * as types from '../src/constants/ActionTypes';
 import * as ElementSchema from '../src/constants/ElementSchema';
 

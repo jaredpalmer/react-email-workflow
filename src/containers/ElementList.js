@@ -7,7 +7,7 @@ import { DropTarget, DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import ItemTypes from '../constants/ItemTypes';
 import Button from '../components/Button';
-import * as EmailActions from '../actions/EmailActions';
+import * as EmailActions from '../actions/ElementActions';
 import * as ElementSchema from '../constants/ElementSchema';
 import { Row, Col, Block, InlineBlock} from 'jsxstyle';
 import { SmallText } from '../components/Type';
