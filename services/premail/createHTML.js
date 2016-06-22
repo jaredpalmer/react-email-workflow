@@ -1,3 +1,5 @@
+'use strict'
+
 const moment = require('moment');
 
 function button({
@@ -22,7 +24,7 @@ function button({
   );
 };
 
-const renderElements =  (elements)  => {
+const renderElements = (elements) => {
   return elements.map(function(story, i) {
     switch (story.kind){
       case 'url':

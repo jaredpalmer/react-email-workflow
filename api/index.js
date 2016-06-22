@@ -1,12 +1,14 @@
-import path from 'path';
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import helmet from 'helmet';
-import bodyParser from 'body-parser';
-import logger from 'logfmt';
-import compression from 'compression';
+'use strict'
 
-export default function api(__DEV__) {
+const path = require('path')
+const express = require('express')
+const cookieParser = require('cookie-parser')
+const helmet = require('helmet')
+const bodyParser = require('body-parser')
+const compression = require('compression')
+const logger = require('logfmt')
+
+function api(__DEV__) {
   const server = express();
   server.disable('x-powered-by');
   server.use(helmet());
@@ -56,3 +58,5 @@ export default function api(__DEV__) {
 
   return server;
 }
+
+module.exports = api

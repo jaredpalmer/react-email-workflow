@@ -9,13 +9,13 @@
     "build": "npm run clean && npm run dist",
     "clean": "rm -rf dist",
     "start": "npm run start:dev",
-    "start:dev": "NODE_ENV=development babel-node server.js",
-    "start:prod": "NODE_ENV=production babel-node server.js",
-    "test": "mocha --compilers js:babel-core/register --recursive && npm run coverage",
+    "start:dev": "NODE_ENV=development node server.js",
+    "start:prod": "NODE_ENV=production node server.js",
+    "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "lint": "eslint src",
-    "extract": "babel-node services/extract",
-    "premail": "babel-node services/premail"
+    "extract": "NODE_ENV=production node services/extract",
+    "premail": "NODE_ENV=production node services/premail"
   },
   "repository": {
     "type": "git",
@@ -86,6 +86,6 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "engines": {
-    "node": "6.2.1"
+    "node": "6.2.2"
   }
 }
