@@ -6,7 +6,7 @@
   "scripts": {
     "coverage": "babel-node node_modules/isparta/bin/isparta cover --report lcov node_modules/mocha/bin/_mocha -- --reporter dot",
     "build": "npm run clean && webpack --config ./tools/webpack.prod",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf public/assets",
     "start": "npm run start:dev",
     "start:dev": "NODE_ENV=development node server.js",
     "start:prod": "NODE_ENV=production node server.js",
