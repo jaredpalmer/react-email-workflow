@@ -7,7 +7,7 @@ import { DropTarget, DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import ItemTypes from '../constants/ItemTypes';
 import Button from '../components/Button';
-import * as EmailActions from '../actions/EmailActions';
+import * as ElementActions from '../actions/ElementActions';
 import * as ElementSchema from '../constants/ElementSchema';
 import { Row, Col, Block, InlineBlock} from 'jsxstyle';
 import { SmallText } from '../components/Type';
@@ -50,6 +50,7 @@ class ElementList extends Component {
               index={i}
               edit={actions.edit}
               destroy={actions.destroy}
+              extract={actions.extract}
               {...other}
             />
           );
@@ -117,7 +118,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(EmailActions, dispatch) };
+  return { actions: bindActionCreators(ElementActions, dispatch) };
 }
 
 const ContainerComponent = connect(mapStateToProps, mapDispatchToProps)(ElementList);

@@ -1,4 +1,4 @@
-import * as actions from '../actions/EmailActions';
+import * as actions from '../actions/ElementActions';
 import * as types from '../constants/ActionTypes';
 import update from 'react/lib/update';
 

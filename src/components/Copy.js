@@ -35,7 +35,7 @@ class Copy extends Component {
       <div
         id={id}
         role="button"
-        onClick={() => onCopy(true)}
+        onClick={() => onCopy()}
         onMouseEnter={this.handleMouseEnter.bind(this)}
         onMouseLeave={this.handleMouseLeave.bind(this)}
         style={{

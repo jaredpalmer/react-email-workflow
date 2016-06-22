@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Block } from 'jsxstyle';
 import Input from '../components/Input';
-import { meta } from '../actions/EmailActions';
+import { meta } from '../actions/ElementActions';
 
 const Meta = ({ metaData, meta }) =>
   <Block background="white"

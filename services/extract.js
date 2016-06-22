@@ -2,7 +2,6 @@ const http = require('http');
 const jackrabbit = require('jackrabbit');
 const throng = require('throng');
 const logger = require('logfmt');
-const request = require('request');
 const axios = require('axios');
 
 const CONCURRENCY = process.env.CONCURRENCY || 1;

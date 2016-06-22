@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Block, Row } from 'jsxstyle';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import axios from 'axios';
 
 class Url extends Component {
   constructor() {
@@ -14,12 +13,12 @@ class Url extends Component {
     const ENTER = 13;
     if (e.keyCode === ENTER) {
       e.preventDefault();
-      extract(this.props.url).then(res => this.props.edit(this.props.id, res));
+      extract(this.props.id, this.props.url)
     }
   }
 
   render() {
-    const { id, title, content, author, url, edit } = this.props;
+    const { id, title, content, author, url, edit, extract } = this.props;
     return (
       <Block>
         <Row>
@@ -34,27 +33,10 @@ class Url extends Component {
             value={url}
             autoFocus
           />
-        <Button onClick={() => {
-          axios({
-            url: '/api/v0/extract',
-            method: 'POST',
-            data: {
-              url: url,
-            },
-            withCredentials: true,
-          }).then(res => edit(id, res.data))
-            .catch(e => {
-              edit(id, {
-                title: e.data.error_message,
-                content: '',
-                author: 'ERROR',
-              });
-            });
-        }} primary>Fetch</Button>
-          </Row>
-          { title ?
-
-            <Block>
+          <Button onClick={() => extract(id, url)} primary>Fetch</Button>
+        </Row>
+        { title
+          ? <Block>
               <Row margin=".5rem 0">
                 <Input
                   style={{
@@ -69,33 +51,34 @@ class Url extends Component {
                   onChange={(e) => edit(id, { title: e.target.value })}
                   value={title}
                 />
-        </Row>
-        <Row marginBottom=".5rem">
-          <Input
-            style={{
-              flex: 1,
-              color: '#595f6c',
-              fontSize: '16px',
-              lineHeight: '24px',
-            }}
-            rows={2}
-            onChange={(e) => edit(id, { content: e.target.value })}
-            value={content}
-          />
-        </Row>
-        <Row marginBottom=".25rem">
-          <Input
-            style={{
-              flex: 1,
-              color: '#595f6c',
-              fontSize: '16px',
-              lineHeight: '24px',
-            }}
-            onChange={(e) => edit(id, { author: e.target.value })}
-            value={author}
-          />
-        </Row>
-      </Block> : null }
+              </Row>
+            <Row marginBottom=".5rem">
+              <Input
+                style={{
+                  flex: 1,
+                  color: '#595f6c',
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                }}
+                rows={2}
+                onChange={(e) => edit(id, { content: e.target.value })}
+                value={content}
+              />
+            </Row>
+            <Row marginBottom=".25rem">
+              <Input
+                style={{
+                  flex: 1,
+                  color: '#595f6c',
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                }}
+                onChange={(e) => edit(id, { author: e.target.value })}
+                value={author}
+              />
+            </Row>
+          </Block>
+        : null }
     </Block>
     );
   }

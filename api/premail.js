@@ -1,6 +1,5 @@
 const express = require('express');
 const { Router } = express;
-const request = require('superagent');
 const router = new Router();
 const jackrabbit = require('jackrabbit')
 
