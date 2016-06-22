@@ -85,8 +85,7 @@
     "babel-eslint": "6.0.5",
     "eslint": "2.13.1",
     "eslint-config-airbnb": "9.0.1",
-    "eslint-plugin-react": "5.2.2",
-    "redux-logger": "2.6.1"
+    "eslint-plugin-react": "5.2.2"
   },
   "engines": {
     "node": "6.2.1"
