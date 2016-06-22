@@ -13,7 +13,8 @@
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "extract": "NODE_ENV=production node services/extract",
-    "premail": "NODE_ENV=production node services/premail"
+    "premail": "NODE_ENV=production node services/premail",
+    "mailer": "NODE_ENV=development node services/mailer"
   },
   "repository": {
     "type": "git",
@@ -61,6 +62,7 @@
     "jsxstyle": "petehunt/jsxstyle",
     "lodash": "4.13.1",
     "logfmt": "1.2.0",
+    "mailgun-js": "^0.7.11",
     "moment": "2.13.0",
     "node-uuid": "1.4.7",
     "premailer-api": "1.0.4",

@@ -58,6 +58,7 @@ function api (__DEV__) {
 
   server.use('/api/v0/extract', require('./extract'))
   server.use('/api/v0/premail', require('./premail'))
+  server.use('/api/v0/mail', require('./mailer'))
 
   server.get('*', (req, res) => {
     res.status(200).send(`

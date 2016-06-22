@@ -29,6 +29,10 @@ Then create a `.env` file in your root directory as follows.
 ```bash
 # .env
 EMBEDLY=XXXXXXXXXXXXXXXXXX   # Embedly API Key
+MAILGUN_DOMAIN=XXXXXX.com  # Mailgun Domain
+MAILGUN_SECRET=key-XXXXXXXXXXXXXX  # Mailgun Private Key
+MAILGUN_PUBLIC=pubkey-XXXXXXXXXXXXXX # Mailgun Public Key
+CLOUDAMQP_URL=XXXXXXXXXXXXXXXXXXXX # RabbitMQ Url
 ```
 #### Run in development mode
 Open your `Procfile`. Comment out the first line and replace and add a second line as follows.
