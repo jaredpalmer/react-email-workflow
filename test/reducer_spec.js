@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 import expect from 'expect'
-import * as actions from '../src/actions/ElementActions'
-import * as ElementSchema from '../src/constants/ElementSchema'
+import * as actions from '../client/actions/ElementActions'
+import * as ElementSchema from '../client/constants/ElementSchema'
 
-import elements from '../src/reducers/elements'
-import meta from '../src/reducers/meta'
+import elements from '../client/reducers/elements'
+import meta from '../client/reducers/meta'
 
 describe('reducer', () => {
   it('should return default state if action is undefined', () => {

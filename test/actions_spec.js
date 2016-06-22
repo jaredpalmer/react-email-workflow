@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import expect from 'expect'
-import * as actions from '../src/actions/ElementActions'
-import * as types from '../src/constants/ActionTypes'
-import * as ElementSchema from '../src/constants/ElementSchema'
+import * as actions from '../client/actions/ElementActions'
+import * as types from '../client/constants/ActionTypes'
+import * as ElementSchema from '../client/constants/ElementSchema'
 import { v4 } from 'node-uuid'
 
 describe('actions', () => {
