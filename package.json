@@ -55,7 +55,6 @@
     "cookie-parser": "1.4.3",
     "expect": "1.20.1",
     "express": "4.14.0",
-    "fbjs": "0.8.3",
     "helmet": "2.1.1",
     "isparta": "4.0.0",
     "jackrabbit": "4.3.0",
