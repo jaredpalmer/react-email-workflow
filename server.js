@@ -7,7 +7,7 @@ const jackrabbit = require('jackrabbit');
 
 http.globalAgent.maxSockets = Infinity;
 
-const web = require('./api');
+const web = require('./web');
 
 const RABBIT_URL = process.env.CLOUDAMQP_URL || 'amqp://guest:guest@localhost:5672';
 const PORT = process.env.PORT || 5000;

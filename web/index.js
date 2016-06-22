@@ -17,6 +17,8 @@ function api(__DEV__) {
   server.use(cookieParser());
   server.use(compression());
 
+  let assets, config
+
   if (__DEV__) {
     server.use(logger.requestLogger((req, res) => {
       var path = req.originalUrl || req.path || req.url;
@@ -26,14 +28,14 @@ function api(__DEV__) {
         path,
       };
     }));
-    const config = require('../webpack.config.dev')
+    config = require('../tools/webpack.dev')
     const webpack = require('webpack')
     const webpackDevMiddleware = require('webpack-dev-middleware')
     const webpackHotMiddleware = require('webpack-hot-middleware')
     const compiler = webpack(config);
     const middleware = webpackDevMiddleware(compiler, {
       publicPath: config.output.publicPath,
-      contentBase: 'src',
+      contentBase: 'client',
       stats: {
         colors: true,
         hash: false,
@@ -46,15 +48,38 @@ function api(__DEV__) {
     server.use(middleware);
     server.use(webpackHotMiddleware(compiler));
   } else {
-    server.use('/static', express.static(path.join(__dirname, '../dist')));
+    config = require('../tools/webpack.prod')
+    assets = require('../assets.json')
+    server.use(helmet())
+    server.use(compression())
   }
 
-  server.get('*', function response(req, res) {
-    res.sendFile(path.join(__dirname, '../index.html'));
-  });
+  server.use(express.static(path.join(__dirname, '../public')))
 
   server.use('/api/v0/extract', require('./extract'));
   server.use('/api/v0/premail', require('./premail'));
+
+  server.get('*', function response(req, res) {
+    res.status(200).send(`
+      <!doctype html>
+      <html className="no-js" lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <title>React Email Workflow</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="description" content="React Email Workflow." />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+          <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        </head>
+        <body>
+          <div id='root'></div>
+          <script src="${__DEV__ ?  'assets/main.js' : assets.main.js }"></script>
+        </body>
+      </html>
+    `)
+  });
+
 
   return server;
 }

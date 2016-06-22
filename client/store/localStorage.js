@@ -1,4 +1,3 @@
-
 // Shamelessly stolen from Dan Abramov
 // https://github.com/gaearon/todos/blob/04-refactoring-entry-point/src/localStorage.js
 
