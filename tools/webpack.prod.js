@@ -35,7 +35,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production'),
       '__DEV__': false
     }),
-    new AssetsPlugin({ filename: 'assets.json' }),
+    new AssetsPlugin({ filename: 'assets.json' })
   ],
   module: {
     loaders: [

@@ -8,31 +8,31 @@ const bodyParser = require('body-parser')
 const compression = require('compression')
 const logger = require('logfmt')
 
-function api(__DEV__) {
-  const server = express();
-  server.disable('x-powered-by');
-  server.use(helmet());
-  server.use(bodyParser.urlencoded({ extended: true }));
-  server.use(bodyParser.json());
-  server.use(cookieParser());
-  server.use(compression());
+function api (__DEV__) {
+  const server = express()
+  server.disable('x-powered-by')
+  server.use(helmet())
+  server.use(bodyParser.urlencoded({ extended: true }))
+  server.use(bodyParser.json())
+  server.use(cookieParser())
+  server.use(compression())
 
   let assets, config
 
   if (__DEV__) {
     server.use(logger.requestLogger((req, res) => {
-      var path = req.originalUrl || req.path || req.url;
+      var path = req.originalUrl || req.path || req.url
       return {
         method: req.method,
         status: res.statusCode,
-        path,
-      };
-    }));
+        path
+      }
+    }))
     config = require('../tools/webpack.dev')
     const webpack = require('webpack')
     const webpackDevMiddleware = require('webpack-dev-middleware')
     const webpackHotMiddleware = require('webpack-hot-middleware')
-    const compiler = webpack(config);
+    const compiler = webpack(config)
     const middleware = webpackDevMiddleware(compiler, {
       publicPath: config.output.publicPath,
       contentBase: 'client',
@@ -42,11 +42,11 @@ function api(__DEV__) {
         timings: true,
         chunks: false,
         chunkModules: false,
-        modules: false,
-      },
-    });
-    server.use(middleware);
-    server.use(webpackHotMiddleware(compiler));
+        modules: false
+      }
+    })
+    server.use(middleware)
+    server.use(webpackHotMiddleware(compiler))
   } else {
     config = require('../tools/webpack.prod')
     assets = require('../assets.json')
@@ -56,10 +56,10 @@ function api(__DEV__) {
 
   server.use(express.static(path.join(__dirname, '../public')))
 
-  server.use('/api/v0/extract', require('./extract'));
-  server.use('/api/v0/premail', require('./premail'));
+  server.use('/api/v0/extract', require('./extract'))
+  server.use('/api/v0/premail', require('./premail'))
 
-  server.get('*', function response(req, res) {
+  server.get('*', (req, res) => {
     res.status(200).send(`
       <!doctype html>
       <html className="no-js" lang="en">
@@ -74,14 +74,13 @@ function api(__DEV__) {
         </head>
         <body>
           <div id='root'></div>
-          <script src="${__DEV__ ?  'assets/main.js' : assets.main.js }"></script>
+          <script src="${__DEV__ ? 'assets/main.js' : assets.main.js}"></script>
         </body>
       </html>
     `)
-  });
+  })
 
-
-  return server;
+  return server
 }
 
 module.exports = api
