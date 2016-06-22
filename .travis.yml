@@ -15,6 +15,8 @@ addons:
 cache:
   directories:
     - node_modules
+script:
+  - npm test && npm run coverage
 after_script:
   - codeclimate-test-reporter < coverage/lcov.info
 deploy:
