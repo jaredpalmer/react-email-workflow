@@ -13,7 +13,7 @@ class Url extends Component {
     const ENTER = 13;
     if (e.keyCode === ENTER) {
       e.preventDefault();
-      extract(this.props.id, this.props.url)
+      this.props.extract(this.props.id, this.props.url)
     }
   }
 
