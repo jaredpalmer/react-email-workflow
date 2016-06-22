@@ -12,6 +12,21 @@
       "value": "3"
     }
   },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    },
+    "extract": {
+      "quantity": 1,
+      "size": "hobby"
+    },
+    "premail": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "image": "heroku/nodejs",
   "addons": [
     "cloudamqp:lemur",
     "papertrail"
