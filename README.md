@@ -8,9 +8,7 @@ A drag-and-drop newsletter design tool. Built with React, Redux, JSXStyle, Expre
 - Drag and drop support
 - Worker services for web scraping and CSS inlining connected through RabbitMQ
 - Livereload both rendered and HTML view.
-- Customizeable header and footer
 - Basic Components: Link, Heading, Text, and custom HTML (with Codemirror editor)
-- Custom CSS
 
 
 ### Screenshot
@@ -56,4 +54,3 @@ Open a browser to `localhost:5000`.
 
 ### Deployment
 You can deploy REW to Heroku. This config supports Heroku's new pipeline + Github integration.
-
