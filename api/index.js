@@ -1,16 +1,14 @@
-import path from 'path';
-import express from 'express';
-import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from '../webpack.config.dev';
-import cookieParser from 'cookie-parser';
-import helmet from 'helmet';
-import bodyParser from 'body-parser';
-import logger from 'logfmt';
-import compression from 'compression';
+'use strict'
 
-export default function api(isDeveloping) {
+const path = require('path')
+const express = require('express')
+const cookieParser = require('cookie-parser')
+const helmet = require('helmet')
+const bodyParser = require('body-parser')
+const compression = require('compression')
+const logger = require('logfmt')
+
+function api(__DEV__) {
   const server = express();
   server.disable('x-powered-by');
   server.use(helmet());
@@ -19,7 +17,7 @@ export default function api(isDeveloping) {
   server.use(cookieParser());
   server.use(compression());
 
-  if (isDeveloping) {
+  if (__DEV__) {
     server.use(logger.requestLogger((req, res) => {
       var path = req.originalUrl || req.path || req.url;
       return {
@@ -28,8 +26,12 @@ export default function api(isDeveloping) {
         path,
       };
     }));
+    const config = require('../webpack.config.dev')
+    const webpack = require('webpack')
+    const webpackDevMiddleware = require('webpack-dev-middleware')
+    const webpackHotMiddleware = require('webpack-hot-middleware')
     const compiler = webpack(config);
-    const middleware = webpackMiddleware(compiler, {
+    const middleware = webpackDevMiddleware(compiler, {
       publicPath: config.output.publicPath,
       contentBase: 'src',
       stats: {
@@ -41,21 +43,20 @@ export default function api(isDeveloping) {
         modules: false,
       },
     });
-
     server.use(middleware);
     server.use(webpackHotMiddleware(compiler));
-    server.get('*', function response(req, res) {
-      res.sendFile(path.join(__dirname, '../index.html'));
-    });
   } else {
     server.use('/static', express.static(path.join(__dirname, '../dist')));
-    server.get('*', function response(req, res) {
-      res.sendFile(path.join(__dirname, '../index.html'));
-    });
   }
+
+  server.get('*', function response(req, res) {
+    res.sendFile(path.join(__dirname, '../index.html'));
+  });
 
   server.use('/api/v0/extract', require('./extract'));
   server.use('/api/v0/premail', require('./premail'));
 
   return server;
 }
+
+module.exports = api

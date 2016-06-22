@@ -1,3 +1,5 @@
+'use strict'
+
 const http = require('http');
 const jackrabbit = require('jackrabbit');
 const throng = require('throng');

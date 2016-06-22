@@ -1,3 +1,5 @@
+'use strict'
+
 const http = require('http');
 const jackrabbit = require('jackrabbit');
 const throng = require('throng');
@@ -42,7 +44,7 @@ function start() {
         author: data.provider_name, // eslint-disable-line
         image: data.images[0] === undefined ? null : data.images[0].url,
       };
-      logger.log({ type: 'info', ...updates });
+      logger.log(Object.assign({}, { type: 'info'}, updates ));
       reply(updates);
 
     }).catch(e => {

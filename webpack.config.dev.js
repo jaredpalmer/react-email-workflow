@@ -3,9 +3,9 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack/hot/only-dev-server',
+    // 'webpack/hot/only-dev-server',
     'webpack-hot-middleware/client?reload=true',
     './src/index'
   ],
@@ -26,7 +26,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loader: 'react-hot!babel!' + path.join(__dirname, 'node_modules/jsxstyle/lib/webpackLoader.js') + '?LayoutConstants=' + path.join(__dirname, 'src', 'LayoutConstants.js'),
+      loader: 'babel!' + path.join(__dirname, 'node_modules/jsxstyle/lib/webpackLoader.js') + '?LayoutConstants=' + path.join(__dirname, 'src', 'LayoutConstants.js'),
       include: path.join(__dirname, 'src')
     }]
   }
