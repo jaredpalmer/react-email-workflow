@@ -6,7 +6,7 @@ import {
   EDIT_META,
   SHOW_CODE,
   PREMAIL_COPY,
-  PREMAIL_LOADING,
+  PREMAIL_REQUEST,
   PREMAIL_SUCCESS,
   PREMAIL_FAILURE
 } from '../constants/ActionTypes';
@@ -60,51 +60,33 @@ export function showCode(isShowing) {
   };
 }
 
-export function premailCopy(hasCopied) {
+export function premailCopy() {
   return {
     type: PREMAIL_COPY,
-    hasCopied: hasCopied,
   };
 }
 
-export function premailLoading(isLoading) {
-  return {
-    type: PREMAIL_LOADING,
-    isLoading: isLoading,
-  };
-}
-
-export function premailSuccess(html) {
-  return {
-    type: PREMAIL_SUCCESS,
-    html,
-  };
-}
-
-export function premailFailure(error) {
-  return {
-    type: PREMAIL_FAILURE,
-    error,
-  };
-}
-
-export function premail() {
-  return function (dispatch, getState) {
+export function premail () {
+  return (dispatch, getState, { axios }) => {
+    dispatch({ type: PREMAIL_REQUEST })
     const { subject, preheader, date, meta, elements } = getState();
-    dispatch(premailLoading(true));
-
-    return http.post('/api/v0/premail', { subject, preheader, date, meta, elements })
-      .then(result => {
-        console.log(result);
-        dispatch(premailLoading(false));
-        return result.html;
+    return axios.post('/api/v0/premail', { subject, preheader, date, meta, elements })
+      .then(res => {
+        dispatch({
+          type: PREMAIL_SUCCESS,
+          payload: res.data.html,
+          meta: {
+            lastFetched: Date.now()
+          }
+        })
       })
-      .then(jsonResult => {
-        dispatch(premailSuccess(jsonResult));
-        dispatch(premailCopy(false));
+      .catch(error => {
+        console.error(`Error in reducer that handles ${PREMAIL_SUCCESS}: `, error)
+        dispatch({
+          type: PREMAIL_FAILURE,
+          payload: error,
+          error: true
+        })
       })
-      .catch(err => {
-        dispatch(premailFailure(err));
-      });
-  };
+  }
 }

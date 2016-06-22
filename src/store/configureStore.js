@@ -1,18 +1,18 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
-// import callAPIMiddleware from 'callAPIMiddleware';
+import axios from 'axios'
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './localStorage';
 
 export default function configureStore() {
   const persistedState = loadState();
-  const middlewares = [thunk];
+  const middlewares = [thunk.withExtraArgument({ axios })];
 
-  if (__DEV__) {
-    const createLogger = require('redux-logger').default
-    middlewares.push(createLogger());
-  }
+  // if (__DEV__) {
+  //   const logger = require('redux-logger')
+  //   middlewares.push(logger);
+  // }
 
   const store = createStore(
     rootReducer,

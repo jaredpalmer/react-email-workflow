@@ -6,6 +6,6 @@ export const EDIT_META = 'EDIT_META';
 
 export const SHOW_CODE = 'SHOW_CODE';
 export const PREMAIL_COPY = 'PREMAIL_COPY';
-export const PREMAIL_LOADING = 'PREMAIL_LOADING';
+export const PREMAIL_REQUEST = 'PREMAIL_LOADING';
 export const PREMAIL_SUCCESS = 'PREMAIL_SUCCESS';
 export const PREMAIL_FAILURE = 'PREMAIL_FAILURE';
