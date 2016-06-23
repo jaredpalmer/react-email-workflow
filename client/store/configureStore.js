@@ -23,13 +23,13 @@ export default function configureStore () {
     )
   )
 
-  if (__DEV__) {
+  // if (__DEV__) {
     if (module.hot) {
       module.hot.accept('../reducers', () =>
         store.replaceReducer(require('../reducers').default /* .default if you use Babel 6+ */)
       )
     }
-  }
+  // }
 
   store.subscribe(throttle(() => {
     saveState({

@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import { Block, Row, Col } from 'jsxstyle'
-import Preview from './Preview'
-import Meta from './Meta'
-import ElementList from './ElementList'
+import { Block, Col, Row } from 'jsxstyle'
 import L from '../LayoutConstants'
 import { H4 } from '../components/Type'
-
 export default class App extends Component {
   render () {
     return (
@@ -22,7 +18,7 @@ export default class App extends Component {
           background={L.blue}
           zIndex='999999'
         >
-          <H4 color='#ffffff'>React Email Workflow</H4>
+          <H4 color='#ffffff'>React Emails</H4>
           <Row alignItems='center'>
             <Block marginRight='1rem'>
               <a style={{
@@ -45,16 +41,7 @@ export default class App extends Component {
             </Block>
           </Row>
         </Row>
-        <Block
-          maxWidth='616px'
-          marginTop='50px'
-          height='calc(100vh - 50px)'
-          padding='1rem 1rem 0'
-        >
-          <Meta />
-          <ElementList />
-        </Block>
-        <Preview />
+        {this.props.children}
       </Col>
     )
   }
