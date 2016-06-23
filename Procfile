@@ -1,4 +1,3 @@
-web: npm run build && npm run start:prod
-#web: npm run start:dev
-extract: npm run extract
-premail: npm run premail
+web: npm run build && NODE_ENV=production npm start
+extract: NODE_ENV=production npm run extract
+premail: NODE_ENV=production npm run premail
