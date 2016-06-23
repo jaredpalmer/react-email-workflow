@@ -20,7 +20,7 @@ export default class App extends Component {
           width='100%'
           padding='0 1rem'
           background={L.blue}
-          zIndex='999999'
+          zIndex='1'
         >
           <H4 color='#ffffff'>React Email Workflow</H4>
           <Row alignItems='center'>

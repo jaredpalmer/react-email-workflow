@@ -23,14 +23,14 @@ export default function configureStore () {
     )
   )
 
-  if (__DEV__) {
-    if (module.hot) {
-      module.hot.accept('../reducers', () =>
-        store.replaceReducer(require('../reducers').default /* .default if you use Babel 6+ */)
-      )
-    }
+  // Enable HMR during development
+  if (module.hot) {
+    module.hot.accept('../reducers', () =>
+      store.replaceReducer(require('../reducers').default)
+    )
   }
 
+  // Save state to localStorage every 1s
   store.subscribe(throttle(() => {
     saveState({
       meta: store.getState().meta,
