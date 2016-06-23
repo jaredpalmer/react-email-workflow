@@ -10,7 +10,6 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   entry: [
-    // 'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     CLIENT_ENTRY
   ],
@@ -48,11 +47,7 @@ module.exports = {
         loader: 'json'
       },
       {
-        // Do not transform vendor's CSS with CSS-modules
-        // The point is that they remain in global scope.
-        // Since we require these CSS files in our JS or CSS files,
-        // they will be a part of our compilation either way.
-        // So, no need for ExtractTextPlugin here.
+        // This is so you can have a global CSS file and load vendor CSS.
         test: /\.css$/,
         include: /node_modules|client/,
         loaders: ['style-loader', 'css-loader']
