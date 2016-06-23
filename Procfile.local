@@ -1,0 +1,3 @@
+web: NODE_ENV=development npm start
+extract: NODE_ENV=development npm run extract
+premail: NODE_ENV=development npm run premail
