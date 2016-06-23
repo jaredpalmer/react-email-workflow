@@ -9,7 +9,6 @@
     "clean": "rm -rf public/assets",
     "start": "node server.js",
     "test": "mocha --compilers js:babel-core/register --recursive",
-    "test:watch": "npm test -- --watch",
     "extract": "node services/extract",
     "premail": "node services/premail"
   },
