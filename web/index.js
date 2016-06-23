@@ -76,7 +76,7 @@ function api (__DEV__) {
         'serverURL': 'http://0.0.0.0:5000/parse',
         'appId': process.env.PARSE_SERVER_APPLICATION_ID,
         'masterKey': process.env.PARSE_SERVER_MASTER_KEY,
-        'appName': 'React Email Workflow'
+        'appName': 'react-email'
       }
     ],
     'users': [

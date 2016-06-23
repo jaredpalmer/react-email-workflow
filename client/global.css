@@ -151,6 +151,21 @@ textarea {
 input:focus,
 textarea:focus {
   outline: 0;
+  border: 1px solid #a6aebb;
+}
+
+input,
+textarea {
+  box-sizing: border-box;
+  font-family: -apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  transition: .2s border;
+  border: 1px solid #edeff1;
+  font-size: 1rem;
+  outline: none !important;
+  padding: 8px 10px;
+  border-radius: 2px;
+  -webkit-appearance: none;
+  display: inline-block;
 }
 
 fieldset {

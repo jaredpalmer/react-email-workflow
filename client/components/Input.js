@@ -13,7 +13,7 @@ class Input extends Component {
 
   componentDidMount () {
     if (this.props.autoFocus) {
-      ReactDOM.findDOMNode(this.refs.myInput).focus()
+      this.refs.myInput.focus()
     }
   }
 
@@ -44,7 +44,6 @@ class Input extends Component {
     return (rows
       ? <TextArea
         useCacheForDOMMeasurements
-        ref='myInput'
         rows={rows}
         onFocus={this.handleOnFocus.bind(this)}
         onBlur={this.handleOnBlur.bind(this)}
@@ -52,7 +51,6 @@ class Input extends Component {
         {...rest}
         />
       : <input
-        ref='myInput'
         onFocus={this.handleOnFocus.bind(this)}
         onBlur={this.handleOnBlur.bind(this)}
         style={inputStyle}

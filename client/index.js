@@ -4,6 +4,10 @@ import './global.css'
 // Both configureStore and Root are required conditionally.
 import configureStore from './store/configureStore'
 import Root from './containers/Root'
+import Parse from 'parse'
+
+Parse.initialize('react-email')
+Parse.serverURL = 'http://0.0.0.0:5000/parse'
 
 const store = configureStore()
 const rootEl = document.getElementById('root')

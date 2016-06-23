@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import { Block, Col, Row } from 'jsxstyle'
 import L from '../LayoutConstants'
-import { H4 } from '../components/Type'
+import { H2 } from '../components/Type'
+import { Link } from 'react-router'
+import Parse from 'parse'
+
+Parse.initialize('react-email')
+Parse.serverURL = 'http://0.0.0.0:5000/parse'
+
 export default class App extends Component {
   render () {
     return (
@@ -18,7 +24,7 @@ export default class App extends Component {
           background={L.blue}
           zIndex='999999'
         >
-          <H4 color='#ffffff'>React Emails</H4>
+          <H2 color='#ffffff' fonrWeight='bold'>twork</H2>
           <Row alignItems='center'>
             <Block marginRight='1rem'>
               <a style={{
@@ -30,7 +36,7 @@ export default class App extends Component {
                 <i className='ion ion-social-twitter' />
               </a>
             </Block>
-            <Block>
+            <Block marginRight='1rem'>
               <a style={{
                 fontSize: '1.5rem',
                 color: '#ffffff'
@@ -38,6 +44,12 @@ export default class App extends Component {
                 href='https://github.com/jaredpalmer/react-email-workflow'
                 target='_blank'>
                 <i className='ion ion-social-github' /></a>
+            </Block>
+            <Block>
+              <Link to='/logout' style={{
+                fontSize: '1.5rem',
+                color: '#ffffff'
+              }}><i className='ion ion-android-exit' /></Link>
             </Block>
           </Row>
         </Row>
