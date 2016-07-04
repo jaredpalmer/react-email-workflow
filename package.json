@@ -64,7 +64,7 @@
     "react": "15.1.0",
     "react-dnd": "2.1.4",
     "react-dnd-html5-backend": "2.1.2",
-    "react-dom": "15.1.0",
+    "react-dom": "15.2.0",
     "react-redux": "4.4.5",
     "react-textarea-autosize": "4.0.3",
     "redux": "3.5.2",
