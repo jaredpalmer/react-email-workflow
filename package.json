@@ -58,7 +58,7 @@
     "jsxstyle": "petehunt/jsxstyle",
     "lodash": "4.13.1",
     "logfmt": "1.2.0",
-    "moment": "2.13.0",
+    "moment": "2.14.0",
     "node-uuid": "1.4.7",
     "premailer-api": "1.0.4",
     "react": "15.1.0",
