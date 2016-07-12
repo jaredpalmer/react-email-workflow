@@ -450,8 +450,8 @@ function createHTML (data, cb) {
                         <table cellpadding="0" cellspacing="0" border="0" align="center">
                           <tr>
                             <td width="498" align="center" class="fine-print">
-                              Copyright © 2015 Shelly Palmer. SLP Productions, Inc., PO Box 1455, New York, NY 10156-1455, USA. You are receiving this email because you opted in at our
-                              website shellypalmer.com. If you don't want to receive these emails from ShellyPalmer in the future, please click: unsubscribe
+                              Copyright © 2016 Shelly Palmer. All Rights Reserved. SLP Productions, Inc., PO Box 1455, New York, NY 10156-1455, USA. You are receiving this email because you opted in at our
+                              website shellypalmer.com. If you don't want to receive these emails from ShellyPalmer in the future, please click: <a href="optoutlink1">unsubscribe</a>
                             </td>
                           </tr>
                         </table>
