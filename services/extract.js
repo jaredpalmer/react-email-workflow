@@ -5,6 +5,7 @@ const jackrabbit = require('jackrabbit')
 const throng = require('throng')
 const logger = require('logfmt')
 const axios = require('axios')
+const Metascraper = require('metascraper')
 
 const CONCURRENCY = process.env.CONCURRENCY || 1
 const RABBIT_URL = process.env.CLOUDAMQP_URL || 'amqp://guest:guest@localhost:5672'
@@ -33,29 +34,31 @@ function start () {
     logger.log(message)
     const timer = logger.time('extract.post').namespace(message)
     const uri = encodeURIComponent(message.url)
-    const enc = `http://api.embed.ly/1/extract?key=${process.env.EMBEDLY}&url=${uri}`
-    axios.get(enc).then(response => {
-      timer.log()
-      const { data } = response
-      const updates = {
-        url: data.url,
-        title: data.title,
-        content: data.description,
-        author: data.provider_name, // eslint-disable-line
-        image: data.images[0] === undefined ? null : data.images[0].url
-      }
-      logger.log(Object.assign({}, {type: 'info'}, updates))
-      reply(updates)
-    }).catch(e => {
-      timer.log()
-      const data = {
-        type: 'error',
-        error_code: e.data.error_code,   // eslint-disable-line
-        error_message: e.data.error_message, // eslint-disable-line
-      }
-      logger.log({ type: 'info', message: e.data.error_message }) // eslint-disable-line
-      reply(data)
-    })
+    // const enc = `http://api.embed.ly/1/extract?key=${process.env.EMBEDLY}&url=${uri}`
+    Metascraper
+      .scrapeUrl(message.url)
+      .then(data => {
+        timer.log()
+        const updates = {
+          url: data.url,
+          title: data.title,
+          content: data.description,
+          author: data.publisher, // eslint-disable-line
+          image: data.image
+        }
+        logger.log(Object.assign({}, {type: 'info'}, updates))
+        reply(updates)
+      }).catch(e => {
+        timer.log()
+        logger.error(e)
+        const data = {
+          type: 'error',
+          error_code: e.data.error_code,   // eslint-disable-line
+          error_message: e.data.error_message, // eslint-disable-line
+        }
+        logger.log({ type: 'info', message: e.data.error_message }) // eslint-disable-line
+        reply(data)
+      })
   }
 
   function onError (err) {
