@@ -35,7 +35,7 @@
     "assets-webpack-plugin": "^3.4.0",
     "axios": "0.13.1",
     "babel-cli": "6.10.1",
-    "babel-core": "6.10.4",
+    "babel-core": "6.11.4",
     "babel-loader": "6.2.4",
     "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-react-inline-elements": "6.8.0",
