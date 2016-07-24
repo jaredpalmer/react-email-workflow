@@ -56,7 +56,7 @@
     "jackrabbit": "4.3.0",
     "json-loader": "^0.5.4",
     "jsxstyle": "petehunt/jsxstyle",
-    "lodash": "4.13.1",
+    "lodash": "4.14.0",
     "logfmt": "1.2.0",
     "moment": "2.14.1",
     "node-uuid": "1.4.7",
