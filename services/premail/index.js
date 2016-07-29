@@ -4,7 +4,7 @@ const http = require('http')
 const jackrabbit = require('jackrabbit')
 const throng = require('throng')
 const logger = require('logfmt')
-const premailer = require('premailer-api')
+const juice = require('juice')
 const createHTML = require('./createHTML')
 
 const CONCURRENCY = process.env.CONCURRENCY || 1
@@ -33,16 +33,9 @@ function start () {
   function onPremail (message, reply) {
     logger.log({ type: 'info', message: `inlining email with ${message.elements.length} elements` })
     const timer = logger.time('premail.post').namespace({ type: 'info', 'elements.length': message.elements.length })
-    const timer2 = logger.time('createHTML').namespace({ type: 'info', 'elements.length': message.elements.length })
     createHTML(message, html => {
-      timer2.log()
-      premailer.prepare({ html, adapter: 'nokogiri' }, (err, email) => {
-        timer.log()
-        if (err) throw err
-        if (email.html) {
-          reply({ html: email.html })
-        }
-      })
+      timer.log()
+      reply({ html: juice(html, { removeStyleTags: false }) })
     })
   }
 
