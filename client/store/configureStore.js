@@ -3,17 +3,16 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from '../reducers'
 import thunk from 'redux-thunk'
 import axios from 'axios'
-import throttle from 'lodash/throttle'
-import { loadState, saveState } from './localStorage'
+import { persistStore, autoRehydrate } from 'redux-persist'
 
 export default function configureStore () {
-  const persistedState = loadState()
   const middlewares = [thunk.withExtraArgument({ axios })]
 
   const store = createStore(
     rootReducer,
-    persistedState,
+    undefined,
     compose(
+      autoRehydrate(),
       applyMiddleware(...middlewares),
       __DEV__ &&
       typeof window === 'object' &&
@@ -30,14 +29,7 @@ export default function configureStore () {
     )
   }
 
-  // Save state to localStorage every 1s
-  store.subscribe(throttle(() => {
-    saveState({
-      meta: store.getState().meta,
-      premail: store.getState().premail,
-      elements: store.getState().elements
-    })
-  }, 1000))
+  persistStore(store)
 
   return store
 }
