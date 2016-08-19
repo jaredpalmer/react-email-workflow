@@ -54,7 +54,7 @@ function api (__DEV__) {
     server.use(compression())
   }
 
-  server.use(express.static(path.join(__dirname, '../public')))
+  server.use(express.static('public'))
 
   server.use('/api/v0/extract', require('./extract'))
   server.use('/api/v0/premail', require('./premail'))

@@ -78,16 +78,15 @@ class Preview extends Component {
                   id='copy'
                   text={html}
                   onCopy={premailCopy}
-                  small
                 />
               </Block>
               <Block marginRight='.5rem'>
-                <Button onClick={() => premail()} primary small>
-                  <i className='ion ion-refresh' style={{ marginRight: '.5rem' }} />Refresh
+                <Button onClick={() => premail()} small='true'>
+                  <span><i className='ion ion-refresh' style={{ marginRight: '.5rem' }} />Refresh</span>
                 </Button>
               </Block>
               <Block>
-                <Button onClick={() => this.toggleHTML()} primary small>
+                <Button onClick={() => this.toggleHTML()} small='true'>
                   {!showHTML && <span><i className='ion ion-code' style={{ marginRight: '.5rem' }} />Show HTML</span>}
                   {showHTML && <span><i className='ion ion-eye' style={{ marginRight: '.5rem' }} />Show Preview</span>}
                 </Button>
