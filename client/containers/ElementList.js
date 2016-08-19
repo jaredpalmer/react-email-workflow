@@ -57,7 +57,7 @@ class ElementList extends Component {
             marginBottom='.5rem'
             marginRight='.5rem'
           >
-            <Button onClick={() => actions.add(ElementSchema.url)} primary>
+            <Button onClick={() => actions.add(ElementSchema.url)} >
               <Col fontSize='22px' justifyContent='center' alignItems='center'>
                 <i className='ion ion-link' />
                 <SmallText>Story</SmallText>
@@ -69,7 +69,7 @@ class ElementList extends Component {
             marginBottom='.5rem'
             marginRight='.5rem'
           >
-            <Button onClick={() => actions.add(ElementSchema.heading)} primary>
+            <Button onClick={() => actions.add(ElementSchema.heading)} >
               <Col fontSize='1rem' justifyContent='center' alignItems='center'>
                 <Block
                   fontWeight='bold'
@@ -86,7 +86,7 @@ class ElementList extends Component {
             marginBottom='.5rem'
             marginRight='.5rem'
           >
-            <Button onClick={() => actions.add(ElementSchema.text)} primary>
+            <Button onClick={() => actions.add(ElementSchema.text)} >
               <Col fontSize='1rem' justifyContent='center' alignItems='center'>
                 <Block
                   fontWeight='bold'
@@ -104,7 +104,7 @@ class ElementList extends Component {
             marginBottom='.5rem'
             marginRight='.5rem'
           >
-            <Button onClick={() => actions.add(ElementSchema.html)} primary>
+            <Button onClick={() => actions.add(ElementSchema.html)} >
               <Col fontSize='22px' justifyContent='center' alignItems='center'>
                 <i className='ion ion-code' />
                 <SmallText>HTML</SmallText>
