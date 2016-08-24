@@ -45,7 +45,7 @@
     "body-parser": "1.15.2",
     "classnames": "2.2.5",
     "clipboard": "1.5.12",
-    "codemirror": "5.17.0",
+    "codemirror": "5.18.0",
     "compression": "1.6.2",
     "cookie-parser": "1.4.3",
     "css-loader": "^0.24.0",
