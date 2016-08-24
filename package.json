@@ -81,7 +81,7 @@
     "isparta": "4.0.0",
     "mocha": "3.0.2",
     "redbox-react": "^1.2.9",
-    "standard": "^7.1.2",
+    "standard": "^8.0.0",
     "standard-format": "^2.2.1",
     "standard-loader": "^5.0.0",
     "webpack-dev-middleware": "^1.6.1",
