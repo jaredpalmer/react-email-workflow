@@ -56,7 +56,7 @@
     "jackrabbit": "4.3.0",
     "json-loader": "^0.5.4",
     "jsxstyle": "0.0.22",
-    "juice": "^2.0.0",
+    "juice": "^3.0.0",
     "lodash": "4.15.0",
     "logfmt": "1.2.0",
     "moment": "2.14.1",
