@@ -59,7 +59,7 @@
     "juice": "^3.0.1",
     "lodash": "4.15.0",
     "logfmt": "1.2.0",
-    "moment": "2.14.1",
+    "moment": "2.15.0",
     "node-uuid": "1.4.7",
     "premailer-api": "1.0.4",
     "react": "15.3.1",
