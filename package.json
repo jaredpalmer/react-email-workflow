@@ -85,7 +85,7 @@
     "standard-format": "^2.2.1",
     "standard-loader": "^5.0.0",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.13.1"
   },
   "engines": {
     "node": "6.2.2"
