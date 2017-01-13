@@ -178,7 +178,6 @@ function createHTML (data, cb) {
     }
     h1 {
       font-size: 38px;
-      text-transform: capitalize;
       font-weight: 300;
     }
     h2 {
@@ -218,7 +217,6 @@ function createHTML (data, cb) {
     .story-title {
       text-decoration: none;
       color: #141823;
-      text-transform: capitalize;
     }
     .story-excerpt {
       margin-bottom: 6px;
