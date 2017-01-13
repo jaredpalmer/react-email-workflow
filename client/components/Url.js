@@ -44,8 +44,7 @@ class Url extends Component {
                   fontWeight: 'bold',
                   color: '#141823',
                   lineHeight: '1.4',
-                  fontSize: '20px',
-                  textTransform: 'capitalize'
+                  fontSize: '20px'
                 }}
                 rows={1}
                 onChange={(e) => edit(id, { title: e.target.value })}
