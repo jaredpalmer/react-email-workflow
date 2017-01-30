@@ -73,7 +73,7 @@
     "style-loader": "^0.13.1",
     "throng": "4.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "webpack": "^2.2.1"
   },
   "devDependencies": {
     "babel-eslint": "6.1.2",
