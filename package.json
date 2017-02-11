@@ -42,7 +42,7 @@
     "babel-preset-es2015": "6.14.0",
     "babel-preset-react": "6.11.1",
     "babel-preset-stage-0": "6.5.0",
-    "body-parser": "1.15.2",
+    "body-parser": "1.16.1",
     "classnames": "2.2.5",
     "clipboard": "1.5.12",
     "codemirror": "5.18.2",
