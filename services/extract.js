@@ -42,11 +42,12 @@ function start() {
       .then(data => {
         timer.log();
         const payload = {
-          url: data.url,
-          title: data.title,
-          content: data.description,
-          author: data.publisher,
-          image: data.image,
+          url: data.url || message.url,
+          title: data.title || 'Unable to scrape title.',
+          content: data.description ||
+            "Error: Unable to scrape description from the provided url. You'll have to do this on your own.",
+          author: data.publisher || 'Unable to scrape author.',
+          image: data.image || '',
         };
         cache.put(message.url, payload, TWENTY_FOUR_HOURS);
         logger.log(Object.assign({}, { type: 'info' }, payload));
