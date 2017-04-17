@@ -1,12 +1,8 @@
 {
   "name": "react-email-workflow",
   "success_url": "/",
-  "scripts": {
-  },
+  "scripts": {},
   "env": {
-    "EMBEDLY": {
-      "required": true
-    },
     "CONCURRENCY": {
       "required": true,
       "value": "3"

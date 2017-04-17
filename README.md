@@ -24,7 +24,6 @@ A drag-and-drop newsletter design tool.
  - Node
  - RabbitMQ
  - Premailer
- - Embedly
 
 #### Getting started
 Open up your terminal and navigate to the directory of your choice. Clone the repository and install its dependencies.
@@ -36,19 +35,17 @@ npm install
 # if you don't have RabbitMQ installed locally yet...
 brew services install rabbitmq
 ```
-In order to get webscraping to work, you'll need an Embedly account and an API key.
 Create a `.env` file in your root directory as follows. If you are not running RabbitMQ locally,
 also enter your CLOUDAMQP_URL.
 ```bash
 # .env
-EMBEDLY=XXXXXXXXXXXXXXXXXX   # Embedly API Key
 CLOUDAMQP_URL=XXXXXXXXXXXXXXXXXXXX # RabbitMQ URL
 ```
 #### Run in development mode
 Enter the following command in your terminal:
 ```bash
 brew services start rabbitmq
-heroku local -f Procile.local
+heroku local -f Procfile.local
 ```
 This will start an Express server with Webpack Dev + Hot Middleware and on `localhost:5000`.
 It will watch for changes from the `client` dir.
