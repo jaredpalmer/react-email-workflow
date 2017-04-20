@@ -57,7 +57,7 @@
     "json-loader": "^0.5.4",
     "jsxstyle": "0.0.22",
     "juice": "^3.0.1",
-    "lodash": "4.15.0",
+    "lodash": "4.16.4",
     "logfmt": "1.2.0",
     "memory-cache": "^0.1.6",
     "metascraper": "^1.0.6",
