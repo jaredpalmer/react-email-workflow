@@ -71,7 +71,7 @@
     "react-redux": "4.4.5",
     "react-textarea-autosize": "4.0.5",
     "redux": "3.5.2",
-    "redux-thunk": "2.1.0",
+    "redux-thunk": "2.2.0",
     "style-loader": "^0.13.1",
     "throng": "4.0.0",
     "url-loader": "^0.5.7",
