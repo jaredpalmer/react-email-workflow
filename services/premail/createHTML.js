@@ -444,15 +444,7 @@ function createHTML (data, cb) {
                           </td>
                         </tr>
                       </table>
-                      <div class="footer">
-                        <table cellpadding="0" cellspacing="0" border="0" align="center">
-                          <tr>
-                            <td width="498" align="center" class="fine-print">
-                              Copyright © 2017 Shelly Palmer. All Rights Reserved. The Palmer Group, PO Box 1455, New York, NY 10156-1455, USA. You are receiving this email because you opted in at one of our websites. If you don't want to receive these emails from The Palmer Group in the future, please click: <a href="optoutlink1">unsubscribe</a> or visit <a href="http://www.shellypalmer.com/privacy/">shellypalmer.com/privacy</a>.
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
+   
                   </td>
                 </tr>
               </tbody>
