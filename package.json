@@ -61,7 +61,7 @@
     "logfmt": "1.2.0",
     "memory-cache": "^0.1.6",
     "metascraper": "^1.0.6",
-    "moment": "2.14.1",
+    "moment": "2.21.0",
     "node-uuid": "1.4.7",
     "premailer-api": "1.0.4",
     "react": "15.3.1",
@@ -90,7 +90,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "engines": {
-    "node": "6.2.2"
+    "node": "6.9.5"
   },
   "standard": {
     "parser": "babel-eslint"

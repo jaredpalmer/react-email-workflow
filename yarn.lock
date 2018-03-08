@@ -3805,7 +3805,11 @@ mocha@3.0.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
-moment@2.14.1, moment@^2.10.3:
+moment@2.21.0:
+  version "2.21.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
+
+moment@^2.10.3:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.14.1.tgz#b35b27c47e57ed2ddc70053d6b07becdb291741c"
 
