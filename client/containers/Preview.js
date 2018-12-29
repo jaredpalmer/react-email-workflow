@@ -21,18 +21,16 @@ class Preview extends Component {
     this.startPoll = this.startPoll.bind(this);
     this.toggleHTML = this.toggleHTML.bind(this);
   }
-
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { meta, elements, isLoading } = this.props;
     clearTimeout(this.timeout);
     if (
-      (meta !== nextProps.meta || elements !== nextProps.elements) &&
+      (meta !== prevProps.meta || elements !== prevProps.elements) &&
       !isLoading
     ) {
       this.startPoll();
     }
-  }
-  componentDidUpdate(prevProps, prevState) {
+
     if (prevState.showNuke !== this.state.showNuke) {
       if (this.state.showNuke) {
         setTimeout(() => {
