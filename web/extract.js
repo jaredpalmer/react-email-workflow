@@ -1,34 +1,68 @@
-'use strict'
+'use strict';
 
-const express = require('express')
-const { Router } = express
-const router = new Router()
-const jackrabbit = require('jackrabbit')
-
-const RABBIT_URL = process.env.CLOUDAMQP_URL || 'amqp://guest:guest@localhost:5672'
-const EXPIRATION = process.env.SERVICE_TIME || 3000
-
-const rabbit = jackrabbit(RABBIT_URL)
-const exchange = rabbit.default()
+const express = require('express');
+const { Router } = express;
+const router = new Router();
+const Metascraper = require('metascraper');
+const logger = require('logfmt');
+const cache = require('memory-cache');
+const TWENTY_FOUR_HOURS = 86400000;
 
 /**
  * POST Extract content from url.
  */
-router.post('/', getExtractionData, (req, res, next) => {
-  const data = res.locals.data
-  const status = data.error_code ? data.error_code : 200
-  res.status(status).json(data)
-})
-
-function getExtractionData (req, res, next) {
-  exchange.publish({ url: req.body.url }, {
-    expiration: EXPIRATION,
-    key: 'extract.post',
-    reply: (data) => {
-      res.locals.data = data
-      next()
+router.post('/', (req, res, next) => {
+  if (!req.body.url) {
+    return res.status(400).json({
+      type: 'error',
+      error_code: 400,
+      error_message: 'Invalid request. Missing url',
+    });
+  }
+  const timer = logger.time('extract.post').namespace(req.body.url);
+  Metascraper.scrapeUrl(req.body.url).then(
+    data => {
+      const payload = {
+        url: data.url || req.body.url || '',
+        title: data.title || 'Unable to scrape title.',
+        content:
+          data.description ||
+          "Error: Unable to scrape description from the provided url. You'll have to do this on your own.",
+        author: data.publisher || 'Unable to scrape author.',
+        image: data.image || '',
+      };
+      cache.put(req.body.url, payload, TWENTY_FOUR_HOURS);
+      logger.log(Object.assign({}, { type: 'info' }, payload));
+      res.status(200).json(payload);
+    },
+    e => {
+      timer.log();
+      if (e) {
+        const error_code = e && e.data && (e.data.error_code || 500);
+        const error_message =
+          e && e.data && (e.data.error_message || 'Something went wrong');
+        const data = {
+          type: 'error',
+          error_code,
+          error_message,
+        };
+        logger.log({
+          type: 'info',
+          message: error_message,
+        });
+        return res.status(500).json(data);
+      }
+      logger.log({
+        type: 'info',
+        message: 'Unable to scrape URL',
+      });
+      return res.status(500).json({
+        type: 'error',
+        error_code: 500,
+        error_message: 'Something went wrong',
+      });
     }
-  })
-}
+  );
+});
 
-module.exports = router
+module.exports = router;
