@@ -10,7 +10,7 @@ const web = require('./web');
 
 const RABBIT_URL =
   process.env.CLOUDAMQP_URL || 'amqp://guest:guest@localhost:5672';
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 const __DEV__ = process.env.NODE_ENV === 'development';
 
