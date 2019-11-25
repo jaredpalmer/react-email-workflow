@@ -426,7 +426,7 @@ function createHTML (data, cb) {
                         <tr>
                           <td width="498" class="container" align="center">
                             <h1><a class="logo" href="http://www.shellypalmer.com">ShellyPalmer</a></h1>
-                            <p class="tagline">Strategic Advisors</p>
+                            <p class="tagline">Think About This</p>
                             <p class="date">${moment(data.meta.date, moment.ISO_8601).format('dddd, MMMM D, YYYY')}</p>
                           </td>
                         </tr>
