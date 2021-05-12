@@ -1350,9 +1350,9 @@ codeclimate-test-reporter@^0.3.3:
     lcov-parse "0.0.10"
     request "~2.72.0"
 
-codemirror@5.18.2:
-  version "5.18.2"
-  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.18.2.tgz#55b42d0190f72ec86c13f25d945f347cabc16a8e"
+codemirror@5.58.2:
+  version "5.58.2"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.58.2.tgz#ed54a1796de1498688bea1cdd4e9eeb187565d1b"
 
 color-convert@^1.3.0:
   version "1.9.0"
