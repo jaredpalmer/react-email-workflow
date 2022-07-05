@@ -59,9 +59,9 @@ function createHTML(data, cb) {
       subtitle: 'Think About This',
     },
     metacademy: {
-      title: 'Metacademy',
-      url: 'https://metacademy.xyz',
-      subtitle: `Today's Top Stories in web3`,
+      title: 'Metacademy News',
+      url: 'https://metacademy.com',
+      subtitle: `Today's Top Stories about Web3`,
     },
   };
   const preset = presetOptions[data.meta.preset];
