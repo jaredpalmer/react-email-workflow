@@ -30,7 +30,7 @@ class Meta extends Component {
               }}
             >
               <option value="shelly">ShellyPalmer</option>
-              <option value="metacademy">Metacademy</option>
+              <option value="metacademy">Brand Innovators</option>
             </select>
           </Block>
         </Block>
