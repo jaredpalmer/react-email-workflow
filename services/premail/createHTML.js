@@ -59,9 +59,9 @@ function createHTML(data, cb) {
       subtitle: 'Think About This',
     },
     metacademy: {
-      title: 'Metacademy News',
-      url: 'https://metacademy.com',
-      subtitle: `Today's Top Stories about Web3`,
+      title: 'AI for Brand Marketers',
+      url: 'https://www.shellypalmer.com/blog',
+      subtitle: `By Shelly Palmer & Brand Innovators`,
     },
   };
   const preset = presetOptions[data.meta.preset];
