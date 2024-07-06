@@ -3,7 +3,7 @@ import expect from 'expect'
 import * as actions from '../client/actions/ElementActions'
 import * as types from '../client/constants/ActionTypes'
 import * as ElementSchema from '../client/constants/ElementSchema'
-import { v4 } from 'node-uuid'
+import { v4 } from 'uuid'
 
 describe('actions', () => {
   it('should create an action to add an element', () => {
