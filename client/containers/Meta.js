@@ -31,6 +31,8 @@ class Meta extends Component {
             >
               <option value="shelly">ShellyPalmer</option>
               <option value="metacademy">Brand Innovators</option>
+              <option value="aibrand">AI Innovators</option>
+                <option value="aibrand2">AI Innovators 2</option>
             </select>
           </Block>
         </Block>
