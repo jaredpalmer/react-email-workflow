@@ -68,7 +68,7 @@ function createHTML(data, cb) {
       url: 'https://www.shellypalmer.com/ai',
       subtitle: `Today's Top Stories in AI & Emerging Tech`,
     },
-    aibrand2: {
+    aibrandalt: {
       title: 'AI Innovators',
       url: 'https://www.shellypalmer.com/ai',
       subtitle: `By Shelly Palmer`,
