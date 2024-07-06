@@ -72,9 +72,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-amqplib@0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/amqplib/-/amqplib-0.4.0.tgz#9efe7656dda85a7359f664a2726e8e85229e124c"
+amqplib@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/amqplib/-/amqplib-0.4.2.tgz#5e4a2a914ccb3125f9cb91f6da07c97aa4cb13a6"
+  integrity sha512-B8iSyozIqKcR72wFeS+VrCYmzqyCIRKDnDr8nnz2FBsnpKjia4pqby2/r4FluhyaIzBqKGaldYWy95g0OKPHUA==
   dependencies:
     bitsyntax "~0.0.4"
     buffer-more-ints "0.0.2"
@@ -3191,13 +3192,14 @@ istanbul@^0.4.0:
     which "^1.1.1"
     wordwrap "^1.0.0"
 
-jackrabbit@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/jackrabbit/-/jackrabbit-4.3.0.tgz#c42f7e37766b8eb3bb48011612bea29bd8ba9516"
+jackrabbit@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/jackrabbit/-/jackrabbit-4.4.0.tgz#65b96667e4bf68ae9e58124c8bb6a68037588f74"
+  integrity sha512-iS2EsxgsViMxYGDqu3TA9y33lCGxijKdaZ66pTDWbkOc/3zgdP02NYue6CGRSnKdVPs4GEmT5/MzJbMEcs6y+w==
   dependencies:
-    amqplib "0.4.0"
+    amqplib "^0.4.2"
     lodash "^3.10.1"
-    node-uuid "1.4.7"
+    uuid "^3.3.2"
 
 jodid25519@^1.0.0:
   version "1.0.2"
@@ -3906,7 +3908,7 @@ node-pre-gyp@^0.6.29:
     tar "^2.2.1"
     tar-pack "^3.4.0"
 
-node-uuid@1.4.7, node-uuid@~1.4.7:
+node-uuid@~1.4.7:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.7.tgz#6da5a17668c4b3dd59623bda11cf7fa4c1f60a6f"
 
@@ -5713,9 +5715,19 @@ utils-merge@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.0.tgz#0294fb922bb9375153541c4f7096231f287c8af8"
 
+uuid@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-10.0.0.tgz#5a95aa454e6e002725c79055fd42aaba30ca6294"
+  integrity sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==
+
 uuid@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
+
+uuid@^3.3.2:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
+  integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
 v8flags@^2.0.10:
   version "2.0.12"

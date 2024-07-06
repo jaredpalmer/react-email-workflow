@@ -1,6 +1,6 @@
 import { ADD_ELEMENT, DESTROY_ELEMENT, EDIT_ELEMENT, MOVE_ELEMENT, EDIT_META, SHOW_CODE } from '../constants/ActionTypes'
 
-import { v4 } from 'node-uuid'
+import { v4 } from 'uuid'
 
 export function add (element) {
   return {

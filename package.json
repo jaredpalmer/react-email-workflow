@@ -53,7 +53,7 @@
     "express": "4.14.0",
     "file-loader": "^0.9.0",
     "helmet": "2.1.2",
-    "jackrabbit": "4.3.0",
+    "jackrabbit": "^4.4.0",
     "json-loader": "^0.5.4",
     "jsxstyle": "0.0.22",
     "juice": "^3.0.1",
@@ -62,7 +62,6 @@
     "memory-cache": "^0.1.6",
     "metascraper": "^1.0.6",
     "moment": "2.21.0",
-    "node-uuid": "1.4.7",
     "premailer-api": "1.0.4",
     "react": "15.3.1",
     "react-dnd": "2.1.4",
@@ -75,6 +74,7 @@
     "style-loader": "^0.13.1",
     "throng": "4.0.0",
     "url-loader": "^0.5.7",
+    "uuid": "^10.0.0",
     "webpack": "^1.13.1"
   },
   "devDependencies": {
