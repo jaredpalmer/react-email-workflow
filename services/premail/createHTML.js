@@ -63,6 +63,16 @@ function createHTML(data, cb) {
       url: 'https://www.shellypalmer.com/blog',
       subtitle: `By Shelly Palmer & Brand Innovators`,
     },
+    aibrand: {
+      title: 'AI Innovators',
+      url: 'https://www.shellypalmer.com/ai',
+      subtitle: `Today's Top Stories in AI & Emerging Tech`,
+    },
+    aibrand2: {
+      title: 'AI Innovators',
+      url: 'https://www.shellypalmer.com/ai',
+      subtitle: `By Shelly Palmer`,
+    },
   };
   const preset = presetOptions[data.meta.preset];
   const html = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
