@@ -1,11 +1,7 @@
 {
   "name": "spmail",
   "version": "0.1.0",
-  "private": true,
-  "engines": {
-    "node": "22.11.0",
-    "pnpm": "10.14.0"
-  },
+  "private": true,  
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -88,5 +84,10 @@
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.5",
     "typescript": "^5"
+  },
+  "cacheDirectories": [".next/cache"],
+  "engines": {
+    "node": "22.11.0",
+    "pnpm": "10.14.0"
   }
 }
