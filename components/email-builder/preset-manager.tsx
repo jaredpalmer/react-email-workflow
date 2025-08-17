@@ -107,7 +107,6 @@ export function PresetManager() {
             variant="outline"
             size="icon"
             className="h-9 w-9"
-            title="Manage presets"
           >
             <Settings2 className="h-4 w-4" />
           </Button>

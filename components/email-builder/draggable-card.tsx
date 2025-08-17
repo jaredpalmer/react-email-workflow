@@ -12,7 +12,12 @@ import {
   ChevronUp,
   ChevronDown,
   ChevronsUp,
-  ChevronsDown
+  ChevronsDown,
+  ArrowUpToLine,
+  ArrowDownToLine,
+  Link,
+  FileText,
+  Code
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -21,6 +26,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu'
 import {
   Tooltip,
@@ -29,7 +38,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import type { EmailElement } from '@/lib/atoms/editor'
-import { expandedElementIdAtom } from '@/lib/atoms/editor'
+import { expandedElementIdAtom, elementsAtom, elementSchemas } from '@/lib/atoms/editor'
 import { useAtom } from 'jotai'
 import { UrlElement } from './elements/url-element'
 import { MarkdownElement } from './elements/markdown-element'
@@ -53,6 +62,7 @@ function DraggableCardComponent({
   onMove 
 }: DraggableCardProps) {
   const [expandedElementId, setExpandedElementId] = useAtom(expandedElementIdAtom)
+  const [elements, setElements] = useAtom(elementsAtom)
   const isExpanded = expandedElementId === element.id
   const canExpand = true
   
@@ -67,6 +77,28 @@ function DraggableCardComponent({
   const handleDelete = useCallback(() => {
     onDelete(element.id)
   }, [element.id, onDelete])
+
+  const handleInsertAbove = useCallback((type: keyof typeof elementSchemas) => {
+    const newElement: EmailElement = {
+      id: `${type}-${Date.now()}`,
+      ...elementSchemas[type]
+    } as EmailElement
+    
+    const newElements = [...elements]
+    newElements.splice(index, 0, newElement)
+    setElements(newElements)
+  }, [index, elements, setElements])
+
+  const handleInsertBelow = useCallback((type: keyof typeof elementSchemas) => {
+    const newElement: EmailElement = {
+      id: `${type}-${Date.now()}`,
+      ...elementSchemas[type]
+    } as EmailElement
+    
+    const newElements = [...elements]
+    newElements.splice(index + 1, 0, newElement)
+    setElements(newElements)
+  }, [index, elements, setElements])
   
   const handleMoveTop = useCallback(() => onMove(element.id, 'top'), [element.id, onMove])
   const handleMoveUp = useCallback(() => onMove(element.id, 'up'), [element.id, onMove])
@@ -150,6 +182,8 @@ function DraggableCardComponent({
                 <p>Drag to reorder</p>
               </TooltipContent>
             </Tooltip>
+
+            <div className="h-px w-4 bg-border my-1" />
 
             {/* Move to top */}
             <Tooltip>
@@ -243,13 +277,57 @@ function DraggableCardComponent({
                   <p>More options</p>
                 </TooltipContent>
               </Tooltip>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="start" side="right" className="w-48">
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    <ArrowUpToLine className="h-4 w-4 mr-2" />
+                    Insert Above
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => handleInsertAbove('url')}>
+                      <Link className="h-4 w-4 mr-2" />
+                      Story
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleInsertAbove('markdown')}>
+                      <FileText className="h-4 w-4 mr-2" />
+                      Markdown
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleInsertAbove('html')}>
+                      <Code className="h-4 w-4 mr-2" />
+                      HTML
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    <ArrowDownToLine className="h-4 w-4 mr-2" />
+                    Insert Below
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => handleInsertBelow('url')}>
+                      <Link className="h-4 w-4 mr-2" />
+                      Story
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleInsertBelow('markdown')}>
+                      <FileText className="h-4 w-4 mr-2" />
+                      Markdown
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleInsertBelow('html')}>
+                      <Code className="h-4 w-4 mr-2" />
+                      HTML
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                
+                <DropdownMenuSeparator />
+                
                 <DropdownMenuItem
                   onClick={handleDelete}
                   className="text-destructive focus:text-destructive"
                 >
                   <Trash2 className="h-4 w-4 mr-2 text-destructive" />
-                  Delete Element
+                  Delete
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
