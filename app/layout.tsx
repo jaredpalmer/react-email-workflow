@@ -1,10 +1,8 @@
 'use client'
 
+import { Provider as JotaiProvider } from 'jotai';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Provider as JotaiProvider } from 'jotai'
-import { Github, Twitter } from 'lucide-react'
-import Link from 'next/link'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

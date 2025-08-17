@@ -5,7 +5,7 @@ import { expandedElementIdAtom, elementsAtom } from '@/lib/atoms/editor'
 import type { EmailElement } from '@/lib/atoms/editor'
 import { Button } from '@/components/ui/button'
 import { X, Code, Link, FileText, WrapText } from 'lucide-react'
-import CodeMirror from '@uiw/react-codemirror'
+import CodeMirror, { type ReactCodeMirrorRef } from '@uiw/react-codemirror'
 import { html } from '@codemirror/lang-html'
 import { markdown } from '@codemirror/lang-markdown'
 import { EditorView } from '@codemirror/view'
@@ -58,7 +58,7 @@ export function ExpandedElementView() {
   const [expandedElementId, setExpandedElementId] = useAtom(expandedElementIdAtom)
   const [elements, setElements] = useAtom(elementsAtom)
   const [wrapText, setWrapText] = useState(true)
-  const editorRef = useRef<any>(null)
+  const editorRef = useRef<ReactCodeMirrorRef>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const editorHeight = useEditorHeight(containerRef)
   

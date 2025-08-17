@@ -39,7 +39,6 @@ export function PresetManager() {
   })
 
   const activePresetId = meta.presetId || 'default'
-  const activePreset = presets.find(p => p.id === activePresetId) || presets[0]
 
   const handleSwitchPreset = (presetId: string) => {
     setMeta(prev => ({ ...prev, presetId }))
