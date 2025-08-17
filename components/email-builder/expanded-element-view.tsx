@@ -14,7 +14,7 @@ import { MarkdownToolbar } from './markdown-toolbar'
 import { useState, useRef, useEffect, useCallback } from 'react'
 
 // Custom hook for managing editor height
-function useEditorHeight(containerRef: React.RefObject<HTMLDivElement>) {
+function useEditorHeight(containerRef: React.RefObject<HTMLDivElement | null>) {
   const [height, setHeight] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const calculatedHeight = window.innerHeight - 42 - 32 - 40
