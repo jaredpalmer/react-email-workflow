@@ -284,6 +284,10 @@ function DraggableCardComponent({
                     Insert Above
                   </DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => handleInsertAbove('html')}>
+                      <Code className="h-4 w-4 mr-2 text-purple-600" />
+                      HTML
+                    </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleInsertAbove('url')}>
                       <Link className="h-4 w-4 mr-2 text-blue-600" />
                       Story
@@ -291,10 +295,6 @@ function DraggableCardComponent({
                     <DropdownMenuItem onClick={() => handleInsertAbove('markdown')}>
                       <FileText className="h-4 w-4 mr-2 text-green-600" />
                       Markdown
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleInsertAbove('html')}>
-                      <Code className="h-4 w-4 mr-2 text-purple-600" />
-                      HTML
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -305,6 +305,10 @@ function DraggableCardComponent({
                     Insert Below
                   </DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => handleInsertBelow('html')}>
+                      <Code className="h-4 w-4 mr-2 text-purple-600" />
+                      HTML
+                    </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleInsertBelow('url')}>
                       <Link className="h-4 w-4 mr-2 text-blue-600" />
                       Story
@@ -312,10 +316,6 @@ function DraggableCardComponent({
                     <DropdownMenuItem onClick={() => handleInsertBelow('markdown')}>
                       <FileText className="h-4 w-4 mr-2 text-green-600" />
                       Markdown
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleInsertBelow('html')}>
-                      <Code className="h-4 w-4 mr-2 text-purple-600" />
-                      HTML
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>

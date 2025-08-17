@@ -150,19 +150,19 @@ export function EditorPanel() {
       {/* Fixed Element Buttons at bottom */}
       <div className="absolute bottom-0 left-0 right-0 bg-background border-t px-8 py-4 z-20">
         <div className="grid grid-cols-3 gap-3 max-w-md mx-auto">
+          <Button variant="outline" onClick={() => handleAddElement('html')}>
+            <Code className="h-4 w-4 text-purple-600" />
+            <span>HTML</span>
+          </Button>
+          
           <Button variant="outline" onClick={() => handleAddElement('url')}>
             <Link className="h-4 w-4 text-blue-600" />
             <span>Story</span>
           </Button>
-          
+
           <Button variant="outline" onClick={() => handleAddElement('markdown')}>
             <FileText className="h-4 w-4 text-green-600" />
             <span>Markdown</span>
-          </Button>
-
-          <Button variant="outline" onClick={() => handleAddElement('html')}>
-            <Code className="h-4 w-4 text-purple-600" />
-            <span>HTML</span>
           </Button>
         </div>
       </div>
