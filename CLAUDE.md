@@ -72,8 +72,11 @@ The application follows a client-side state management pattern with Jotai atoms 
 
 - Always use `pnpm` and `pnpx` for package management
 - Path alias `@/` maps to project root
-- TypeScript strict mode is enabled
+- TypeScript strict mode is enabled (see tsconfig.json)
+- Node.js version requirement: >=20.0.0
 - The project was migrated from a legacy React 15 + Redux application
 - Email HTML generation logic in `createHTML.ts` must maintain backward compatibility
 - All state persistence uses localStorage via Jotai's `atomWithStorage`
 - Markdown content is processed through marked.js with custom CSS classes for email compatibility
+- Development server runs on http://localhost:3000 by default
+- Application name: "spmail" (see package.json)
