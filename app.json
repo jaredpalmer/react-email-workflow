@@ -1,26 +1,41 @@
 {
-  "name": "react-email-workflow",
+  "name": "spmail",
+  "description": "Email builder application with drag-and-drop interface for creating HTML emails",
+  "repository": "https://github.com/yourusername/spmail",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["nextjs", "react", "email", "builder", "typescript"],
   "success_url": "/",
-  "scripts": {},
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
   "env": {
-    "CONCURRENCY": {
-      "required": true,
-      "value": "3"
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "NEXT_PUBLIC_APP_URL": {
+      "description": "The URL of your application",
+      "required": false
     }
   },
   "formation": {
     "web": {
       "quantity": 1,
       "size": "hobby"
-    },
-    "premail": {
-      "quantity": 1,
-      "size": "hobby"
     }
   },
-  "image": "heroku/nodejs",
   "addons": [
-    "cloudamqp:lemur",
-    "papertrail"
-  ]
+    {
+      "plan": "papertrail:choklad",
+      "options": {
+        "required": false
+      }
+    }
+  ],
+  "scripts": {
+    "postdeploy": "echo 'Deployment complete!'"
+  }
 }
