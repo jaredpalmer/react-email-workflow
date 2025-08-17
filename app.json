@@ -4,7 +4,7 @@
   "repository": "https://github.com/jaredpalmer/react-email-workflow",
   "keywords": ["nextjs", "react", "email", "builder", "typescript"],
   "success_url": "/",
-  "stack": "heroku-22",
+  "stack": "heroku-24",
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -23,7 +23,7 @@
   "formation": {
     "web": {
       "quantity": 1,
-      "size": "hobby"
+      "size": "basic"
     }
   },
   "addons": [
