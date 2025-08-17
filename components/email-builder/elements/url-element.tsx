@@ -1,12 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import type { EmailElement } from '@/lib/atoms/editor'
+import { useAtom } from 'jotai'
+import { newlyAddedElementIdAtom } from '@/lib/atoms/editor'
 
 interface UrlElementProps {
   element: EmailElement
@@ -16,6 +18,25 @@ interface UrlElementProps {
 export function UrlElement({ element, onUpdate }: UrlElementProps) {
   const [urlInput, setUrlInput] = useState(element.url || '')
   const [fetching, setFetching] = useState(false)
+  const [newlyAddedElementId, setNewlyAddedElementId] = useAtom(newlyAddedElementIdAtom)
+  const inputRef = useRef<HTMLInputElement>(null)
+  
+  // Auto-focus when this element is newly added
+  useEffect(() => {
+    if (newlyAddedElementId === element.id) {
+      // Use setTimeout to ensure the element is rendered and scrolled into view
+      const timeoutId = setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus()
+          inputRef.current.select() // Also select the text for easier replacement
+        }
+        // Clear the newly added element ID after focusing
+        setNewlyAddedElementId(null)
+      }, 300)
+      
+      return () => clearTimeout(timeoutId)
+    }
+  }, [newlyAddedElementId, element.id, setNewlyAddedElementId])
 
   const handleFetch = async () => {
     if (!urlInput.trim()) return
@@ -68,6 +89,7 @@ export function UrlElement({ element, onUpdate }: UrlElementProps) {
       {/* URL Input with Fetch Button */}
       <div className="flex gap-2">
         <Input
+          ref={inputRef}
           placeholder="Paste your link here and press Enter..."
           value={urlInput}
           onChange={(e) => {
@@ -76,7 +98,6 @@ export function UrlElement({ element, onUpdate }: UrlElementProps) {
           }}
           onKeyDown={handleKeyDown}
           className="flex-1 text-sm"
-          autoFocus
         />
         <Button
           size="sm"

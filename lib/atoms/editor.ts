@@ -57,6 +57,7 @@ export const isLoadingAtom = atom(false)
 export const premailHtmlAtom = atom<string>('')
 export const hasCopiedAtom = atom(false)
 export const expandedElementIdAtom = atom<string | null>(null)
+export const newlyAddedElementIdAtom = atom<string | null>(null)
 
 // Element schemas (matching legacy ElementSchema.js)
 export const elementSchemas = {

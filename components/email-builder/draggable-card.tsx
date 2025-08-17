@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useEffect, useRef } from 'react'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { 
@@ -38,7 +38,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import type { EmailElement } from '@/lib/atoms/editor'
-import { expandedElementIdAtom, elementsAtom, elementSchemas } from '@/lib/atoms/editor'
+import { expandedElementIdAtom, elementsAtom, elementSchemas, newlyAddedElementIdAtom } from '@/lib/atoms/editor'
 import { useAtom } from 'jotai'
 import { UrlElement } from './elements/url-element'
 import { MarkdownElement } from './elements/markdown-element'
@@ -63,11 +63,29 @@ function DraggableCardComponent({
 }: DraggableCardProps) {
   const [expandedElementId, setExpandedElementId] = useAtom(expandedElementIdAtom)
   const [elements, setElements] = useAtom(elementsAtom)
+  const [newlyAddedElementId, setNewlyAddedElementId] = useAtom(newlyAddedElementIdAtom)
   const isExpanded = expandedElementId === element.id
   const canExpand = true
+  const cardRef = useRef<HTMLDivElement>(null)
   
   const isFirst = index === 0
   const isLast = index === totalElements - 1
+  
+  // Scroll into view and focus when this element is newly added
+  useEffect(() => {
+    if (newlyAddedElementId === element.id) {
+      // Use requestAnimationFrame to ensure DOM is updated
+      requestAnimationFrame(() => {
+        // Scroll the card into view
+        if (cardRef.current) {
+          cardRef.current.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center'
+          })
+        }
+      })
+    }
+  }, [newlyAddedElementId, element.id])
   
   // Memoize callbacks to prevent unnecessary re-renders
   const handleToggleExpand = useCallback(() => {
@@ -87,7 +105,8 @@ function DraggableCardComponent({
     const newElements = [...elements]
     newElements.splice(index, 0, newElement)
     setElements(newElements)
-  }, [index, elements, setElements])
+    setNewlyAddedElementId(newElement.id)
+  }, [index, elements, setElements, setNewlyAddedElementId])
 
   const handleInsertBelow = useCallback((type: keyof typeof elementSchemas) => {
     const newElement: EmailElement = {
@@ -98,7 +117,8 @@ function DraggableCardComponent({
     const newElements = [...elements]
     newElements.splice(index + 1, 0, newElement)
     setElements(newElements)
-  }, [index, elements, setElements])
+    setNewlyAddedElementId(newElement.id)
+  }, [index, elements, setElements, setNewlyAddedElementId])
   
   const handleMoveTop = useCallback(() => onMove(element.id, 'top'), [element.id, onMove])
   const handleMoveUp = useCallback(() => onMove(element.id, 'up'), [element.id, onMove])
@@ -113,6 +133,12 @@ function DraggableCardComponent({
     transition,
     isDragging,
   } = useSortable({ id: element.id })
+  
+  // Combine refs
+  const setRefs = useCallback((node: HTMLDivElement | null) => {
+    setNodeRef(node)
+    cardRef.current = node
+  }, [setNodeRef])
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -134,7 +160,7 @@ function DraggableCardComponent({
 
   return (
     <Card
-      ref={setNodeRef}
+      ref={setRefs}
       style={style}
       className={`relative overflow-hidden ${isDragging ? 'opacity-50 will-change-transform' : ''}`}
     >

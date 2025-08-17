@@ -23,6 +23,7 @@ import {
   metaAtom,
   elementSchemas,
   expandedElementIdAtom,
+  newlyAddedElementIdAtom,
 } from '@/lib/atoms/editor';
 import type { EmailElement } from '@/lib/atoms/editor';
 import { ElementList } from './element-list';
@@ -35,6 +36,7 @@ export function EditorPanel() {
   const [meta, setMeta] = useAtom(metaAtom);
   const [elements, setElements] = useAtom(elementsAtom);
   const [expandedElementId] = useAtom(expandedElementIdAtom);
+  const [, setNewlyAddedElementId] = useAtom(newlyAddedElementIdAtom);
   const [datePopoverOpen, setDatePopoverOpen] = React.useState(false);
 
   const handleAddElement = (type: keyof typeof elementSchemas) => {
@@ -44,6 +46,7 @@ export function EditorPanel() {
     } as EmailElement;
 
     setElements([...elements, newElement]);
+    setNewlyAddedElementId(newElement.id);
   };
 
   const handleDateSelect = (date: Date | undefined) => {
