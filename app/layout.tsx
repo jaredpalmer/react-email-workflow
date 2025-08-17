@@ -2,6 +2,7 @@
 
 import { Provider as JotaiProvider } from 'jotai';
 import { Geist, Geist_Mono } from "next/font/google";
+import { LocalStorageMigrator } from '@/components/localStorage-migrator';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,6 +26,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <JotaiProvider>
+          <LocalStorageMigrator />
           <div className="h-screen flex flex-col overflow-hidden bg-background">            
             
             {/* Main Content - Takes remaining height */}
