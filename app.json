@@ -1,8 +1,7 @@
 {
   "name": "spmail",
   "description": "Email builder application with drag-and-drop interface for creating HTML emails",
-  "repository": "https://github.com/yourusername/spmail",
-  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "repository": "https://github.com/jaredpalmer/react-email-workflow",
   "keywords": ["nextjs", "react", "email", "builder", "typescript"],
   "success_url": "/",
   "stack": "heroku-22",
