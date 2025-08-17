@@ -45,7 +45,7 @@ export const presetsAtom = atomWithStorage<EmailPreset[]>('emailPresets', [
     name: 'ShellyPalmer',
     title: 'ShellyPalmer',
     url: 'https://www.shellypalmer.com',
-    subtitle: 'STRATEGIC ADVISORS',
+    subtitle: 'Think about this',
     isDefault: true
   }
 ])

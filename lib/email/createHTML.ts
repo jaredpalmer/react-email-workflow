@@ -90,7 +90,7 @@ export function createHTML({
   } : {
     title: 'ShellyPalmer',
     url: 'https://www.shellypalmer.com',
-    subtitle: 'STRATEGIC ADVISORS',
+    subtitle: 'Think about this',
   }
 
   const html = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

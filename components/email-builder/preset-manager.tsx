@@ -202,7 +202,7 @@ export function PresetManager() {
                 id="subtitle"
                 value={formData.subtitle}
                 onChange={(e) => setFormData(prev => ({ ...prev, subtitle: e.target.value }))}
-                placeholder="e.g., STRATEGIC ADVISORS"
+                placeholder="e.g., Think about this"
               />
             </div>
           </div>
