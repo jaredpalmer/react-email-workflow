@@ -1,2 +1,0 @@
-web: NODE_ENV=development npm start
-premail: NODE_ENV=development npm run premail
