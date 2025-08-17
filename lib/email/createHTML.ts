@@ -215,7 +215,16 @@ export function createHTML({
     }
     a {
       color: #0070ff;
-      text-decoration: underline;
+      text-decoration: none;
+    }
+    h1 a,
+    h2 a,
+    h3 a,
+    h4 a,
+    h5 a,
+    h6 a {
+      color: inherit;
+      text-decoration: none;
     }
     .story-title {
       text-decoration: none;
@@ -365,7 +374,16 @@ export function createHTML({
     }
     .markdown-content a {
       color: #0070ff;
-      text-decoration: underline;
+      text-decoration: none;
+    }
+    .markdown-h1 a,
+    .markdown-h2 a,
+    .markdown-h3 a,
+    .markdown-h4 a,
+    .markdown-h5 a,
+    .markdown-h6 a {
+      color: inherit;
+      text-decoration: none;
     }
     .markdown-code {
       background-color: #f4f4f4;
