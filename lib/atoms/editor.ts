@@ -59,6 +59,9 @@ export const hasCopiedAtom = atom(false)
 export const expandedElementIdAtom = atom<string | null>(null)
 export const newlyAddedElementIdAtom = atom<string | null>(null)
 
+// Template selection
+export const templateTypeAtom = atomWithStorage<'old' | 'new'>('emailTemplateType', 'new')
+
 // Element schemas (matching legacy ElementSchema.js)
 export const elementSchemas = {
   url: {

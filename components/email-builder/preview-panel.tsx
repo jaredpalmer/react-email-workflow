@@ -3,6 +3,13 @@
 import { useAtom } from 'jotai'
 import { Copy, RefreshCw, Code, Eye, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { 
   previewModeAtom, 
   premailHtmlAtom, 
@@ -10,7 +17,8 @@ import {
   elementsAtom,
   metaAtom,
   presetsAtom,
-  isLoadingAtom
+  isLoadingAtom,
+  templateTypeAtom
 } from '@/lib/atoms/editor'
 import clipboardCopy from 'clipboard-copy'
 import { useEffect, useState } from 'react'
@@ -24,6 +32,7 @@ export function PreviewPanel() {
   const [elements, setElements] = useAtom(elementsAtom)
   const [meta, setMeta] = useAtom(metaAtom)
   const [presets] = useAtom(presetsAtom)
+  const [templateType, setTemplateType] = useAtom(templateTypeAtom)
   const [showNuke, setShowNuke] = useState(false)
 
   // Create a debounced key that updates less frequently
@@ -31,6 +40,7 @@ export function PreviewPanel() {
     elements: typeof elements
     meta: typeof meta
     presets: typeof presets
+    template: typeof templateType
     timestamp: number
   } | null>(null)
   
@@ -42,22 +52,22 @@ export function PreviewPanel() {
     
     // Debounce the key update by 500ms to avoid excessive requests while typing
     const timer = setTimeout(() => {
-      setDebouncedKey({ elements, meta, presets, timestamp: Date.now() })
+      setDebouncedKey({ elements, meta, presets, template: templateType, timestamp: Date.now() })
     }, 500)
     
     return () => clearTimeout(timer)
-  }, [elements, meta, presets])
+  }, [elements, meta, presets, templateType])
 
   // Fetch premail HTML when debounced key changes
   const { mutate: refreshPremail } = useSWR(
     debouncedKey ? ['/api/premail', debouncedKey] : null,
-    async ([url, { elements, meta, presets }]) => {
+    async ([url, { elements, meta, presets, template }]) => {
       setIsLoading(true)
       try {
         const response = await fetch(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ elements, meta, presets })
+          body: JSON.stringify({ elements, meta, presets, template })
         })
         if (response.ok) {
           const data = await response.json()
@@ -122,7 +132,20 @@ export function PreviewPanel() {
     <div className="h-full flex flex-col">
       {/* Preview Header */}
       <div className="h-[42px] min-h-[42px] bg-background border-b flex items-center justify-between px-4">
-        <span className="text-sm font-medium">Preview</span>
+        <div className="flex items-center gap-3">
+          <span className="text-sm font-medium">Preview</span>
+          
+          {/* Template Selector */}
+          <Select value={templateType} onValueChange={(value) => setTemplateType(value as 'old' | 'new')}>
+            <SelectTrigger className="h-8 w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="new">New Template</SelectItem>
+              <SelectItem value="old">Old Template (2017)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
         
         <div className="flex items-center gap-2">
           {premailHtml && (
