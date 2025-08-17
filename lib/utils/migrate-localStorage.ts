@@ -29,7 +29,9 @@ export function migrateLocalStorage(): void {
     // Migrate elements (only url and html kinds)
     if (oldState.elements && Array.isArray(oldState.elements)) {
       const migratedElements: EmailElement[] = oldState.elements
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .filter((el: any) => el.kind === 'url' || el.kind === 'html')
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .map((el: any) => ({
           id: el.id,
           kind: el.kind,
