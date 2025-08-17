@@ -335,7 +335,7 @@ function DraggableCardComponent({
         </TooltipProvider>
 
         {/* Element Content */}
-        <div className="flex-1 p-3 pr-10 min-w-0">
+        <div className="flex-1 p-3 min-w-0">
           {renderElement()}
         </div>
       </div>
