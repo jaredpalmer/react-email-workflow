@@ -285,15 +285,15 @@ function DraggableCardComponent({
                   </DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
                     <DropdownMenuItem onClick={() => handleInsertAbove('url')}>
-                      <Link className="h-4 w-4 mr-2" />
+                      <Link className="h-4 w-4 mr-2 text-blue-600" />
                       Story
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleInsertAbove('markdown')}>
-                      <FileText className="h-4 w-4 mr-2" />
+                      <FileText className="h-4 w-4 mr-2 text-green-600" />
                       Markdown
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleInsertAbove('html')}>
-                      <Code className="h-4 w-4 mr-2" />
+                      <Code className="h-4 w-4 mr-2 text-purple-600" />
                       HTML
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>
@@ -306,15 +306,15 @@ function DraggableCardComponent({
                   </DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
                     <DropdownMenuItem onClick={() => handleInsertBelow('url')}>
-                      <Link className="h-4 w-4 mr-2" />
+                      <Link className="h-4 w-4 mr-2 text-blue-600" />
                       Story
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleInsertBelow('markdown')}>
-                      <FileText className="h-4 w-4 mr-2" />
+                      <FileText className="h-4 w-4 mr-2 text-green-600" />
                       Markdown
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleInsertBelow('html')}>
-                      <Code className="h-4 w-4 mr-2" />
+                      <Code className="h-4 w-4 mr-2 text-purple-600" />
                       HTML
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>

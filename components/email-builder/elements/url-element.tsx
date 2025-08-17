@@ -61,7 +61,7 @@ export function UrlElement({ element, onUpdate }: UrlElementProps) {
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-2 mb-2">
-        <Link className="h-4 w-4 text-muted-foreground" />
+        <Link className="h-4 w-4 text-blue-600" />
         <span className="text-sm font-medium">Story</span>
       </div>
       

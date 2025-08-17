@@ -14,7 +14,7 @@ export function HtmlElement({ element, onUpdate }: HtmlElementProps) {
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-2 mb-2">
-        <Code className="h-4 w-4 text-muted-foreground" />
+        <Code className="h-4 w-4 text-purple-600" />
         <span className="text-sm font-medium">HTML</span>
       </div>
       

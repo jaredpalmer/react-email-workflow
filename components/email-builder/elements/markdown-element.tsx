@@ -14,7 +14,7 @@ export function MarkdownElement({ element, onUpdate }: MarkdownElementProps) {
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-2 mb-2">
-        <FileText className="h-4 w-4 text-muted-foreground" />
+        <FileText className="h-4 w-4 text-green-600" />
         <span className="text-sm font-medium">Markdown</span>
       </div>
       
