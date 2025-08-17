@@ -57,19 +57,47 @@ const renderElements = (elements: EmailElement[]): string => {
     .map((element) => {
       switch (element.kind) {
         case 'url':
-          const cta = 'Read More'
-          return `<h3><a class="story-title" href="${element.url || '#'}">${element.title || 'Untitled'}</a></h3>
-            <p class="story-excerpt"><a class="story-excerpt-link" href="${element.url || '#'}">${element.description || element.content || ''}</a></p>
-            <p class="story-author"><a class="story-author-link" href="${element.url || '#'}">${cta}<span class="more"> · ${element.author || ''}</span></a></p>`
+          // Modern story structure with better spacing
+          return `
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
+              <tr>
+                <td style="padding: 0;">
+                  <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; line-height: 1.3;">
+                    <a href="${element.url || '#'}" style="color: #111111; text-decoration: none;">${element.title || 'Untitled'}</a>
+                  </h3>
+                  <p style="margin: 0 0 8px 0; font-size: 16px; line-height: 1.5; color: #666666;">
+                    ${element.description || element.content || ''}
+                  </p>
+                  <p style="margin: 0; font-size: 14px; color: #999999;">
+                    ${element.author ? `<span>${element.author}</span> · ` : ''}
+                    <a href="${element.url || '#'}" style="color: #0070ff; text-decoration: none;">Read more ›</a>
+                  </p>
+                </td>
+              </tr>
+            </table>`
         case 'markdown':
-          return `<div class="markdown-content">${renderMarkdown(element.content || '')}</div>`
+          return `
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
+              <tr>
+                <td style="padding: 0;">
+                  ${renderMarkdown(element.content || '')}
+                </td>
+              </tr>
+            </table>`
         case 'html':
-          return element.content || ''
+          return `
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
+              <tr>
+                <td style="padding: 0;">
+                  ${element.content || ''}
+                </td>
+              </tr>
+            </table>`
         default:
           return ''
       }
     })
-    .join(' ')
+    .join('')
 }
 
 export function createHTML({ 
@@ -96,51 +124,18 @@ export function createHTML({
   const html = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="x-apple-disable-message-reformatting" />
     <title>${meta.subject || ''}</title>
+    <!--[if mso]>
     <style type="text/css">
-    .btn {
-      -premailer-cellpadding: 0;
-      -premailer-cellspacing: 0;
-      -premailer-width: 100%;
-      width: 100%;
-    }
-    .btn > tr > td {
-      padding-bottom: 15px;
-    }
-    .btn table {
-      -premailer-cellpadding: 0;
-      -premailer-cellspacing: 0;
-      -premailer-width: auto;
-      width: auto;
-    }
-    .btn table td {
-      background-color: #fff;
-      border-radius: 5px;
-      text-align: center;
-    }
-    .btn a {
-      background-color: #fff;
-      border: solid 1px #0070ff;
-      border-radius: 5px;
-      color: #0070ff;
-      cursor: pointer;
-      display: inline-block;
-      font-size: 14px;
-      font-weight: bold;
-      margin: 0;
-      padding: 12px 25px;
-      text-decoration: none;
-    }
-    .btn-primary table td {
-      background-color: #0070ff;
-    }
-    .btn-primary a {
-      background-color: #0070ff;
-      border-color: #0050dd;
-      color: #fff;
-    }
+    body, table, td, a { font-family: Arial, sans-serif !important; }
+    table { border-collapse: collapse; }
+    </style>
+    <![endif]-->
+    <style type="text/css">
+    /* Removed button styles as per requirement */
     #outlook a {
       padding: 0;
     }
@@ -150,9 +145,10 @@ export function createHTML({
       -ms-text-size-adjust: 100%;
       margin: 0;
       padding: 0;
-      font-family: -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      color: #141823;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #111111;
       background-color: #ffffff;
+      mso-line-height-rule: exactly;
     }
     .ExternalClass {
       width: 100%;
@@ -165,11 +161,13 @@ export function createHTML({
     .ExternalClass div {
       line-height: 100%;
     }
-    #backgroundTable {
-      margin: 0;
-      padding: 10px;
-      width: 100% !important;
-      line-height: 100% !important;
+    /* Container styles */
+    .container {
+      width: 100%;
+      max-width: 600px;
+    }
+    .padding {
+      padding: 0 20px;
     }
     body {
       -webkit-font-smoothing: antialiased;
@@ -181,40 +179,52 @@ export function createHTML({
     h2,
     h3,
     h4 {
-      color: #141823 !important;
-      font-family: -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-weight: bold;
-      line-height: 1.4em;
+      color: #111111 !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      line-height: 1.3;
       margin: 0;
-      margin-bottom: 6px;
+      mso-line-height-rule: exactly;
     }
     h1 {
-      font-size: 38px;
-      font-weight: 300;
+      font-size: 40px;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
     h2 {
       font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
     h3 {
       font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
     h4 {
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
     p,
     ul,
     ol {
-      font-family: -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 16px;
-      font-weight: normal;
+      font-weight: 400;
       margin: 0;
       margin-bottom: 16px;
-      line-height: 24px;
-      color: #141823;
+      line-height: 1.5;
+      color: #111111;
+      mso-line-height-rule: exactly;
     }
     a {
       color: #0070ff;
+      text-decoration: none;
+    }
+    /* Gmail blue link prevention */
+    u + #body a {
+      color: inherit;
       text-decoration: none;
     }
     h1 a,
@@ -226,151 +236,140 @@ export function createHTML({
       color: inherit;
       text-decoration: none;
     }
-    .story-title {
-      text-decoration: none;
-      color: #141823;
-    }
-    .story-excerpt {
-      margin-bottom: 6px;
-    }
-    .story-excerpt-link {
-      text-decoration: none;
-      color: #595f6c;
-    }
-    .story-author {
-      margin-bottom: 36px;
-    }
-    .story-author-link {
-      text-decoration: none;
-      color: #0070ff;
-    }
-    .story-author .more {
-      color: #595f6c;
-    }
+    /* Removed old story classes - now using inline styles */
     .logo {
-      color: #141823;
-      font-size: 38px;
-      letter-spacing: -0.03em;
+      color: #111111;
+      font-size: 40px;
+      letter-spacing: -0.02em;
       text-decoration: none;
       font-weight: bold;
       display: block;
-      margin-top: 24px;
-      margin-bottom: 6px;
-      line-height: 1;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      mso-line-height-rule: exactly;
     }
     .tagline {
       display: block;
       font-size: 14px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       margin-top: 8px;
       color: #0070ff;
+      font-weight: 400;
     }
     .date {
-      color: #595f6c;
-      font-size: 14px;
+      color: #999999;
+      font-size: 12px;
       text-transform: uppercase;
-      margin: 24px 0;
+      margin: 20px 0 30px 0;
       display: block;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
+      font-weight: 400;
     }
     .fine-print {
-      font-size: 11px;
-      color: #b7b7b7;
-      line-height: 1.1;
-      font-family: -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      color: #999999;
+      line-height: 1.4;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     .fine-print a {
-      font-size: 11px;
-      line-height: 1.1;
+      font-size: 12px;
+      line-height: 1.4;
       color: #0070ff;
     }
-    .markdown-content {
-      margin-bottom: 36px;
-    }
+    /* Markdown content now wrapped in tables */
     .markdown-p {
-      font-family: -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 16px;
-      font-weight: normal;
+      font-weight: 400;
       margin: 0;
       margin-bottom: 16px;
-      line-height: 24px;
-      color: #595f6c;
+      line-height: 1.5;
+      color: #666666;
+      mso-line-height-rule: exactly;
     }
     .markdown-ul,
     .markdown-ol {
-      font-family: -apple-system,BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 16px;
-      font-weight: normal;
+      font-weight: 400;
       margin: 0;
       margin-bottom: 16px;
-      line-height: 24px;
-      color: #595f6c;
+      line-height: 1.5;
+      color: #666666;
       padding-left: 20px;
+      mso-line-height-rule: exactly;
     }
     .markdown-li {
       margin-bottom: 8px;
-      line-height: 24px;
-      color: #595f6c;
+      line-height: 1.5;
+      color: #666666;
     }
     .markdown-blockquote {
       border-left: 3px solid #0070ff;
       padding-left: 16px;
       margin: 16px 0;
-      color: #595f6c;
+      color: #666666;
       font-style: italic;
     }
     .markdown-h1 {
       font-size: 32px;
-      font-weight: bold;
-      color: #141823;
+      font-weight: 600;
+      color: #111111;
       margin: 0;
       margin-bottom: 16px;
-      line-height: 1.4em;
+      line-height: 1.3;
       letter-spacing: -0.01em;
+      mso-line-height-rule: exactly;
     }
     .markdown-h2 {
       font-size: 24px;
-      font-weight: bold;
-      color: #141823;
+      font-weight: 600;
+      color: #111111;
       margin: 0;
       margin-bottom: 12px;
-      line-height: 1.4em;
+      line-height: 1.3;
       letter-spacing: -0.01em;
+      mso-line-height-rule: exactly;
     }
     .markdown-h3 {
       font-size: 20px;
-      font-weight: bold;
-      color: #141823;
+      font-weight: 600;
+      color: #111111;
       margin: 0;
       margin-bottom: 10px;
-      line-height: 1.4em;
+      line-height: 1.3;
+      mso-line-height-rule: exactly;
     }
     .markdown-h4 {
       font-size: 16px;
-      font-weight: bold;
-      color: #141823;
+      font-weight: 600;
+      color: #111111;
       margin: 0;
       margin-bottom: 8px;
-      line-height: 1.4;
+      line-height: 1.3;
+      mso-line-height-rule: exactly;
     }
     .markdown-h5 {
       font-size: 14px;
-      font-weight: bold;
-      color: #141823;
+      font-weight: 600;
+      color: #111111;
       margin: 0;
       margin-bottom: 6px;
-      line-height: 1.4;
+      line-height: 1.3;
+      mso-line-height-rule: exactly;
     }
     .markdown-h6 {
       font-size: 12px;
-      font-weight: bold;
-      color: #141823;
+      font-weight: 600;
+      color: #111111;
       margin: 0;
       margin-bottom: 4px;
-      line-height: 1.4;
+      line-height: 1.3;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      mso-line-height-rule: exactly;
     }
     .markdown-content a {
       color: #0070ff;
@@ -386,14 +385,14 @@ export function createHTML({
       text-decoration: none;
     }
     .markdown-code {
-      background-color: #f4f4f4;
+      background-color: #f7f7f7;
       padding: 2px 4px;
       border-radius: 3px;
       font-family: 'Courier New', Courier, monospace;
       font-size: 14px;
     }
     .markdown-pre {
-      background-color: #f4f4f4;
+      background-color: #f7f7f7;
       padding: 12px;
       border-radius: 4px;
       overflow-x: auto;
@@ -407,10 +406,10 @@ export function createHTML({
       padding: 0;
     }
     .markdown-hr {
-      background-color: #eee;
+      background-color: #dddddd;
       border: none;
       height: 1px;
-      margin: 24px 0;
+      margin: 20px 0;
     }
     .markdown-table {
       width: 100%;
@@ -420,26 +419,26 @@ export function createHTML({
       font-size: 14px;
     }
     .markdown-thead {
-      background-color: #f6f8fa;
+      background-color: #f7f7f7;
     }
     .markdown-th {
       padding: 8px 12px;
-      border: 1px solid #d1d5da;
+      border: 1px solid #dddddd;
       text-align: left;
       font-weight: 600;
-      color: #141823;
+      color: #111111;
     }
     .markdown-td {
       padding: 8px 12px;
-      border: 1px solid #d1d5da;
-      color: #141823;
+      border: 1px solid #dddddd;
+      color: #111111;
     }
     .markdown-tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background-color: #f7f7f7;
     }
     .markdown-del {
       text-decoration: line-through;
-      color: #595f6c;
+      color: #999999;
     }
     .markdown-checkbox {
       margin-right: 6px;
@@ -449,24 +448,23 @@ export function createHTML({
       height: auto;
       margin: 16px 0;
     }
+    /* Preheader optimization moved to HTML */
     .preheader {
-      color: transparent;
-      display: none;
-      height: 0;
-      max-height: 0;
-      max-width: 0;
+      display: none !important;
+      font-size: 1px;
+      line-height: 1px;
+      max-height: 0px;
+      max-width: 0px;
       opacity: 0;
       overflow: hidden;
       mso-hide: all;
-      visibility: hidden;
-      width: 0;
     }
     hr {
-      background-color: #eee;
-      color: #eee;
-      border: 1px solid #eee;
-      margin: 48px auto;
-      width: 50px;
+      background-color: #dddddd;
+      border: none;
+      height: 1px;
+      margin: 40px auto;
+      width: 60px;
     }
     .bodyImage {
       height: auto !important;
@@ -474,57 +472,66 @@ export function createHTML({
       width: 100% !important;
       margin-bottom: 16px;
     }
-    @media only screen and (max-width: 480px) {
-      .bodyImage {
-        height: auto !important;
-        max-width: 498px !important;
+    /* Mobile responsive styles */
+    @media only screen and (max-width: 600px) {
+      table[class="container"] {
         width: 100% !important;
-        margin-bottom: 16px;
+      }
+      td[class="padding"] {
+        padding: 10px !important;
+      }
+      h1 {
+        font-size: 32px !important;
+      }
+      .logo {
+        font-size: 32px !important;
       }
     }
     </style>
   </head>
-  <body>
-    <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
-      <tbody>
-        <tr>
-          <td width="500" valign="top">
-            <table cellpadding="0" cellspacing="0" border="0" align="center">
-              <tbody>
-                <tr>
-                  <td width="498" class="container" valign="top">
-                    <table>
-                    </table>
-                      <span class="preheader">${meta.preheader || ''}</span>
-                      <table cellpadding="0" cellspacing="0" border="0" align="center">
-                        <tr>
-                          <td width="498" class="container" align="center">
-                            <h1><a class="logo" href="${preset.url}">${preset.title}</a></h1>
-                            <p class="tagline">${preset.subtitle}</p>
-                            <p class="date">${formatDate(meta.date || new Date().toISOString())}</p>
-                          </td>
-                        </tr>
-                      </table>
-                      <table class="main">
-                        <tr>
-                          <td class="wrapper">
-                            <table>
-                              <tr>
-                                <td>
-                                 ${renderElements(elements)}
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+  <body id="body" style="margin: 0; padding: 0;">
+    <!-- Preheader text optimized for inbox preview -->
+    <div class="preheader" style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all;">
+      ${meta.preheader || meta.subject || ''}
+      &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+      &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+    </div>
+    
+    <!-- Bulletproof container structure -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="min-width: 100%;">
+      <tr>
+        <td align="center" style="padding: 20px 10px;">
+          <!--[if mso]>
+          <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+          <tr>
+          <td align="center" valign="top" width="600">
+          <![endif]-->
+          
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="container">
+            <!-- Header -->
+            <tr>
+              <td align="center" style="padding: 0 20px;">
+                <h1><a class="logo" href="${preset.url}">${preset.title}</a></h1>
+                <p class="tagline">${preset.subtitle}</p>
+                <p class="date">${formatDate(meta.date || new Date().toISOString())}</p>
+              </td>
+            </tr>
+            
+            <!-- Content -->
+            <tr>
+              <td style="padding: 0 20px;" class="padding">
+                ${renderElements(elements)}
+              </td>
+            </tr>
+          </table>
+          
+          <!--[if mso]>
           </td>
-        </tr>
-      </tbody>
+          </tr>
+          </table>
+          <![endif]-->
+        </td>
+      </tr>
     </table>
   </body>
   </html>`
