@@ -86,7 +86,6 @@
   "cacheDirectories": [".next/cache"],
   "engines": {
     "node": "22.11.0",
-    "pnpm": "10.14.0",
-    "npm": "11.5.2"
+    "pnpm": "10.14.0"
   }
 }
