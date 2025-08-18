@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import { FileText } from 'lucide-react'
 import CodeMirror from '@uiw/react-codemirror'
 import { markdown } from '@codemirror/lang-markdown'
+import { EditorView } from '@codemirror/view'
 import type { EmailElement } from '@/lib/atoms/editor'
 import { useAtom } from 'jotai'
 import { newlyAddedElementIdAtom } from '@/lib/atoms/editor'
@@ -51,7 +52,7 @@ export function MarkdownElement({ element, onUpdate }: MarkdownElementProps) {
           value={element.content || ''}
           height="200px"
           theme={undefined}
-          extensions={[markdown()]}
+          extensions={[markdown(), EditorView.lineWrapping]}
           onChange={(value) => onUpdate(element.id, { content: value })}
           placeholder="Write markdown content..."
           basicSetup={{

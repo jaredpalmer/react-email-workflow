@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import type { EmailElement } from '@/lib/atoms/editor'
 import { useAtom } from 'jotai'
 import { newlyAddedElementIdAtom } from '@/lib/atoms/editor'
+import { toast } from 'sonner'
 
 interface UrlElementProps {
   element: EmailElement
@@ -39,7 +40,10 @@ export function UrlElement({ element, onUpdate }: UrlElementProps) {
   }, [newlyAddedElementId, element.id, setNewlyAddedElementId])
 
   const handleFetch = async () => {
-    if (!urlInput.trim()) return
+    if (!urlInput.trim()) {
+      toast.error('Please enter a URL')
+      return
+    }
     
     setFetching(true)
     try {
@@ -59,14 +63,13 @@ export function UrlElement({ element, onUpdate }: UrlElementProps) {
           content: metadata.description || '', // Store description as content for rendering
           image: metadata.image || ''
         })
+      } else {
+        throw new Error('Failed to fetch metadata')
       }
     } catch (error) {
       console.error('Failed to fetch URL metadata:', error)
-      onUpdate(element.id, {
-        title: 'Error fetching metadata',
-        author: 'ERROR',
-        content: ''
-      })
+      toast.error('Failed to fetch story details. Please check the URL and try again.')
+      // Don't update fields on error, let user manually enter them
     } finally {
       setFetching(false)
     }
@@ -108,41 +111,39 @@ export function UrlElement({ element, onUpdate }: UrlElementProps) {
         </Button>
       </div>
       
-      {/* Show fields only after we have data */}
-      {element.title && (
-        <div className="space-y-2">
-          <Input
-            placeholder="Title"
-            value={element.title || ''}
-            onChange={(e) => onUpdate(element.id, { title: e.target.value })}
-            className="text-sm font-semibold"
-          />
-          
-          <Textarea
-            placeholder="Description"
-            value={element.content || element.description || ''}
-            onChange={(e) => onUpdate(element.id, { 
-              content: e.target.value,
-              description: e.target.value 
-            })}
-            className="text-sm min-h-[60px] resize-none"
-          />
-          
-          <Input
-            placeholder="Author"
-            value={element.author || ''}
-            onChange={(e) => onUpdate(element.id, { author: e.target.value })}
-            className="text-sm"
-          />
-          
-          {/* {element.image && (
-            <div className="mt-2 p-2 bg-muted rounded overflow-hidden">
-              <Label className="text-xs text-muted-foreground">Image URL</Label>
-              <p className="text-xs truncate" title={element.image}>{element.image}</p>
-            </div>
-          )} */}
-        </div>
-      )}
+      {/* Always show all fields for manual entry */}
+      <div className="space-y-2">
+        <Input
+          placeholder="Title"
+          value={element.title || ''}
+          onChange={(e) => onUpdate(element.id, { title: e.target.value })}
+          className="text-sm font-semibold"
+        />
+        
+        <Textarea
+          placeholder="Description"
+          value={element.content || element.description || ''}
+          onChange={(e) => onUpdate(element.id, { 
+            content: e.target.value,
+            description: e.target.value 
+          })}
+          className="text-sm min-h-[60px] resize-none"
+        />
+        
+        <Input
+          placeholder="Publication"
+          value={element.author || ''}
+          onChange={(e) => onUpdate(element.id, { author: e.target.value })}
+          className="text-sm"
+        />
+        
+        {/* {element.image && (
+          <div className="mt-2 p-2 bg-muted rounded overflow-hidden">
+            <Label className="text-xs text-muted-foreground">Image URL</Label>
+            <p className="text-xs truncate" title={element.image}>{element.image}</p>
+          </div>
+        )} */}
+      </div>
     </div>
   )
 }

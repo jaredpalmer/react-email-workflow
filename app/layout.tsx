@@ -3,6 +3,7 @@
 import { Provider as JotaiProvider } from 'jotai';
 import { Geist, Geist_Mono } from "next/font/google";
 import { LocalStorageMigrator } from '@/components/localStorage-migrator';
+import { Toaster } from '@/components/ui/sonner';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,6 +35,7 @@ export default function RootLayout({
               {children}
             </main>
           </div>
+          <Toaster />
         </JotaiProvider>
       </body>
     </html>

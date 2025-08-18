@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import { Code } from 'lucide-react'
 import CodeMirror from '@uiw/react-codemirror'
 import { html } from '@codemirror/lang-html'
+import { EditorView } from '@codemirror/view'
 import type { EmailElement } from '@/lib/atoms/editor'
 import { useAtom } from 'jotai'
 import { newlyAddedElementIdAtom } from '@/lib/atoms/editor'
@@ -51,7 +52,7 @@ export function HtmlElement({ element, onUpdate }: HtmlElementProps) {
           value={element.content || ''}
           height="200px"
           theme={undefined} // Use light theme
-          extensions={[html()]}
+          extensions={[html(), EditorView.lineWrapping]}
           onChange={(value) => onUpdate(element.id, { content: value })}
           placeholder="Enter HTML content..."
           basicSetup={{
