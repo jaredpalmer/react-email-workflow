@@ -1,6 +1,20 @@
 import { NextResponse } from 'next/server'
 import { unfurl } from 'unfurl.js'
 
+interface UnfurlMetadata {
+  title?: string
+  description?: string
+  author?: string
+  canonical_url?: string
+  favicon?: string
+  open_graph?: {
+    images?: Array<{ url?: string }>
+  }
+  twitter_card?: {
+    images?: Array<{ url?: string }>
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const { url } = await request.json()
@@ -12,11 +26,11 @@ export async function POST(request: Request) {
       )
     }
 
-    let metadata: any = {}
+    let metadata: UnfurlMetadata = {}
     
     try {
       // Try to extract metadata using unfurl
-      metadata = await unfurl(url)
+      metadata = await unfurl(url) as UnfurlMetadata
     } catch (unfurlError) {
       // If unfurl fails, still try to extract what we can from the URL
       console.warn('Unfurl failed for URL:', url, unfurlError)
@@ -24,7 +38,7 @@ export async function POST(request: Request) {
     }
     
     // Extract title and publication from the full title
-    let fullTitle = metadata.title || ''
+    const fullTitle = metadata.title || ''
     let cleanTitle = fullTitle
     let publication = ''
     
@@ -48,7 +62,7 @@ export async function POST(request: Request) {
         if (publication) {
           publication = publication.charAt(0).toUpperCase() + publication.slice(1)
         }
-      } catch (e) {
+      } catch {
         // Invalid URL, leave publication empty
       }
     }
