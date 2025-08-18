@@ -135,12 +135,12 @@ export function UrlElement({ element, onUpdate }: UrlElementProps) {
             className="text-sm"
           />
           
-          {element.image && (
+          {/* {element.image && (
             <div className="mt-2 p-2 bg-muted rounded overflow-hidden">
               <Label className="text-xs text-muted-foreground">Image URL</Label>
               <p className="text-xs truncate" title={element.image}>{element.image}</p>
             </div>
-          )}
+          )} */}
         </div>
       )}
     </div>
