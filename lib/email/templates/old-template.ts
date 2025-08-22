@@ -58,18 +58,20 @@ const renderElements = (elements: EmailElement[]): string => {
       switch (element.kind) {
         case 'url':
           const cta = 'Read More'
-          return `<h3><a class="story-title" href="${element.url || '#'}">${element.title || 'Untitled'}</a></h3>
+          return `<div class="story-wrapper">
+            <h3><a class="story-title" href="${element.url || '#'}">${element.title || 'Untitled'}</a></h3>
             <p class="story-excerpt"><a class="story-excerpt-link" href="${element.url || '#'}">${element.description || element.content || ''}</a></p>
-            <p class="story-author"><a class="story-author-link" href="${element.url || '#'}">${cta}<span class="more"> · ${element.author || ''}</span></a></p>`
+            <p class="story-author"><a class="story-author-link" href="${element.url || '#'}">${cta}<span class="more"> · ${element.author || ''}</span></a></p>
+          </div>`
         case 'markdown':
           return `<div class="markdown-content">${renderMarkdown(element.content || '')}</div>`
         case 'html':
-          return element.content || ''
+          return `<div class="html-content">${element.content || ''}</div>`
         default:
           return ''
       }
     })
-    .join(' ')
+    .join('')
 }
 
 export function createOldTemplate({ 
@@ -226,6 +228,9 @@ export function createOldTemplate({
       color: inherit;
       text-decoration: none;
     }
+    .story-wrapper {
+      margin-bottom: 36px;
+    }
     .story-title {
       text-decoration: none;
       color: #141823;
@@ -238,7 +243,7 @@ export function createOldTemplate({
       color: #595f6c;
     }
     .story-author {
-      margin-bottom: 36px;
+      margin-bottom: 0;
     }
     .story-author-link {
       text-decoration: none;
@@ -246,6 +251,9 @@ export function createOldTemplate({
     }
     .story-author .more {
       color: #595f6c;
+    }
+    .html-content {
+      margin-bottom: 36px;
     }
     .logo {
       color: #141823;
