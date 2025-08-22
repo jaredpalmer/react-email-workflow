@@ -59,16 +59,16 @@ const renderElements = (elements: EmailElement[]): string => {
         case 'url':
           // Modern story structure with better spacing
           return `
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 30px;">
               <tr>
-                <td style="padding: 0;">
-                  <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; line-height: 1.3;">
+                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0;">
+                  <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; line-height: 1.3; mso-line-height-rule: exactly;">
                     <a href="${element.url || '#'}" style="color: #111111; text-decoration: none;">${element.title || 'Untitled'}</a>
                   </h3>
-                  <p style="margin: 0 0 8px 0; font-size: 16px; line-height: 1.5; color: #666666;">
+                  <p style="margin: 0 0 8px 0; font-size: 16px; line-height: 1.5; color: #666666; mso-line-height-rule: exactly;">
                     ${element.description || element.content || ''}
                   </p>
-                  <p style="margin: 0; font-size: 14px; color: #999999;">
+                  <p style="margin: 0; font-size: 14px; color: #999999; mso-line-height-rule: exactly;">
                     ${element.author ? `<span>${element.author}</span> · ` : ''}
                     <a href="${element.url || '#'}" style="color: #0070ff; text-decoration: none;">Read more ›</a>
                   </p>
@@ -77,18 +77,18 @@ const renderElements = (elements: EmailElement[]): string => {
             </table>`
         case 'markdown':
           return `
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 30px;">
               <tr>
-                <td style="padding: 0;">
+                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0;">
                   ${renderMarkdown(element.content || '')}
                 </td>
               </tr>
             </table>`
         case 'html':
           return `
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 30px;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 30px;">
               <tr>
-                <td style="padding: 0;">
+                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0;">
                   ${element.content || ''}
                 </td>
               </tr>
@@ -121,7 +121,7 @@ export function createNewTemplate({
     subtitle: 'Think about this',
   }
 
-  const html = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  const html = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta name="viewport" content="initial-scale=1" />
@@ -453,13 +453,15 @@ export function createNewTemplate({
     }
     /* Preheader optimization moved to HTML */
     .preheader {
+      color: transparent;
       display: none !important;
-      font-size: 1px;
-      line-height: 1px;
+      font-size: 0px;
+      line-height: 0px;
       max-height: 0px;
       max-width: 0px;
       opacity: 0;
       overflow: hidden;
+      visibility: hidden;
       mso-hide: all;
     }
     hr {
@@ -501,8 +503,8 @@ export function createNewTemplate({
   </head>
   <body id="body" style="margin: 0; padding: 0;">
     <!-- Preheader text optimized for inbox preview -->
-    <div class="preheader" style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all;">
-      ${meta.preheader || meta.subject || ''}
+    <div style="color: transparent; visibility: hidden; opacity: 0; font-size: 0px; border: 0; max-height: 1px; width: 1px; margin: 0px; padding: 0px; border-width: 0px !important; display: none !important; line-height: 0px !important;">
+      <span>${meta.preheader || meta.subject || ''}</span>
       &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
       &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
     </div>
@@ -515,10 +517,10 @@ export function createNewTemplate({
       <![endif]-->
       <tr>
         <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-          <table border="0" cellpadding="0" cellspacing="0" width="100%" class="container">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" class="container" style="border-collapse: collapse;">
             <!-- Header -->
             <tr>
-              <td align="center" style="padding: 30px 20px;">
+              <td align="center" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 30px 20px;">
                 <h1><a class="logo" href="${preset.url}">${preset.title}</a></h1>
                 <p class="tagline">${preset.subtitle}</p>
                 <p class="date">${formatDate(meta.date || new Date().toISOString())}</p>
@@ -527,7 +529,7 @@ export function createNewTemplate({
             
             <!-- Content -->
             <tr>
-              <td style="padding: 0 20px;" class="padding">
+              <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0 20px;" class="padding">
                 ${renderElements(elements)}
               </td>
             </tr>
