@@ -59,36 +59,36 @@ const renderElements = (elements: EmailElement[]): string => {
         case 'url':
           // Modern story structure with better spacing
           return `
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 30px;">
+            <table class="story-container" width="100%" border="0" cellpadding="0" cellspacing="0">
               <tr>
-                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0;">
-                  <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; line-height: 1.3; mso-line-height-rule: exactly;">
-                    <a href="${element.url || '#'}" style="color: #111111; text-decoration: none;">${element.title || 'Untitled'}</a>
+                <td class="story-cell">
+                  <h3 class="story-title">
+                    <a href="${element.url || '#'}" class="story-title-link">${element.title || 'Untitled'}</a>
                   </h3>
-                  <p style="margin: 0 0 8px 0; font-size: 16px; line-height: 1.5; color: #666666; mso-line-height-rule: exactly;">
+                  <p class="story-description">
                     ${element.description || element.content || ''}
                   </p>
-                  <p style="margin: 0; font-size: 14px; color: #999999; mso-line-height-rule: exactly;">
+                  <p class="story-meta">
                     ${element.author ? `<span>${element.author}</span> · ` : ''}
-                    <a href="${element.url || '#'}" style="color: #0070ff; text-decoration: none;">Read more ›</a>
+                    <a href="${element.url || '#'}" class="story-readmore">Read more ›</a>
                   </p>
                 </td>
               </tr>
             </table>`
         case 'markdown':
           return `
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 30px;">
+            <table class="markdown-container" width="100%" border="0" cellpadding="0" cellspacing="0">
               <tr>
-                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0;">
+                <td class="markdown-cell">
                   ${renderMarkdown(element.content || '')}
                 </td>
               </tr>
             </table>`
         case 'html':
           return `
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 30px;">
+            <table class="html-container" width="100%" border="0" cellpadding="0" cellspacing="0">
               <tr>
-                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0;">
+                <td class="html-cell">
                   ${element.content || ''}
                 </td>
               </tr>
@@ -162,9 +162,34 @@ export function createNewTemplate({
       line-height: 100%;
     }
     /* Container styles */
+    .wrapper {
+      -webkit-font-smoothing: antialiased;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      max-width: 550px;
+      width: 100% !important;
+    }
+    .wrapper-cell {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
     .container {
       width: 100%;
       max-width: 550px;
+      border-collapse: collapse;
+    }
+    .header-cell {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+      padding: 30px 20px;
+    }
+    .content-cell {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+      padding: 0 20px;
     }
     .padding {
       padding: 0 20px;
@@ -277,6 +302,58 @@ export function createNewTemplate({
       font-size: 12px;
       line-height: 1.4;
       color: #0070ff;
+    }
+    /* Story container styles */
+    .story-container {
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    .story-cell {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+      padding: 0;
+    }
+    .story-title {
+      margin: 0 0 8px 0;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+      mso-line-height-rule: exactly;
+    }
+    .story-title-link {
+      color: #111111;
+      text-decoration: none;
+    }
+    .story-description {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #666666;
+      mso-line-height-rule: exactly;
+    }
+    .story-meta {
+      margin: 0;
+      font-size: 14px;
+      color: #999999;
+      mso-line-height-rule: exactly;
+    }
+    .story-readmore {
+      color: #0070ff;
+      text-decoration: none;
+    }
+    /* Element container styles */
+    .markdown-container,
+    .html-container {
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    .markdown-cell,
+    .html-cell {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+      padding: 0;
     }
     /* Markdown content now wrapped in tables */
     .markdown-p {
@@ -503,24 +580,24 @@ export function createNewTemplate({
   </head>
   <body id="body" style="margin: 0; padding: 0;">
     <!-- Preheader text optimized for inbox preview -->
-    <div style="color: transparent; visibility: hidden; opacity: 0; font-size: 0px; border: 0; max-height: 1px; width: 1px; margin: 0px; padding: 0px; border-width: 0px !important; display: none !important; line-height: 0px !important;">
+    <div class="preheader">
       <span>${meta.preheader || meta.subject || ''}</span>
       &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
       &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
     </div>
     
     <!-- Simplified container structure -->
-    <table id="wrapper" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="-webkit-font-smoothing: antialiased; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; max-width: 550px; width: 100% !important;">
+    <table id="wrapper" class="wrapper" width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
       <!--[if mso]>
       <tr><td>
       <table border="0" cellpadding="0" cellspacing="0" width="550">
       <![endif]-->
       <tr>
-        <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-          <table border="0" cellpadding="0" cellspacing="0" width="100%" class="container" style="border-collapse: collapse;">
+        <td class="wrapper-cell">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" class="container">
             <!-- Header -->
             <tr>
-              <td align="center" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 30px 20px;">
+              <td align="center" class="header-cell">
                 <h1><a class="logo" href="${preset.url}">${preset.title}</a></h1>
                 <p class="tagline">${preset.subtitle}</p>
                 <p class="date">${formatDate(meta.date || new Date().toISOString())}</p>
@@ -529,7 +606,7 @@ export function createNewTemplate({
             
             <!-- Content -->
             <tr>
-              <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0 20px;" class="padding">
+              <td class="content-cell padding">
                 ${renderElements(elements)}
               </td>
             </tr>
