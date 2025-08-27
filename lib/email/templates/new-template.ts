@@ -19,6 +19,26 @@ const formatDate = (dateString: string): string => {
   return date.toLocaleDateString('en-US', options).toUpperCase()
 }
 
+const createChatGPTPrompt = (title: string, url: string): string => {
+  return `Based on what you know about me from previous chats, tell me more about this:\n\n"${title}"\n${url}`
+//   return `\
+// <context>
+//   <title>${title}</title>
+//   <link>${url}</link>
+// </context> 
+// <instruction>
+//   You are an business and tech expert talking to a broad audience of business executives.
+//   Research and familiarize yourself with the above topic in <context>, then write an Axios-style article about the topic followed by suggested additional reading.
+//   Cite your sources. Do not include any other text in your response except the report. Do not reference this prompt in any way. 
+//   Remember, you are writing for business executives who want more info about a topic or news event.
+// </instruction>`
+}
+
+const createChatGPTLink = (title: string, url: string): string => {
+  const prompt = createChatGPTPrompt(title || 'this article', url || '')
+  return `https://chatgpt.com?q=${encodeURIComponent(prompt)}`
+}
+
 const renderMarkdown = (content: string): string => {
   // Process markdown to HTML
   let html = marked.parse(content || '') as string
@@ -59,38 +79,57 @@ const renderElements = (elements: EmailElement[]): string => {
         case 'url':
           // Modern story structure with better spacing
           return `
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 30px;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
               <tr>
-                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0;">
+                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                   <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; line-height: 1.3; mso-line-height-rule: exactly;">
                     <a href="${element.url || '#'}" style="color: #111111; text-decoration: none;">${element.title || 'Untitled'}</a>
                   </h3>
                   <p style="margin: 0 0 8px 0; font-size: 16px; line-height: 1.5; color: #666666; mso-line-height-rule: exactly;">
                     ${element.description || element.content || ''}
                   </p>
-                  <p style="margin: 0; font-size: 14px; color: #999999; mso-line-height-rule: exactly;">
-                    ${element.author ? `<span>${element.author}</span> · ` : ''}
-                    <a href="${element.url || '#'}" style="color: #0070ff; text-decoration: none;">Read more ›</a>
-                  </p>
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                    <tr>
+                      <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 14px; color: #999999;">
+                        ${element.author ? `<span>${element.author}</span> · ` : ''}
+                        <a href="${element.url || '#'}" style="color: #0070ff; text-decoration: none;">Read more ›</a>
+                      </td>
+                      <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: right; font-size: 14px;">
+                        <a href="${createChatGPTLink(element.title || '', element.url || '')}" style="color: #0070ff; text-decoration: none;">Open in ChatGPT ›</a>
+                      </td>
+                    </tr>
+                  </table>
                 </td>
+              </tr>
+              <!-- Spacer row for consistent vertical spacing in Outlook -->
+              <tr>
+                <td height="30" style="font-size: 0; line-height: 0; mso-line-height-rule: exactly;">&nbsp;</td>
               </tr>
             </table>`
         case 'markdown':
           return `
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 30px;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
               <tr>
-                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0;">
+                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                   ${renderMarkdown(element.content || '')}
                 </td>
+              </tr>
+              <!-- Spacer row for consistent vertical spacing in Outlook -->
+              <tr>
+                <td height="30" style="font-size: 0; line-height: 0; mso-line-height-rule: exactly;">&nbsp;</td>
               </tr>
             </table>`
         case 'html':
           return `
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-bottom: 30px;">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
               <tr>
-                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0;">
+                <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                   ${element.content || ''}
                 </td>
+              </tr>
+              <!-- Spacer row for consistent vertical spacing in Outlook -->
+              <tr>
+                <td height="30" style="font-size: 0; line-height: 0; mso-line-height-rule: exactly;">&nbsp;</td>
               </tr>
             </table>`
         default:
@@ -168,6 +207,14 @@ export function createNewTemplate({
     }
     .padding {
       padding: 0 20px;
+    }
+    .padding-v-30 {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+    .padding-h-20 {
+      padding-left: 20px;
+      padding-right: 20px;
     }
     body {
       -webkit-font-smoothing: antialiased;
@@ -296,9 +343,9 @@ export function createNewTemplate({
       font-weight: 400;
       margin: 0;
       margin-bottom: 16px;
+      margin-left: 20px;
       line-height: 1.5;
       color: #666666;
-      padding-left: 20px;
       mso-line-height-rule: exactly;
     }
     .markdown-li {
@@ -308,8 +355,7 @@ export function createNewTemplate({
     }
     .markdown-blockquote {
       border-left: 3px solid #0070ff;
-      padding-left: 16px;
-      margin: 16px 0;
+      margin: 16px 0 16px 16px;
       color: #666666;
       font-style: italic;
     }
@@ -501,26 +547,32 @@ export function createNewTemplate({
     }
     </style>
   </head>
-  <body id="body" style="margin: 0; padding: 0;">
+  <body id="body" style="margin: 0;">
     <!-- Preheader text optimized for inbox preview -->
-    <div style="color: transparent; visibility: hidden; opacity: 0; font-size: 0px; border: 0; max-height: 1px; width: 1px; margin: 0px; padding: 0px; border-width: 0px !important; display: none !important; line-height: 0px !important;">
+    <div style="color: transparent; visibility: hidden; opacity: 0; font-size: 0px; border: 0; max-height: 1px; width: 1px; margin: 0px; border-width: 0px !important; display: none !important; line-height: 0px !important;">
       <span>${meta.preheader || meta.subject || ''}</span>
       &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
       &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
     </div>
     
-    <!-- Simplified container structure -->
-    <table id="wrapper" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="-webkit-font-smoothing: antialiased; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; max-width: 550px; width: 100% !important;">
-      <!--[if mso]>
-      <tr><td>
-      <table border="0" cellpadding="0" cellspacing="0" width="550">
-      <![endif]-->
+    <!-- Outer table for centering in Outlook -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+      <tr>
+        <td align="center" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+          <!--[if mso]>
+          <center>
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="550">
+            <tr>
+              <td align="center">
+          <![endif]-->
+          <!-- Main wrapper table -->
+          <table id="wrapper" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="-webkit-font-smoothing: antialiased; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 16px; max-width: 550px; width: 100% !important; margin: 0 auto;">
       <tr>
         <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
           <table border="0" cellpadding="0" cellspacing="0" width="100%" class="container" style="border-collapse: collapse;">
             <!-- Header -->
             <tr>
-              <td align="center" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 30px 20px;">
+              <td align="center" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" class="padding-v-30 padding-h-20">
                 <h1><a class="logo" href="${preset.url}">${preset.title}</a></h1>
                 <p class="tagline">${preset.subtitle}</p>
                 <p class="date">${formatDate(meta.date || new Date().toISOString())}</p>
@@ -529,17 +581,22 @@ export function createNewTemplate({
             
             <!-- Content -->
             <tr>
-              <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 0 20px;" class="padding">
+              <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;" class="padding">
                 ${renderElements(elements)}
               </td>
             </tr>
           </table>
         </td>
       </tr>
-      <!--[if mso]>
-      </table>
-      </td></tr>
-      <![endif]-->
+          </table>
+          <!--[if mso]>
+              </td>
+            </tr>
+          </table>
+          </center>
+          <![endif]-->
+        </td>
+      </tr>
     </table>
   </body>
   </html>`
