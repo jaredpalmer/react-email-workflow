@@ -96,7 +96,10 @@ const renderElements = (elements: EmailElement[]): string => {
                   <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                     <tr>
                       <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 14px; color: #999999;">                        
-                        <a href="${createChatGPTLink(element.title || '', element.url || '')}" style="color: #0070ff; text-decoration: none;" target="_blank">Open in ChatGPT ›</a>
+                        ${element.url?.includes('shellypalmer.com') 
+                          ? `<a href="${element.url || '#'}" style="color: #0070ff; text-decoration: none;" target="_blank">Read More ›</a>`
+                          : `<a href="${createChatGPTLink(element.title || '', element.url || '')}" style="color: #0070ff; text-decoration: none;" target="_blank">Open in ChatGPT ›</a>`
+                        }
                       </td>
                       <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: right; font-size: 14px; color: #999999;">
                         ${element.author ? `<a href="${element.url || '#'}" style="color: #999999; text-decoration: none;" target="_blank">Source: ${element.author}</a>` : ''}
