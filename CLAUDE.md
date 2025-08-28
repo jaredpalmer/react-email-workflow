@@ -56,10 +56,12 @@ The application follows a client-side state management pattern with Jotai atoms 
 - `/api/premail`: Generates email HTML with inlined CSS using juice
 - `/api/extract`: Fetches URL metadata for story elements using unfurl.js
 
-**Email Generation** (`lib/email/createHTML.ts`):
+**Email Generation** (`lib/email/`):
 
-- Template generation logic preserved from legacy system
-- Maintains compatibility with existing email templates
+- `createHTML.ts`: Main entry point that routes to old or new template
+- `templates/new-template.ts`: Modern email template with improved Outlook compatibility
+- `templates/old-template.ts`: Legacy template for backward compatibility
+- CSS classes are inlined into HTML using juice during build
 - Supports markdown rendering with custom CSS classes for email clients
 
 ### Element Types
@@ -80,3 +82,14 @@ The application follows a client-side state management pattern with Jotai atoms 
 - Markdown content is processed through marked.js with custom CSS classes for email compatibility
 - Development server runs on http://localhost:3000 by default
 - Application name: "spmail" (see package.json)
+
+### Email Template Best Practices
+
+- **CSS Inlining**: Use CSS classes in templates; juice will inline them during processing
+- **Outlook Compatibility**: 
+  - Use table-based spacing instead of CSS margins for vertical gaps
+  - Split padding into vertical and horizontal components when possible
+  - Always include MSO-specific properties (`mso-table-lspace`, `mso-table-rspace`, `mso-line-height-rule`)
+  - Wrap main content in centering tables with proper MSO conditionals
+- **Semantic Elements**: Use margins instead of padding on `<p>`, `<h1-6>`, `<ul>`, `<ol>`, `<blockquote>`
+- **Vertical Spacing**: Use spacer rows (`<td height="30">`) instead of margin-bottom on tables
