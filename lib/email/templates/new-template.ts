@@ -74,7 +74,12 @@ const renderMarkdown = (content: string): string => {
 
 const renderElements = (elements: EmailElement[]): string => {
   return elements
-    .map((element) => {
+    .map((element, index) => {
+      // Check if this is the last URL element in a consecutive group
+      const isLastUrlInGroup = element.kind === 'url' && 
+        (index === elements.length - 1 || elements[index + 1]?.kind !== 'url') &&
+        index > 0 && elements[index - 1]?.kind === 'url';
+      
       switch (element.kind) {
         case 'url':
           // Modern story structure with better spacing
@@ -83,28 +88,27 @@ const renderElements = (elements: EmailElement[]): string => {
               <tr>
                 <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                   <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; line-height: 1.3; mso-line-height-rule: exactly;">
-                    <a href="${element.url || '#'}" style="color: #111111; text-decoration: none;">${element.title || 'Untitled'}</a>
+                    ${element.title || 'Untitled'}
                   </h3>
                   <p style="margin: 0 0 8px 0; font-size: 16px; line-height: 1.5; color: #666666; mso-line-height-rule: exactly;">
                     ${element.description || element.content || ''}
                   </p>
                   <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                     <tr>
-                      <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 14px; color: #999999;">
-                        ${element.author ? `<span>${element.author}</span> · ` : ''}
-                        <a href="${element.url || '#'}" style="color: #0070ff; text-decoration: none;">Read more ›</a>
-                      </td>
-                      <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: right; font-size: 14px;">
+                      <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-size: 14px; color: #999999;">                        
                         <a href="${createChatGPTLink(element.title || '', element.url || '')}" style="color: #0070ff; text-decoration: none;">Open in ChatGPT ›</a>
+                      </td>
+                      <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: right; font-size: 14px; color: #999999;">
+                        ${element.author ? `<a href="${element.url || '#'}" style="color: #999999; text-decoration: none;">Source: ${element.author}</a>` : ''}
                       </td>
                     </tr>
                   </table>
                 </td>
               </tr>
-              <!-- Spacer row for consistent vertical spacing in Outlook -->
+              ${!isLastUrlInGroup ? `<!-- Spacer row for consistent vertical spacing in Outlook -->
               <tr>
                 <td height="30" style="font-size: 0; line-height: 0; mso-line-height-rule: exactly;">&nbsp;</td>
-              </tr>
+              </tr>` : ''}
             </table>`
         case 'markdown':
           return `
@@ -113,11 +117,7 @@ const renderElements = (elements: EmailElement[]): string => {
                 <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                   ${renderMarkdown(element.content || '')}
                 </td>
-              </tr>
-              <!-- Spacer row for consistent vertical spacing in Outlook -->
-              <tr>
-                <td height="30" style="font-size: 0; line-height: 0; mso-line-height-rule: exactly;">&nbsp;</td>
-              </tr>
+              </tr>             
             </table>`
         case 'html':
           return `
@@ -126,11 +126,7 @@ const renderElements = (elements: EmailElement[]): string => {
                 <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                   ${element.content || ''}
                 </td>
-              </tr>
-              <!-- Spacer row for consistent vertical spacing in Outlook -->
-              <tr>
-                <td height="30" style="font-size: 0; line-height: 0; mso-line-height-rule: exactly;">&nbsp;</td>
-              </tr>
+              </tr>            
             </table>`
         default:
           return ''
