@@ -102,7 +102,7 @@ const renderElements = (elements: EmailElement[]): string => {
                         }
                       </td>
                       <td style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: right; font-size: 14px; color: #999999;">
-                        ${element.author ? `<a href="${element.url || '#'}" style="color: #999999; text-decoration: none;" target="_blank">Source: ${element.author}</a>` : ''}
+                        ${element.author ? `<a href="${element.url || '#'}" style="color: #0070ff; text-decoration: none;" target="_blank">Source: ${element.author}</a>` : ''}
                       </td>
                     </tr>
                   </table>
