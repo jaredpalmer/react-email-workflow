@@ -20,10 +20,10 @@ pnpm lint
 
 ## Architecture Overview
 
-This is an email builder application built with Next.js 15.4 and TypeScript. It provides a drag-and-drop interface for creating HTML emails with live preview capabilities.
+This is an email builder application built with Next.js 16.0.9 and TypeScript. It provides a drag-and-drop interface for creating HTML emails with live preview capabilities.
 
 ### Tech Stack
-- **Framework**: Next.js 15.4 with App Router
+- **Framework**: Next.js 16.0.9 with App Router
 - **State Management**: Jotai (atomic state management)
 - **UI Components**: shadcn/ui with Radix UI primitives
 - **Styling**: Tailwind CSS v4
