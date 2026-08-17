@@ -46,9 +46,21 @@ export async function POST(request: Request) {
       // Try to extract metadata using unfurl
       metadata = await unfurl(url, { headers: EXTRACT_HEADERS }) as UnfurlMetadata
     } catch (unfurlError) {
-      // If unfurl fails, still try to extract what we can from the URL
+      // The fetch itself failed — usually a bot-protection block (wsj.com sits
+      // behind DataDome and answers 401 to every user agent, browser UAs
+      // included) rather than a bad URL.
+      //
+      // Report that instead of returning 200 with blank fields. A hollow 200
+      // looks like success to the client, which then overwrites the story's
+      // Title / Description / Publication with empty strings and a publication
+      // guessed from the hostname ("Wsj") — wiping anything the author typed by
+      // hand and showing no error. Signalling failure lets the client keep those
+      // fields intact so a blocked source can be filled in manually.
       console.warn('Unfurl failed for URL:', url, unfurlError)
-      metadata = {}
+      return NextResponse.json(
+        { error: 'Could not fetch metadata for this URL' },
+        { status: 502 }
+      )
     }
     
     // Extract title and publication from the full title
