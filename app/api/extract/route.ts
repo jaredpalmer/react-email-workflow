@@ -15,6 +15,20 @@ interface UnfurlMetadata {
   }
 }
 
+// unfurl.js defaults to `User-Agent: facebookexternalhit`, which a growing number
+// of sites (shellypalmer.com, openai.com, wsj.com) reject outright at their bot
+// protection layer. A rejected fetch throws, and the route falls back to deriving
+// the publication from the hostname — which is why a blocked link renders with no
+// title, no description, and a source of "Shellypalmer" instead of "Shelly Palmer".
+//
+// Identify the app honestly instead of as the Facebook crawler. Note that unfurl
+// *replaces* its default headers with whatever is passed here rather than merging,
+// so `Accept` has to be repeated or the request stops asking for HTML.
+const EXTRACT_HEADERS = {
+  Accept: 'text/html, application/xhtml+xml',
+  'User-Agent': 'spmail-linkpreview/1.0 (+https://shellypalmer.com)',
+}
+
 export async function POST(request: Request) {
   try {
     const { url } = await request.json()
@@ -30,7 +44,7 @@ export async function POST(request: Request) {
     
     try {
       // Try to extract metadata using unfurl
-      metadata = await unfurl(url) as UnfurlMetadata
+      metadata = await unfurl(url, { headers: EXTRACT_HEADERS }) as UnfurlMetadata
     } catch (unfurlError) {
       // If unfurl fails, still try to extract what we can from the URL
       console.warn('Unfurl failed for URL:', url, unfurlError)
